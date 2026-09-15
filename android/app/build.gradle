@@ -40,8 +40,6 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(":capacitor-cordova-android-plugins")
-    implementation "com.google.zxing:core:3.5.3"
-    implementation "com.tom-roush:pdfbox-android:2.0.27.0"
 }
 
 apply from: 'capacitor.build.gradle'
