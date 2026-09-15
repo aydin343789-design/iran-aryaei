@@ -1,0 +1,2106 @@
+{
+  "کتاب": {
+    "fa": "کتاب",
+    "en": "book"
+  },
+  "book": {
+    "fa": "کتاب",
+    "en": "book"
+  },
+  "دفتر": {
+    "fa": "دفتر",
+    "en": "notebook"
+  },
+  "notebook": {
+    "fa": "دفتر",
+    "en": "notebook"
+  },
+  "مداد": {
+    "fa": "مداد",
+    "en": "pencil"
+  },
+  "pencil": {
+    "fa": "مداد",
+    "en": "pencil"
+  },
+  "خودکار": {
+    "fa": "خودکار",
+    "en": "pen"
+  },
+  "pen": {
+    "fa": "خودکار",
+    "en": "pen"
+  },
+  "میز": {
+    "fa": "میز",
+    "en": "table"
+  },
+  "table": {
+    "fa": "میز",
+    "en": "table"
+  },
+  "صندلی": {
+    "fa": "صندلی",
+    "en": "chair"
+  },
+  "chair": {
+    "fa": "صندلی",
+    "en": "chair"
+  },
+  "در": {
+    "fa": "در",
+    "en": "door"
+  },
+  "door": {
+    "fa": "در",
+    "en": "door"
+  },
+  "پنجره": {
+    "fa": "پنجره",
+    "en": "window"
+  },
+  "window": {
+    "fa": "پنجره",
+    "en": "window"
+  },
+  "اتاق": {
+    "fa": "اتاق",
+    "en": "room"
+  },
+  "room": {
+    "fa": "اتاق",
+    "en": "room"
+  },
+  "خانه": {
+    "fa": "خانه",
+    "en": "house"
+  },
+  "house": {
+    "fa": "خانه",
+    "en": "house"
+  },
+  "آشپزخانه": {
+    "fa": "آشپزخانه",
+    "en": "kitchen"
+  },
+  "kitchen": {
+    "fa": "آشپزخانه",
+    "en": "kitchen"
+  },
+  "حمام": {
+    "fa": "حمام",
+    "en": "bathroom"
+  },
+  "bathroom": {
+    "fa": "حمام",
+    "en": "bathroom"
+  },
+  "مدرسه": {
+    "fa": "مدرسه",
+    "en": "school"
+  },
+  "school": {
+    "fa": "مدرسه",
+    "en": "school"
+  },
+  "دانشگاه": {
+    "fa": "دانشگاه",
+    "en": "university"
+  },
+  "university": {
+    "fa": "دانشگاه",
+    "en": "university"
+  },
+  "دانشجو": {
+    "fa": "دانشجو",
+    "en": "student"
+  },
+  "student": {
+    "fa": "دانشجو",
+    "en": "student"
+  },
+  "معلم": {
+    "fa": "معلم",
+    "en": "teacher"
+  },
+  "teacher": {
+    "fa": "معلم",
+    "en": "teacher"
+  },
+  "دانش": {
+    "fa": "دانش",
+    "en": "knowledge"
+  },
+  "knowledge": {
+    "fa": "دانش",
+    "en": "knowledge"
+  },
+  "کار": {
+    "fa": "کار",
+    "en": "work"
+  },
+  "work": {
+    "fa": "کار",
+    "en": "work"
+  },
+  "شغل": {
+    "fa": "شغل",
+    "en": "job"
+  },
+  "job": {
+    "fa": "شغل",
+    "en": "job"
+  },
+  "پول": {
+    "fa": "پول",
+    "en": "money"
+  },
+  "money": {
+    "fa": "پول",
+    "en": "money"
+  },
+  "بازار": {
+    "fa": "بازار",
+    "en": "market"
+  },
+  "market": {
+    "fa": "بازار",
+    "en": "market"
+  },
+  "فروشگاه": {
+    "fa": "فروشگاه",
+    "en": "shop"
+  },
+  "shop": {
+    "fa": "فروشگاه",
+    "en": "shop"
+  },
+  "خیابان": {
+    "fa": "خیابان",
+    "en": "street"
+  },
+  "street": {
+    "fa": "خیابان",
+    "en": "street"
+  },
+  "جاده": {
+    "fa": "جاده",
+    "en": "road"
+  },
+  "road": {
+    "fa": "جاده",
+    "en": "road"
+  },
+  "شهر": {
+    "fa": "شهر",
+    "en": "city"
+  },
+  "city": {
+    "fa": "شهر",
+    "en": "city"
+  },
+  "کشور": {
+    "fa": "کشور",
+    "en": "country"
+  },
+  "country": {
+    "fa": "کشور",
+    "en": "country"
+  },
+  "ایران": {
+    "fa": "ایران",
+    "en": "Iran"
+  },
+  "iran": {
+    "fa": "ایران",
+    "en": "Iran"
+  },
+  "آلمان": {
+    "fa": "آلمان",
+    "en": "Germany"
+  },
+  "germany": {
+    "fa": "آلمان",
+    "en": "Germany"
+  },
+  "دوست": {
+    "fa": "دوست",
+    "en": "friend"
+  },
+  "friend": {
+    "fa": "دوست",
+    "en": "friend"
+  },
+  "خانواده": {
+    "fa": "خانواده",
+    "en": "family"
+  },
+  "family": {
+    "fa": "خانواده",
+    "en": "family"
+  },
+  "پدر": {
+    "fa": "پدر",
+    "en": "father"
+  },
+  "father": {
+    "fa": "پدر",
+    "en": "father"
+  },
+  "مادر": {
+    "fa": "مادر",
+    "en": "mother"
+  },
+  "mother": {
+    "fa": "مادر",
+    "en": "mother"
+  },
+  "برادر": {
+    "fa": "برادر",
+    "en": "brother"
+  },
+  "brother": {
+    "fa": "برادر",
+    "en": "brother"
+  },
+  "خواهر": {
+    "fa": "خواهر",
+    "en": "sister"
+  },
+  "sister": {
+    "fa": "خواهر",
+    "en": "sister"
+  },
+  "کودک": {
+    "fa": "کودک",
+    "en": "child"
+  },
+  "child": {
+    "fa": "کودک",
+    "en": "child"
+  },
+  "مرد": {
+    "fa": "مرد",
+    "en": "man"
+  },
+  "man": {
+    "fa": "مرد",
+    "en": "man"
+  },
+  "زن": {
+    "fa": "زن",
+    "en": "woman"
+  },
+  "woman": {
+    "fa": "زن",
+    "en": "woman"
+  },
+  "مردم": {
+    "fa": "مردم",
+    "en": "people"
+  },
+  "people": {
+    "fa": "مردم",
+    "en": "people"
+  },
+  "زندگی": {
+    "fa": "زندگی",
+    "en": "life"
+  },
+  "life": {
+    "fa": "زندگی",
+    "en": "life"
+  },
+  "عشق": {
+    "fa": "عشق",
+    "en": "love"
+  },
+  "love": {
+    "fa": "دوست داشتن",
+    "en": "love"
+  },
+  "دوست داشتن": {
+    "fa": "دوست داشتن",
+    "en": "love"
+  },
+  "خوشحال": {
+    "fa": "خوشحال",
+    "en": "happy"
+  },
+  "happy": {
+    "fa": "خوشحال",
+    "en": "happy"
+  },
+  "غمگین": {
+    "fa": "غمگین",
+    "en": "sad"
+  },
+  "sad": {
+    "fa": "غمگین",
+    "en": "sad"
+  },
+  "خوب": {
+    "fa": "خوب",
+    "en": "good"
+  },
+  "good": {
+    "fa": "خوب",
+    "en": "good"
+  },
+  "بد": {
+    "fa": "بد",
+    "en": "bad"
+  },
+  "bad": {
+    "fa": "بد",
+    "en": "bad"
+  },
+  "بزرگ": {
+    "fa": "بزرگ",
+    "en": "big"
+  },
+  "big": {
+    "fa": "بزرگ",
+    "en": "big"
+  },
+  "کوچک": {
+    "fa": "کوچک",
+    "en": "small"
+  },
+  "small": {
+    "fa": "کوچک",
+    "en": "small"
+  },
+  "سریع": {
+    "fa": "سریع",
+    "en": "fast"
+  },
+  "fast": {
+    "fa": "سریع",
+    "en": "fast"
+  },
+  "آهسته": {
+    "fa": "آهسته",
+    "en": "slow"
+  },
+  "slow": {
+    "fa": "آهسته",
+    "en": "slow"
+  },
+  "زیبا": {
+    "fa": "زیبا",
+    "en": "beautiful"
+  },
+  "beautiful": {
+    "fa": "زیبا",
+    "en": "beautiful"
+  },
+  "زشت": {
+    "fa": "زشت",
+    "en": "ugly"
+  },
+  "ugly": {
+    "fa": "زشت",
+    "en": "ugly"
+  },
+  "جدید": {
+    "fa": "جدید",
+    "en": "new"
+  },
+  "new": {
+    "fa": "جدید",
+    "en": "new"
+  },
+  "قدیمی": {
+    "fa": "قدیمی",
+    "en": "old"
+  },
+  "old": {
+    "fa": "قدیمی",
+    "en": "old"
+  },
+  "آسان": {
+    "fa": "آسان",
+    "en": "easy"
+  },
+  "easy": {
+    "fa": "آسان",
+    "en": "easy"
+  },
+  "سخت": {
+    "fa": "سخت",
+    "en": "hard"
+  },
+  "hard": {
+    "fa": "سخت",
+    "en": "hard"
+  },
+  "گرم": {
+    "fa": "گرم",
+    "en": "hot"
+  },
+  "hot": {
+    "fa": "گرم",
+    "en": "hot"
+  },
+  "سرد": {
+    "fa": "سرد",
+    "en": "cold"
+  },
+  "cold": {
+    "fa": "سرد",
+    "en": "cold"
+  },
+  "روشن": {
+    "fa": "روشن",
+    "en": "bright"
+  },
+  "bright": {
+    "fa": "روشن",
+    "en": "bright"
+  },
+  "تاریک": {
+    "fa": "تاریک",
+    "en": "dark"
+  },
+  "dark": {
+    "fa": "تاریک",
+    "en": "dark"
+  },
+  "قوی": {
+    "fa": "قوی",
+    "en": "strong"
+  },
+  "strong": {
+    "fa": "قوی",
+    "en": "strong"
+  },
+  "ضعیف": {
+    "fa": "ضعیف",
+    "en": "weak"
+  },
+  "weak": {
+    "fa": "ضعیف",
+    "en": "weak"
+  },
+  "درست": {
+    "fa": "درست",
+    "en": "correct"
+  },
+  "correct": {
+    "fa": "درست",
+    "en": "correct"
+  },
+  "غلط": {
+    "fa": "غلط",
+    "en": "wrong"
+  },
+  "wrong": {
+    "fa": "غلط",
+    "en": "wrong"
+  },
+  "آزاد": {
+    "fa": "آزاد",
+    "en": "free"
+  },
+  "free": {
+    "fa": "آزاد",
+    "en": "free"
+  },
+  "مهم": {
+    "fa": "مهم",
+    "en": "important"
+  },
+  "important": {
+    "fa": "مهم",
+    "en": "important"
+  },
+  "امروز": {
+    "fa": "امروز",
+    "en": "today"
+  },
+  "today": {
+    "fa": "امروز",
+    "en": "today"
+  },
+  "فردا": {
+    "fa": "فردا",
+    "en": "tomorrow"
+  },
+  "tomorrow": {
+    "fa": "فردا",
+    "en": "tomorrow"
+  },
+  "دیروز": {
+    "fa": "دیروز",
+    "en": "yesterday"
+  },
+  "yesterday": {
+    "fa": "دیروز",
+    "en": "yesterday"
+  },
+  "روز": {
+    "fa": "روز",
+    "en": "day"
+  },
+  "day": {
+    "fa": "روز",
+    "en": "day"
+  },
+  "شب": {
+    "fa": "شب",
+    "en": "night"
+  },
+  "night": {
+    "fa": "شب",
+    "en": "night"
+  },
+  "صبح": {
+    "fa": "صبح",
+    "en": "morning"
+  },
+  "morning": {
+    "fa": "صبح",
+    "en": "morning"
+  },
+  "ظهر": {
+    "fa": "ظهر",
+    "en": "noon"
+  },
+  "noon": {
+    "fa": "ظهر",
+    "en": "noon"
+  },
+  "عصر": {
+    "fa": "عصر",
+    "en": "afternoon"
+  },
+  "afternoon": {
+    "fa": "عصر",
+    "en": "afternoon"
+  },
+  "هفته": {
+    "fa": "هفته",
+    "en": "week"
+  },
+  "week": {
+    "fa": "هفته",
+    "en": "week"
+  },
+  "ماه": {
+    "fa": "ماه",
+    "en": "moon"
+  },
+  "month": {
+    "fa": "ماه",
+    "en": "month"
+  },
+  "سال": {
+    "fa": "سال",
+    "en": "year"
+  },
+  "year": {
+    "fa": "سال",
+    "en": "year"
+  },
+  "زمان": {
+    "fa": "زمان",
+    "en": "time"
+  },
+  "time": {
+    "fa": "زمان",
+    "en": "time"
+  },
+  "ساعت": {
+    "fa": "ساعت",
+    "en": "hour"
+  },
+  "hour": {
+    "fa": "ساعت",
+    "en": "hour"
+  },
+  "دقیقه": {
+    "fa": "دقیقه",
+    "en": "minute"
+  },
+  "minute": {
+    "fa": "دقیقه",
+    "en": "minute"
+  },
+  "ثانیه": {
+    "fa": "ثانیه",
+    "en": "second"
+  },
+  "second": {
+    "fa": "ثانیه",
+    "en": "second"
+  },
+  "آب": {
+    "fa": "آب",
+    "en": "water"
+  },
+  "water": {
+    "fa": "آب",
+    "en": "water"
+  },
+  "نان": {
+    "fa": "نان",
+    "en": "bread"
+  },
+  "bread": {
+    "fa": "نان",
+    "en": "bread"
+  },
+  "غذا": {
+    "fa": "غذا",
+    "en": "food"
+  },
+  "food": {
+    "fa": "غذا",
+    "en": "food"
+  },
+  "برنج": {
+    "fa": "برنج",
+    "en": "rice"
+  },
+  "rice": {
+    "fa": "برنج",
+    "en": "rice"
+  },
+  "گوشت": {
+    "fa": "گوشت",
+    "en": "meat"
+  },
+  "meat": {
+    "fa": "گوشت",
+    "en": "meat"
+  },
+  "مرغ": {
+    "fa": "مرغ",
+    "en": "chicken"
+  },
+  "chicken": {
+    "fa": "مرغ",
+    "en": "chicken"
+  },
+  "ماهی": {
+    "fa": "ماهی",
+    "en": "fish"
+  },
+  "fish": {
+    "fa": "ماهی",
+    "en": "fish"
+  },
+  "سیب": {
+    "fa": "سیب",
+    "en": "apple"
+  },
+  "apple": {
+    "fa": "سیب",
+    "en": "apple"
+  },
+  "پرتقال": {
+    "fa": "پرتقال",
+    "en": "orange"
+  },
+  "orange": {
+    "fa": "نارنجی",
+    "en": "orange"
+  },
+  "موز": {
+    "fa": "موز",
+    "en": "banana"
+  },
+  "banana": {
+    "fa": "موز",
+    "en": "banana"
+  },
+  "چای": {
+    "fa": "چای",
+    "en": "tea"
+  },
+  "tea": {
+    "fa": "چای",
+    "en": "tea"
+  },
+  "قهوه": {
+    "fa": "قهوه",
+    "en": "coffee"
+  },
+  "coffee": {
+    "fa": "قهوه",
+    "en": "coffee"
+  },
+  "شیر": {
+    "fa": "شیر",
+    "en": "milk"
+  },
+  "milk": {
+    "fa": "شیر",
+    "en": "milk"
+  },
+  "نمک": {
+    "fa": "نمک",
+    "en": "salt"
+  },
+  "salt": {
+    "fa": "نمک",
+    "en": "salt"
+  },
+  "شکر": {
+    "fa": "شکر",
+    "en": "sugar"
+  },
+  "sugar": {
+    "fa": "شکر",
+    "en": "sugar"
+  },
+  "خورشید": {
+    "fa": "خورشید",
+    "en": "sun"
+  },
+  "sun": {
+    "fa": "خورشید",
+    "en": "sun"
+  },
+  "moon": {
+    "fa": "ماه",
+    "en": "moon"
+  },
+  "ستاره": {
+    "fa": "ستاره",
+    "en": "star"
+  },
+  "star": {
+    "fa": "ستاره",
+    "en": "star"
+  },
+  "آسمان": {
+    "fa": "آسمان",
+    "en": "sky"
+  },
+  "sky": {
+    "fa": "آسمان",
+    "en": "sky"
+  },
+  "زمین": {
+    "fa": "زمین",
+    "en": "earth"
+  },
+  "earth": {
+    "fa": "زمین",
+    "en": "earth"
+  },
+  "دریا": {
+    "fa": "دریا",
+    "en": "sea"
+  },
+  "sea": {
+    "fa": "دریا",
+    "en": "sea"
+  },
+  "رود": {
+    "fa": "رود",
+    "en": "river"
+  },
+  "river": {
+    "fa": "رود",
+    "en": "river"
+  },
+  "کوه": {
+    "fa": "کوه",
+    "en": "mountain"
+  },
+  "mountain": {
+    "fa": "کوه",
+    "en": "mountain"
+  },
+  "جنگل": {
+    "fa": "جنگل",
+    "en": "forest"
+  },
+  "forest": {
+    "fa": "جنگل",
+    "en": "forest"
+  },
+  "باران": {
+    "fa": "باران",
+    "en": "rain"
+  },
+  "rain": {
+    "fa": "باران",
+    "en": "rain"
+  },
+  "برف": {
+    "fa": "برف",
+    "en": "snow"
+  },
+  "snow": {
+    "fa": "برف",
+    "en": "snow"
+  },
+  "باد": {
+    "fa": "باد",
+    "en": "wind"
+  },
+  "wind": {
+    "fa": "باد",
+    "en": "wind"
+  },
+  "هوا": {
+    "fa": "هوا",
+    "en": "weather"
+  },
+  "weather": {
+    "fa": "هوا",
+    "en": "weather"
+  },
+  "آتش": {
+    "fa": "آتش",
+    "en": "fire"
+  },
+  "fire": {
+    "fa": "آتش",
+    "en": "fire"
+  },
+  "درخت": {
+    "fa": "درخت",
+    "en": "tree"
+  },
+  "tree": {
+    "fa": "درخت",
+    "en": "tree"
+  },
+  "گل": {
+    "fa": "گل",
+    "en": "flower"
+  },
+  "flower": {
+    "fa": "گل",
+    "en": "flower"
+  },
+  "ماشین": {
+    "fa": "ماشین",
+    "en": "car"
+  },
+  "car": {
+    "fa": "ماشین",
+    "en": "car"
+  },
+  "اتوبوس": {
+    "fa": "اتوبوس",
+    "en": "bus"
+  },
+  "bus": {
+    "fa": "اتوبوس",
+    "en": "bus"
+  },
+  "قطار": {
+    "fa": "قطار",
+    "en": "train"
+  },
+  "train": {
+    "fa": "قطار",
+    "en": "train"
+  },
+  "هواپیما": {
+    "fa": "هواپیما",
+    "en": "airplane"
+  },
+  "airplane": {
+    "fa": "هواپیما",
+    "en": "airplane"
+  },
+  "دوچرخه": {
+    "fa": "دوچرخه",
+    "en": "bicycle"
+  },
+  "bicycle": {
+    "fa": "دوچرخه",
+    "en": "bicycle"
+  },
+  "موتور": {
+    "fa": "موتور",
+    "en": "motorcycle"
+  },
+  "motorcycle": {
+    "fa": "موتور",
+    "en": "motorcycle"
+  },
+  "فرودگاه": {
+    "fa": "فرودگاه",
+    "en": "airport"
+  },
+  "airport": {
+    "fa": "فرودگاه",
+    "en": "airport"
+  },
+  "ایستگاه": {
+    "fa": "ایستگاه",
+    "en": "station"
+  },
+  "station": {
+    "fa": "ایستگاه",
+    "en": "station"
+  },
+  "کامپیوتر": {
+    "fa": "کامپیوتر",
+    "en": "computer"
+  },
+  "computer": {
+    "fa": "کامپیوتر",
+    "en": "computer"
+  },
+  "گوشی": {
+    "fa": "گوشی",
+    "en": "phone"
+  },
+  "phone": {
+    "fa": "گوشی",
+    "en": "phone"
+  },
+  "تلفن": {
+    "fa": "تلفن",
+    "en": "telephone"
+  },
+  "telephone": {
+    "fa": "تلفن",
+    "en": "telephone"
+  },
+  "صفحه": {
+    "fa": "صفحه",
+    "en": "screen"
+  },
+  "screen": {
+    "fa": "صفحه",
+    "en": "screen"
+  },
+  "کیبورد": {
+    "fa": "کیبورد",
+    "en": "keyboard"
+  },
+  "keyboard": {
+    "fa": "کیبورد",
+    "en": "keyboard"
+  },
+  "ماوس": {
+    "fa": "ماوس",
+    "en": "mouse"
+  },
+  "mouse": {
+    "fa": "ماوس",
+    "en": "mouse"
+  },
+  "فایل": {
+    "fa": "فایل",
+    "en": "file"
+  },
+  "file": {
+    "fa": "فایل",
+    "en": "file"
+  },
+  "پوشه": {
+    "fa": "پوشه",
+    "en": "folder"
+  },
+  "folder": {
+    "fa": "پوشه",
+    "en": "folder"
+  },
+  "برنامه": {
+    "fa": "برنامه",
+    "en": "program"
+  },
+  "program": {
+    "fa": "برنامه",
+    "en": "program"
+  },
+  "نرم افزار": {
+    "fa": "نرم افزار",
+    "en": "software"
+  },
+  "software": {
+    "fa": "نرم افزار",
+    "en": "software"
+  },
+  "سخت افزار": {
+    "fa": "سخت افزار",
+    "en": "hardware"
+  },
+  "hardware": {
+    "fa": "سخت افزار",
+    "en": "hardware"
+  },
+  "اینترنت": {
+    "fa": "اینترنت",
+    "en": "internet"
+  },
+  "internet": {
+    "fa": "اینترنت",
+    "en": "internet"
+  },
+  "شبکه": {
+    "fa": "شبکه",
+    "en": "network"
+  },
+  "network": {
+    "fa": "شبکه",
+    "en": "network"
+  },
+  "رمز": {
+    "fa": "رمز",
+    "en": "password"
+  },
+  "password": {
+    "fa": "رمز",
+    "en": "password"
+  },
+  "امنیت": {
+    "fa": "امنیت",
+    "en": "security"
+  },
+  "security": {
+    "fa": "امنیت",
+    "en": "security"
+  },
+  "عکس": {
+    "fa": "عکس",
+    "en": "photo"
+  },
+  "photo": {
+    "fa": "عکس",
+    "en": "photo"
+  },
+  "تصویر": {
+    "fa": "تصویر",
+    "en": "image"
+  },
+  "image": {
+    "fa": "تصویر",
+    "en": "image"
+  },
+  "فیلم": {
+    "fa": "فیلم",
+    "en": "video"
+  },
+  "video": {
+    "fa": "ویدئو",
+    "en": "video"
+  },
+  "ویدئو": {
+    "fa": "ویدئو",
+    "en": "video"
+  },
+  "صدا": {
+    "fa": "صدا",
+    "en": "sound"
+  },
+  "sound": {
+    "fa": "صدا",
+    "en": "sound"
+  },
+  "موسیقی": {
+    "fa": "موسیقی",
+    "en": "music"
+  },
+  "music": {
+    "fa": "موسیقی",
+    "en": "music"
+  },
+  "آهنگ": {
+    "fa": "آهنگ",
+    "en": "song"
+  },
+  "song": {
+    "fa": "آهنگ",
+    "en": "song"
+  },
+  "متن": {
+    "fa": "متن",
+    "en": "text"
+  },
+  "text": {
+    "fa": "متن",
+    "en": "text"
+  },
+  "کلمه": {
+    "fa": "کلمه",
+    "en": "word"
+  },
+  "word": {
+    "fa": "کلمه",
+    "en": "word"
+  },
+  "جمله": {
+    "fa": "جمله",
+    "en": "sentence"
+  },
+  "sentence": {
+    "fa": "جمله",
+    "en": "sentence"
+  },
+  "زبان": {
+    "fa": "زبان",
+    "en": "language"
+  },
+  "language": {
+    "fa": "زبان",
+    "en": "language"
+  },
+  "ترجمه": {
+    "fa": "ترجمه",
+    "en": "translation"
+  },
+  "translation": {
+    "fa": "ترجمه",
+    "en": "translation"
+  },
+  "فرهنگ": {
+    "fa": "فرهنگ",
+    "en": "dictionary"
+  },
+  "dictionary": {
+    "fa": "فرهنگ",
+    "en": "dictionary"
+  },
+  "معنی": {
+    "fa": "معنی",
+    "en": "meaning"
+  },
+  "meaning": {
+    "fa": "معنی",
+    "en": "meaning"
+  },
+  "سوال": {
+    "fa": "سوال",
+    "en": "question"
+  },
+  "question": {
+    "fa": "سوال",
+    "en": "question"
+  },
+  "پاسخ": {
+    "fa": "پاسخ",
+    "en": "answer"
+  },
+  "answer": {
+    "fa": "پاسخ",
+    "en": "answer"
+  },
+  "کمک": {
+    "fa": "کمک",
+    "en": "help"
+  },
+  "help": {
+    "fa": "کمک",
+    "en": "help"
+  },
+  "شروع": {
+    "fa": "شروع",
+    "en": "start"
+  },
+  "start": {
+    "fa": "شروع",
+    "en": "start"
+  },
+  "پایان": {
+    "fa": "پایان",
+    "en": "end"
+  },
+  "end": {
+    "fa": "پایان",
+    "en": "end"
+  },
+  "باز": {
+    "fa": "باز",
+    "en": "open"
+  },
+  "open": {
+    "fa": "باز",
+    "en": "open"
+  },
+  "بسته": {
+    "fa": "بسته",
+    "en": "closed"
+  },
+  "closed": {
+    "fa": "بسته",
+    "en": "closed"
+  },
+  "ذخیره": {
+    "fa": "ذخیره",
+    "en": "save"
+  },
+  "save": {
+    "fa": "ذخیره",
+    "en": "save"
+  },
+  "حذف": {
+    "fa": "حذف",
+    "en": "delete"
+  },
+  "delete": {
+    "fa": "حذف",
+    "en": "delete"
+  },
+  "ویرایش": {
+    "fa": "ویرایش",
+    "en": "edit"
+  },
+  "edit": {
+    "fa": "ویرایش",
+    "en": "edit"
+  },
+  "ساختن": {
+    "fa": "ساختن",
+    "en": "create"
+  },
+  "create": {
+    "fa": "ساختن",
+    "en": "create"
+  },
+  "تبدیل": {
+    "fa": "تبدیل",
+    "en": "convert"
+  },
+  "convert": {
+    "fa": "تبدیل",
+    "en": "convert"
+  },
+  "تغییر": {
+    "fa": "تغییر",
+    "en": "change"
+  },
+  "change": {
+    "fa": "تغییر",
+    "en": "change"
+  },
+  "جستجو": {
+    "fa": "جستجو",
+    "en": "search"
+  },
+  "search": {
+    "fa": "جستجو",
+    "en": "search"
+  },
+  "خواندن": {
+    "fa": "خواندن",
+    "en": "read"
+  },
+  "read": {
+    "fa": "خواندن",
+    "en": "read"
+  },
+  "نوشتن": {
+    "fa": "نوشتن",
+    "en": "write"
+  },
+  "write": {
+    "fa": "نوشتن",
+    "en": "write"
+  },
+  "ارسال": {
+    "fa": "ارسال",
+    "en": "send"
+  },
+  "send": {
+    "fa": "ارسال",
+    "en": "send"
+  },
+  "دریافت": {
+    "fa": "دریافت",
+    "en": "receive"
+  },
+  "receive": {
+    "fa": "دریافت",
+    "en": "receive"
+  },
+  "اشتراک گذاری": {
+    "fa": "اشتراک گذاری",
+    "en": "share"
+  },
+  "share": {
+    "fa": "اشتراک گذاری",
+    "en": "share"
+  },
+  "دانلود": {
+    "fa": "دانلود",
+    "en": "download"
+  },
+  "download": {
+    "fa": "دانلود",
+    "en": "download"
+  },
+  "آپلود": {
+    "fa": "آپلود",
+    "en": "upload"
+  },
+  "upload": {
+    "fa": "آپلود",
+    "en": "upload"
+  },
+  "انتخاب": {
+    "fa": "انتخاب",
+    "en": "select"
+  },
+  "select": {
+    "fa": "انتخاب",
+    "en": "select"
+  },
+  "لغو": {
+    "fa": "لغو",
+    "en": "cancel"
+  },
+  "cancel": {
+    "fa": "لغو",
+    "en": "cancel"
+  },
+  "اجرا": {
+    "fa": "اجرا",
+    "en": "run"
+  },
+  "run": {
+    "fa": "اجرا",
+    "en": "run"
+  },
+  "توقف": {
+    "fa": "توقف",
+    "en": "stop"
+  },
+  "stop": {
+    "fa": "توقف",
+    "en": "stop"
+  },
+  "تست": {
+    "fa": "تست",
+    "en": "test"
+  },
+  "test": {
+    "fa": "تست",
+    "en": "test"
+  },
+  "خطا": {
+    "fa": "خطا",
+    "en": "error"
+  },
+  "error": {
+    "fa": "خطا",
+    "en": "error"
+  },
+  "موفق": {
+    "fa": "موفق",
+    "en": "successful"
+  },
+  "successful": {
+    "fa": "موفق",
+    "en": "successful"
+  },
+  "تاریخ": {
+    "fa": "تاریخ",
+    "en": "date"
+  },
+  "date": {
+    "fa": "تاریخ",
+    "en": "date"
+  },
+  "تقویم": {
+    "fa": "تقویم",
+    "en": "calendar"
+  },
+  "calendar": {
+    "fa": "تقویم",
+    "en": "calendar"
+  },
+  "سن": {
+    "fa": "سن",
+    "en": "age"
+  },
+  "age": {
+    "fa": "سن",
+    "en": "age"
+  },
+  "فاصله": {
+    "fa": "فاصله",
+    "en": "distance"
+  },
+  "distance": {
+    "fa": "فاصله",
+    "en": "distance"
+  },
+  "نزدیک": {
+    "fa": "نزدیک",
+    "en": "near"
+  },
+  "near": {
+    "fa": "نزدیک",
+    "en": "near"
+  },
+  "دور": {
+    "fa": "دور",
+    "en": "far"
+  },
+  "far": {
+    "fa": "دور",
+    "en": "far"
+  },
+  "چپ": {
+    "fa": "چپ",
+    "en": "left"
+  },
+  "left": {
+    "fa": "چپ",
+    "en": "left"
+  },
+  "راست": {
+    "fa": "راست",
+    "en": "right"
+  },
+  "right": {
+    "fa": "راست",
+    "en": "right"
+  },
+  "بالا": {
+    "fa": "بالا",
+    "en": "up"
+  },
+  "up": {
+    "fa": "بالا",
+    "en": "up"
+  },
+  "پایین": {
+    "fa": "پایین",
+    "en": "down"
+  },
+  "down": {
+    "fa": "پایین",
+    "en": "down"
+  },
+  "داخل": {
+    "fa": "داخل",
+    "en": "inside"
+  },
+  "inside": {
+    "fa": "داخل",
+    "en": "inside"
+  },
+  "خارج": {
+    "fa": "خارج",
+    "en": "outside"
+  },
+  "outside": {
+    "fa": "خارج",
+    "en": "outside"
+  },
+  "اول": {
+    "fa": "اول",
+    "en": "first"
+  },
+  "first": {
+    "fa": "اول",
+    "en": "first"
+  },
+  "آخر": {
+    "fa": "آخر",
+    "en": "last"
+  },
+  "last": {
+    "fa": "آخر",
+    "en": "last"
+  },
+  "یک": {
+    "fa": "یک",
+    "en": "one"
+  },
+  "one": {
+    "fa": "یک",
+    "en": "one"
+  },
+  "دو": {
+    "fa": "دو",
+    "en": "two"
+  },
+  "two": {
+    "fa": "دو",
+    "en": "two"
+  },
+  "سه": {
+    "fa": "سه",
+    "en": "three"
+  },
+  "three": {
+    "fa": "سه",
+    "en": "three"
+  },
+  "چهار": {
+    "fa": "چهار",
+    "en": "four"
+  },
+  "four": {
+    "fa": "چهار",
+    "en": "four"
+  },
+  "پنج": {
+    "fa": "پنج",
+    "en": "five"
+  },
+  "five": {
+    "fa": "پنج",
+    "en": "five"
+  },
+  "شش": {
+    "fa": "شش",
+    "en": "six"
+  },
+  "six": {
+    "fa": "شش",
+    "en": "six"
+  },
+  "هفت": {
+    "fa": "هفت",
+    "en": "seven"
+  },
+  "seven": {
+    "fa": "هفت",
+    "en": "seven"
+  },
+  "هشت": {
+    "fa": "هشت",
+    "en": "eight"
+  },
+  "eight": {
+    "fa": "هشت",
+    "en": "eight"
+  },
+  "نه": {
+    "fa": "نه",
+    "en": "nine"
+  },
+  "nine": {
+    "fa": "نه",
+    "en": "nine"
+  },
+  "ده": {
+    "fa": "ده",
+    "en": "ten"
+  },
+  "ten": {
+    "fa": "ده",
+    "en": "ten"
+  },
+  "صد": {
+    "fa": "صد",
+    "en": "hundred"
+  },
+  "hundred": {
+    "fa": "صد",
+    "en": "hundred"
+  },
+  "هزار": {
+    "fa": "هزار",
+    "en": "thousand"
+  },
+  "thousand": {
+    "fa": "هزار",
+    "en": "thousand"
+  },
+  "سلام": {
+    "fa": "سلام",
+    "en": "hello"
+  },
+  "hello": {
+    "fa": "سلام",
+    "en": "hello"
+  },
+  "خداحافظ": {
+    "fa": "خداحافظ",
+    "en": "goodbye"
+  },
+  "goodbye": {
+    "fa": "خداحافظ",
+    "en": "goodbye"
+  },
+  "ممنون": {
+    "fa": "ممنون",
+    "en": "thanks"
+  },
+  "thanks": {
+    "fa": "ممنون",
+    "en": "thanks"
+  },
+  "متشکرم": {
+    "fa": "متشکرم",
+    "en": "thank you"
+  },
+  "thank you": {
+    "fa": "متشکرم",
+    "en": "thank you"
+  },
+  "لطفا": {
+    "fa": "لطفا",
+    "en": "please"
+  },
+  "please": {
+    "fa": "لطفا",
+    "en": "please"
+  },
+  "بله": {
+    "fa": "بله",
+    "en": "yes"
+  },
+  "yes": {
+    "fa": "بله",
+    "en": "yes"
+  },
+  "خیر": {
+    "fa": "خیر",
+    "en": "no"
+  },
+  "no": {
+    "fa": "خیر",
+    "en": "no"
+  },
+  "چرا": {
+    "fa": "چرا",
+    "en": "why"
+  },
+  "why": {
+    "fa": "چرا",
+    "en": "why"
+  },
+  "چگونه": {
+    "fa": "چگونه",
+    "en": "how"
+  },
+  "how": {
+    "fa": "چگونه",
+    "en": "how"
+  },
+  "کجا": {
+    "fa": "کجا",
+    "en": "where"
+  },
+  "where": {
+    "fa": "کجا",
+    "en": "where"
+  },
+  "چه": {
+    "fa": "چه",
+    "en": "what"
+  },
+  "what": {
+    "fa": "چه",
+    "en": "what"
+  },
+  "چه کسی": {
+    "fa": "چه کسی",
+    "en": "who"
+  },
+  "who": {
+    "fa": "چه کسی",
+    "en": "who"
+  },
+  "کدام": {
+    "fa": "کدام",
+    "en": "which"
+  },
+  "which": {
+    "fa": "کدام",
+    "en": "which"
+  },
+  "من": {
+    "fa": "من",
+    "en": "I"
+  },
+  "i": {
+    "fa": "من",
+    "en": "I"
+  },
+  "تو": {
+    "fa": "تو",
+    "en": "you"
+  },
+  "you": {
+    "fa": "تو",
+    "en": "you"
+  },
+  "او": {
+    "fa": "او",
+    "en": "he"
+  },
+  "he": {
+    "fa": "او",
+    "en": "he"
+  },
+  "ما": {
+    "fa": "ما",
+    "en": "we"
+  },
+  "we": {
+    "fa": "ما",
+    "en": "we"
+  },
+  "آنها": {
+    "fa": "آنها",
+    "en": "they"
+  },
+  "they": {
+    "fa": "آنها",
+    "en": "they"
+  },
+  "این": {
+    "fa": "این",
+    "en": "this"
+  },
+  "this": {
+    "fa": "این",
+    "en": "this"
+  },
+  "آن": {
+    "fa": "آن",
+    "en": "that"
+  },
+  "that": {
+    "fa": "آن",
+    "en": "that"
+  },
+  "هم": {
+    "fa": "هم",
+    "en": "also"
+  },
+  "also": {
+    "fa": "هم",
+    "en": "also"
+  },
+  "خیلی": {
+    "fa": "خیلی",
+    "en": "very"
+  },
+  "very": {
+    "fa": "خیلی",
+    "en": "very"
+  },
+  "بیشتر": {
+    "fa": "بیشتر",
+    "en": "more"
+  },
+  "more": {
+    "fa": "بیشتر",
+    "en": "more"
+  },
+  "کمتر": {
+    "fa": "کمتر",
+    "en": "less"
+  },
+  "less": {
+    "fa": "کمتر",
+    "en": "less"
+  },
+  "همیشه": {
+    "fa": "همیشه",
+    "en": "always"
+  },
+  "always": {
+    "fa": "همیشه",
+    "en": "always"
+  },
+  "هرگز": {
+    "fa": "هرگز",
+    "en": "never"
+  },
+  "never": {
+    "fa": "هرگز",
+    "en": "never"
+  },
+  "گاهی": {
+    "fa": "گاهی",
+    "en": "sometimes"
+  },
+  "sometimes": {
+    "fa": "گاهی",
+    "en": "sometimes"
+  },
+  "اکنون": {
+    "fa": "اکنون",
+    "en": "now"
+  },
+  "now": {
+    "fa": "اکنون",
+    "en": "now"
+  },
+  "بعد": {
+    "fa": "بعد",
+    "en": "after"
+  },
+  "after": {
+    "fa": "بعد",
+    "en": "after"
+  },
+  "قبل": {
+    "fa": "قبل",
+    "en": "before"
+  },
+  "before": {
+    "fa": "قبل",
+    "en": "before"
+  },
+  "زود": {
+    "fa": "زود",
+    "en": "early"
+  },
+  "early": {
+    "fa": "زود",
+    "en": "early"
+  },
+  "دیر": {
+    "fa": "دیر",
+    "en": "late"
+  },
+  "late": {
+    "fa": "دیر",
+    "en": "late"
+  },
+  "نمونه": {
+    "fa": "نمونه",
+    "en": "example"
+  },
+  "example": {
+    "fa": "نمونه",
+    "en": "example"
+  },
+  "راه": {
+    "fa": "راه",
+    "en": "way"
+  },
+  "way": {
+    "fa": "راه",
+    "en": "way"
+  },
+  "روش": {
+    "fa": "روش",
+    "en": "method"
+  },
+  "method": {
+    "fa": "روش",
+    "en": "method"
+  },
+  "نتیجه": {
+    "fa": "نتیجه",
+    "en": "result"
+  },
+  "result": {
+    "fa": "نتیجه",
+    "en": "result"
+  },
+  "دلیل": {
+    "fa": "دلیل",
+    "en": "reason"
+  },
+  "reason": {
+    "fa": "دلیل",
+    "en": "reason"
+  },
+  "هدف": {
+    "fa": "هدف",
+    "en": "goal"
+  },
+  "goal": {
+    "fa": "هدف",
+    "en": "goal"
+  },
+  "ایده": {
+    "fa": "ایده",
+    "en": "idea"
+  },
+  "idea": {
+    "fa": "ایده",
+    "en": "idea"
+  },
+  "مشکل": {
+    "fa": "مشکل",
+    "en": "problem"
+  },
+  "problem": {
+    "fa": "مشکل",
+    "en": "problem"
+  },
+  "راه حل": {
+    "fa": "راه حل",
+    "en": "solution"
+  },
+  "solution": {
+    "fa": "راه حل",
+    "en": "solution"
+  },
+  "توسعه": {
+    "fa": "توسعه",
+    "en": "development"
+  },
+  "development": {
+    "fa": "توسعه",
+    "en": "development"
+  },
+  "کدنویسی": {
+    "fa": "کدنویسی",
+    "en": "coding"
+  },
+  "coding": {
+    "fa": "کدنویسی",
+    "en": "coding"
+  },
+  "کد": {
+    "fa": "کد",
+    "en": "code"
+  },
+  "code": {
+    "fa": "کد",
+    "en": "code"
+  },
+  "پایتون": {
+    "fa": "پایتون",
+    "en": "python"
+  },
+  "python": {
+    "fa": "پایتون",
+    "en": "python"
+  },
+  "جاوااسکریپت": {
+    "fa": "جاوااسکریپت",
+    "en": "javascript"
+  },
+  "javascript": {
+    "fa": "جاوااسکریپت",
+    "en": "javascript"
+  },
+  "جاوا": {
+    "fa": "جاوا",
+    "en": "java"
+  },
+  "java": {
+    "fa": "جاوا",
+    "en": "java"
+  },
+  "اچ تی ام ال": {
+    "fa": "اچ تی ام ال",
+    "en": "html"
+  },
+  "html": {
+    "fa": "اچ تی ام ال",
+    "en": "html"
+  },
+  "سی پلاس پلاس": {
+    "fa": "سی پلاس پلاس",
+    "en": "c++"
+  },
+  "c++": {
+    "fa": "سی پلاس پلاس",
+    "en": "c++"
+  },
+  "پی اچ پی": {
+    "fa": "پی اچ پی",
+    "en": "php"
+  },
+  "php": {
+    "fa": "پی اچ پی",
+    "en": "php"
+  },
+  "پی دی اف": {
+    "fa": "پی دی اف",
+    "en": "pdf"
+  },
+  "pdf": {
+    "fa": "پی دی اف",
+    "en": "pdf"
+  },
+  "تصویر زمینه": {
+    "fa": "تصویر زمینه",
+    "en": "background"
+  },
+  "background": {
+    "fa": "تصویر زمینه",
+    "en": "background"
+  },
+  "رنگ": {
+    "fa": "رنگ",
+    "en": "color"
+  },
+  "color": {
+    "fa": "رنگ",
+    "en": "color"
+  },
+  "سفید": {
+    "fa": "سفید",
+    "en": "white"
+  },
+  "white": {
+    "fa": "سفید",
+    "en": "white"
+  },
+  "سیاه": {
+    "fa": "سیاه",
+    "en": "black"
+  },
+  "black": {
+    "fa": "سیاه",
+    "en": "black"
+  },
+  "قرمز": {
+    "fa": "قرمز",
+    "en": "red"
+  },
+  "red": {
+    "fa": "قرمز",
+    "en": "red"
+  },
+  "سبز": {
+    "fa": "سبز",
+    "en": "green"
+  },
+  "green": {
+    "fa": "سبز",
+    "en": "green"
+  },
+  "آبی": {
+    "fa": "آبی",
+    "en": "blue"
+  },
+  "blue": {
+    "fa": "آبی",
+    "en": "blue"
+  },
+  "زرد": {
+    "fa": "زرد",
+    "en": "yellow"
+  },
+  "yellow": {
+    "fa": "زرد",
+    "en": "yellow"
+  },
+  "نارنجی": {
+    "fa": "نارنجی",
+    "en": "orange"
+  },
+  "بنفش": {
+    "fa": "بنفش",
+    "en": "purple"
+  },
+  "purple": {
+    "fa": "بنفش",
+    "en": "purple"
+  },
+  "طلا": {
+    "fa": "طلا",
+    "en": "gold"
+  },
+  "gold": {
+    "fa": "طلا",
+    "en": "gold"
+  },
+  "نقره": {
+    "fa": "نقره",
+    "en": "silver"
+  },
+  "silver": {
+    "fa": "نقره",
+    "en": "silver"
+  }
+}

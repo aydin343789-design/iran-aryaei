@@ -1,0 +1,34 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Capacitor / Web build
+android/app/src/main/assets/public/
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/capacitor-cordova-android-plugins/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Secrets
+token.txt
+*api_key*
+*.crt
+*.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

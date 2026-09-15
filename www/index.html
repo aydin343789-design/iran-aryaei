@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="ایران آریایی؛ مجموعه ابزارهای کاربردی با پردازش آفلاین روی گوشی">
+<meta name="color-scheme" content="dark light">
+<title>ایران آریایی</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="brand-logo"><img src="logo.jpg" alt="ایران آریایی"></div>
+      <div class="brand-copy"><h1>ایران آریایی</h1><p>دستیار هوشمند آفلاین</p></div>
+    </div>
+    <div class="top-actions">
+      <span class="offline-pill"><i></i><span>کاملاً آفلاین</span></span>
+      <button id="themeBtn" class="icon-btn" aria-label="تغییر حالت">☾</button>
+    </div>
+  </header>
+
+  <main id="homePage" class="page active">
+    <section class="agent-hero">
+      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
+      <div class="agent-avatar"><div class="avatar-ring"></div><img src="logo.jpg" alt=""></div>
+      <div class="agent-copy">
+        <div class="agent-badge"><span class="pulse-dot"></span> دستیار محلی آماده است</div>
+        <h2>چه کاری براتون انجام بدم؟</h2>
+        <p>درخواستتان را مثل یک گفت‌وگوی معمولی بنویسید. دستیار محلی درخواست را تحلیل می‌کند و بهترین ابزار آفلاین را پیشنهاد می‌دهد.</p>
+        <div class="assistant-box">
+          <span class="assistant-spark">✦</span>
+          <input id="assistantInput" type="search" placeholder="مثلاً: حجم عکس را کم کن..." autocomplete="off">
+          <button id="assistantGo" class="assistant-go"><span>اجرا</span><b>↗</b></button>
+        </div>
+        <div id="assistantSuggestions" class="assistant-suggestions"></div>
+        <div class="trust-row"><span>◉ بدون اینترنت</span><span>⌁ بدون آپلود</span><span>✓ پردازش روی گوشی</span></div>
+      </div>
+    </section>
+
+    <section class="quick-section">
+      <div class="section-title"><div><span class="kicker">شروع سریع</span><h2>کارهای محبوب</h2></div><span class="section-hint">یک لمس تا اجرا</span></div>
+      <div class="quick-grid">
+        <button class="quick-card accent-photo" data-assist="کاهش حجم عکس"><span class="quick-icon">◫</span><b>فشرده‌سازی عکس</b><small>حجم کمتر، کیفیت خوب</small><em>›</em></button>
+        <button class="quick-card accent-qr" data-assist="ساخت QR کد"><span class="quick-icon">▦</span><b>ساخت QR</b><small>متن، لینک یا کد</small><em>›</em></button>
+        <button class="quick-card accent-pdf" data-assist="تبدیل عکس به PDF"><span class="quick-icon">▤</span><b>عکس به PDF</b><small>چند تصویر در یک فایل</small><em>›</em></button>
+      </div>
+    </section>
+
+    <section class="workspace-section">
+      <div class="section-title tools-title"><div><span class="kicker">WORKSPACE</span><h2>همه ابزارها</h2></div><span id="toolCount" class="count-pill"></span></div>
+      <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابزار، دسته‌بندی یا کار موردنظر را جست‌وجو کنید..." autocomplete="off"><kbd>جستجو</kbd></div>
+      <div id="categories" class="chips"></div>
+      <section id="tools" class="tool-grid"></section>
+    </section>
+  </main>
+
+  <main id="historyPage" class="page">
+    <section class="page-hero"><div><span class="kicker">ACTIVITY</span><h2>فعالیت‌های اخیر</h2><p>خروجی‌ها و عملیات انجام‌شده روی همین دستگاه.</p></div><div class="page-hero-icon">◷</div></section>
+    <div class="history-summary"><div><b id="historyCount">۰</b><span>عملیات ثبت‌شده</span></div><div><b>۰</b><span>ارسال به سرور</span></div><button id="clearHistory" class="btn secondary">پاک‌کردن تاریخچه</button></div>
+    <section id="historyList" class="history-list"></section>
+  </main>
+
+  <main id="settingsPage" class="page">
+    <section class="page-hero"><div><span class="kicker">PREFERENCES</span><h2>تنظیمات</h2><p>تجربه برنامه را مطابق سلیقه خودتان تنظیم کنید.</p></div><div class="page-hero-icon">⚙</div></section>
+    <section class="settings-card">
+      <div class="setting-group-title">ظاهر برنامه</div>
+      <div class="setting-row"><div class="setting-icon">☾</div><div class="setting-copy"><b>حالت شب</b><small>نمایش تیره و راحت‌تر در محیط کم‌نور</small></div><label class="switch"><input id="darkToggle" type="checkbox"><span></span></label></div>
+      <div class="setting-row"><div class="setting-icon">▦</div><div class="setting-copy"><b>نمایش فشرده</b><small>ابزارهای بیشتری را همزمان نمایش بده</small></div><label class="switch"><input id="compactToggle" type="checkbox"><span></span></label></div>
+      <div class="setting-group-title">حریم خصوصی و داده‌ها</div>
+      <div class="setting-row"><div class="setting-icon">⌁</div><div class="setting-copy"><b>پردازش محلی</b><small>فایل‌ها برای اجرای ابزارها به اینترنت ارسال نمی‌شوند.</small></div><span class="verified">✓ فعال</span></div>
+      <div class="setting-row"><div class="setting-icon danger-icon">⌫</div><div class="setting-copy"><b>پاک‌سازی داده‌های محلی</b><small>تاریخچه و یادداشت‌های ذخیره‌شده حذف می‌شوند.</small></div><button id="clearAllData" class="btn danger">حذف</button></div>
+      <div class="about-card"><div class="about-logo"><img src="logo.jpg" alt=""></div><div><b>ایران آریایی</b><p>نسخه 5.0 • ۳۴ ابزار آفلاین</p><small>ساخته‌شده برای سرعت، حریم خصوصی و استفاده بدون اینترنت.</small></div><span class="version-tag">v3</span></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav glass" aria-label="ناوبری اصلی">
+    <button class="nav-item active" data-page="homePage"><span>⌂</span><small>خانه</small></button>
+    <button class="nav-item" data-page="historyPage"><span>◷</span><small>فعالیت</small></button>
+    <button class="nav-item" data-page="settingsPage"><span>⚙</span><small>تنظیمات</small></button>
+  </nav>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-agent"><div class="modal-avatar"><img src="logo.jpg" alt=""></div><div><span class="kicker">SMART TOOL</span><h2 id="modalTitle"></h2><small><i></i> آماده پردازش روی دستگاه</small></div></div>
+        <button id="closeModal" class="icon-btn close-btn" aria-label="بستن">×</button>
+      </div>
+      <div class="agent-tip"><span>✦</span><span>فایل را انتخاب کنید؛ پردازش این ابزار بدون اینترنت انجام می‌شود.</span></div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="outputBar" class="output-bar glass">
+    <div class="output-status"><span class="status-dot"></span><div><span>آخرین خروجی آماده است</span><b id="outputName"></b></div></div>
+    <div class="row"><button id="shareOutput" class="btn secondary">اشتراک‌گذاری</button><button id="downloadOutput" class="btn">ذخیره</button><button id="closeOutput" class="icon-btn" aria-label="بستن">×</button></div>
+  </div>
+  <div id="toast" class="toast"></div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
