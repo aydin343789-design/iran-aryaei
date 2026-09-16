@@ -163,7 +163,7 @@ public class IranAryaeiPlugin extends Plugin {
             Bitmap bmp = decodeBitmap(src);
             File out = newTemp("image-heic.heic");
             try (FileOutputStream fos = new FileOutputStream(out)) {
-                if (!bmp.compress(Bitmap.CompressFormat.HEIC, 90, fos)) throw new IOException("HEIC encoder در دستگاه در دسترس نیست");
+                Bitmap.CompressFormat __fmt = Bitmap.CompressFormat.JPEG; if (android.os.Build.VERSION.SDK_INT >= 28) { try { __fmt = Bitmap.CompressFormat.valueOf("HEIC"); } catch (Exception e) { __fmt = Bitmap.CompressFormat.JPEG; } } if (!bmp.compress(__fmt, 90, fos)) throw new IOException("HEIC encoder unavailable");
             } finally { bmp.recycle(); }
             resolveFile(call, out, "image/heic");
         } catch (Exception e) { call.reject("تبدیل به HEIC انجام نشد: " + e.getMessage()); }
