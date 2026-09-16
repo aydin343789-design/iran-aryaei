@@ -1,0 +1,292 @@
+{
+  "intents": [
+    {
+      "id": "compress-image",
+      "name": "کاهش حجم عکس",
+      "keywords": [
+        "کاهش حجم عکس",
+        "کم کردن حجم عکس",
+        "فشرده سازی عکس",
+        "فشرده‌سازی عکس",
+        "compress image"
+      ]
+    },
+    {
+      "id": "image-convert",
+      "name": "فشرده‌ساز و مبدل تصویر",
+      "keywords": [
+        "تبدیل تصویر",
+        "تبدیل عکس",
+        "jpg",
+        "png",
+        "webp"
+      ]
+    },
+    {
+      "id": "crop-image",
+      "name": "برش عکس",
+      "keywords": [
+        "برش عکس",
+        "کراپ عکس",
+        "crop"
+      ]
+    },
+    {
+      "id": "edit-image",
+      "name": "ویرایش و برش تصویر",
+      "keywords": [
+        "ویرایش عکس",
+        "چرخش عکس",
+        "آینه عکس",
+        "فیلتر عکس"
+      ]
+    },
+    {
+      "id": "image-text",
+      "name": "عکس‌نوشته ساز",
+      "keywords": [
+        "عکس نوشته",
+        "نوشتن روی عکس",
+        "متن روی عکس"
+      ]
+    },
+    {
+      "id": "qr-create",
+      "name": "ساخت QR کد",
+      "keywords": [
+        "ساخت qr",
+        "تولید qr",
+        "qr کد",
+        "کیو آر"
+      ]
+    },
+    {
+      "id": "qr-scan",
+      "name": "اسکن QR کد",
+      "keywords": [
+        "اسکن qr",
+        "خواندن qr",
+        "qr خوان"
+      ]
+    },
+    {
+      "id": "image-pdf",
+      "name": "تبدیل عکس به PDF",
+      "keywords": [
+        "عکس به pdf",
+        "تصویر به pdf",
+        "ساخت pdf از عکس"
+      ]
+    },
+    {
+      "id": "pdf-merge",
+      "name": "ادغام PDF",
+      "keywords": [
+        "ادغام pdf",
+        "چسباندن pdf",
+        "merge pdf"
+      ]
+    },
+    {
+      "id": "text-pdf",
+      "name": "پی‌دی‌اف ساز",
+      "keywords": [
+        "متن به pdf",
+        "ساخت pdf از متن",
+        "pdf ساز"
+      ]
+    },
+    {
+      "id": "favicon",
+      "name": "ساخت فاوآیکون",
+      "keywords": [
+        "ساخت فاوآیکون",
+        "favicon"
+      ]
+    },
+    {
+      "id": "svg-image",
+      "name": "تبدیل SVG به عکس",
+      "keywords": [
+        "تبدیل SVG به عکس",
+        "svg image"
+      ]
+    },
+    {
+      "id": "password",
+      "name": "تولید رمز عبور قوی",
+      "keywords": [
+        "تولید رمز عبور قوی",
+        "password"
+      ]
+    },
+    {
+      "id": "notes",
+      "name": "دفترچه یادداشت",
+      "keywords": [
+        "دفترچه یادداشت",
+        "notes"
+      ]
+    },
+    {
+      "id": "text-analyzer",
+      "name": "تحلیلگر متن",
+      "keywords": [
+        "تحلیلگر متن",
+        "text analyzer"
+      ]
+    },
+    {
+      "id": "code-format",
+      "name": "فرمت‌دهی و فشرده‌سازی کد",
+      "keywords": [
+        "فرمت‌دهی و فشرده‌سازی کد",
+        "code format"
+      ]
+    },
+    {
+      "id": "regex",
+      "name": "تست ریجکس",
+      "keywords": [
+        "تست ریجکس",
+        "regex"
+      ]
+    },
+    {
+      "id": "text-compare",
+      "name": "مقایسه متن",
+      "keywords": [
+        "مقایسه متن",
+        "text compare"
+      ]
+    },
+    {
+      "id": "meta-tags",
+      "name": "تولید تگ متا",
+      "keywords": [
+        "تولید تگ متا",
+        "meta tags"
+      ]
+    },
+    {
+      "id": "calendar",
+      "name": "تقویم",
+      "keywords": [
+        "تقویم",
+        "calendar"
+      ]
+    },
+    {
+      "id": "date-convert",
+      "name": "تبدیل تاریخ",
+      "keywords": [
+        "تبدیل تاریخ",
+        "date convert"
+      ]
+    },
+    {
+      "id": "age",
+      "name": "محاسبه سن",
+      "keywords": [
+        "محاسبه سن",
+        "age"
+      ]
+    },
+    {
+      "id": "distance",
+      "name": "فاصله‌یاب شهرها",
+      "keywords": [
+        "فاصله‌یاب شهرها",
+        "distance"
+      ]
+    },
+    {
+      "id": "dictionary",
+      "name": "دیکشنری",
+      "keywords": [
+        "دیکشنری",
+        "dictionary"
+      ]
+    },
+    {
+      "id": "hafez",
+      "name": "فال حافظ",
+      "keywords": [
+        "فال حافظ",
+        "hafez"
+      ]
+    },
+    {
+      "id": "audio-cutter",
+      "name": "برش فایل صوتی",
+      "keywords": [
+        "برش فایل صوتی",
+        "audio cutter"
+      ]
+    },
+    {
+      "id": "audio-compress",
+      "name": "فشرده‌سازی صدا",
+      "keywords": [
+        "فشرده‌سازی صدا",
+        "audio compress"
+      ]
+    },
+    {
+      "id": "audio-mp3",
+      "name": "تبدیل صدا به MP3",
+      "keywords": [
+        "تبدیل صدا به MP3",
+        "audio mp3"
+      ]
+    },
+    {
+      "id": "video-compress",
+      "name": "فشرده‌سازی ویدئو",
+      "keywords": [
+        "فشرده سازی ویدئو",
+        "فشرده‌سازی ویدئو",
+        "کاهش حجم ویدئو",
+        "compress video"
+      ]
+    },
+    {
+      "id": "image-heic",
+      "name": "تبدیل عکس به HEIC",
+      "keywords": [
+        "تبدیل عکس به heic",
+        "تبدیل تصویر به heic",
+        "heic"
+      ]
+    },
+    {
+      "id": "heic-jpg",
+      "name": "تبدیل HEIC به JPG",
+      "keywords": [
+        "heic به jpg",
+        "heic به jpeg",
+        "تبدیل heic"
+      ]
+    },
+    {
+      "id": "background-remove",
+      "name": "حذف پس‌زمینه",
+      "keywords": [
+        "حذف پس زمینه",
+        "حذف پس‌زمینه",
+        "برداشتن پس زمینه",
+        "background removal"
+      ]
+    },
+    {
+      "id": "pdf-images",
+      "name": "PDF به تصاویر",
+      "keywords": [
+        "pdf به تصویر",
+        "pdf به عکس",
+        "تبدیل pdf به عکس",
+        "pdf to image"
+      ]
+    }
+  ]
+}

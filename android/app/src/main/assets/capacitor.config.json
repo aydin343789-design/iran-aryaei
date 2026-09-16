@@ -1,0 +1,7 @@
+{
+  "appId": "ir.aryaei.tools",
+  "appName": "ایران آریایی",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "android": { "backgroundColor": "#F8F9FB" }
+}

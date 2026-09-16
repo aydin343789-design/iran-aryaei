@@ -1,0 +1,4907 @@
+{
+  "version": 3,
+  "direction": "en-fa-and-fa-en",
+  "source_note": "Offline curated core English↔Persian vocabulary for the Iran Aryaei app. This is a local application dictionary, not a licensed commercial reproduction of a proprietary dictionary.",
+  "entries": [
+    {
+      "en": "hello",
+      "fa": "سلام",
+      "pos": "interjection"
+    },
+    {
+      "en": "hi",
+      "fa": "سلام",
+      "pos": "interjection"
+    },
+    {
+      "en": "goodbye",
+      "fa": "خداحافظ",
+      "pos": "interjection"
+    },
+    {
+      "en": "please",
+      "fa": "لطفاً",
+      "pos": "adverb"
+    },
+    {
+      "en": "thanks",
+      "fa": "ممنون؛متشکرم",
+      "pos": "noun"
+    },
+    {
+      "en": "thank you",
+      "fa": "متشکرم؛سپاسگزارم",
+      "pos": "phrase"
+    },
+    {
+      "en": "sorry",
+      "fa": "متأسفم",
+      "pos": "adjective"
+    },
+    {
+      "en": "yes",
+      "fa": "بله",
+      "pos": "adverb"
+    },
+    {
+      "en": "no",
+      "fa": "نه",
+      "pos": "adverb"
+    },
+    {
+      "en": "welcome",
+      "fa": "خوش آمدید",
+      "pos": "phrase"
+    },
+    {
+      "en": "friend",
+      "fa": "دوست",
+      "pos": "noun"
+    },
+    {
+      "en": "family",
+      "fa": "خانواده",
+      "pos": "noun"
+    },
+    {
+      "en": "mother",
+      "fa": "مادر",
+      "pos": "noun"
+    },
+    {
+      "en": "father",
+      "fa": "پدر",
+      "pos": "noun"
+    },
+    {
+      "en": "brother",
+      "fa": "برادر",
+      "pos": "noun"
+    },
+    {
+      "en": "sister",
+      "fa": "خواهر",
+      "pos": "noun"
+    },
+    {
+      "en": "child",
+      "fa": "کودک؛بچه",
+      "pos": "noun"
+    },
+    {
+      "en": "person",
+      "fa": "شخص؛فرد",
+      "pos": "noun"
+    },
+    {
+      "en": "people",
+      "fa": "مردم؛افراد",
+      "pos": "noun"
+    },
+    {
+      "en": "man",
+      "fa": "مرد",
+      "pos": "noun"
+    },
+    {
+      "en": "woman",
+      "fa": "زن",
+      "pos": "noun"
+    },
+    {
+      "en": "boy",
+      "fa": "پسر",
+      "pos": "noun"
+    },
+    {
+      "en": "girl",
+      "fa": "دختر",
+      "pos": "noun"
+    },
+    {
+      "en": "name",
+      "fa": "نام؛اسم",
+      "pos": "noun"
+    },
+    {
+      "en": "home",
+      "fa": "خانه؛منزل",
+      "pos": "noun"
+    },
+    {
+      "en": "house",
+      "fa": "خانه",
+      "pos": "noun"
+    },
+    {
+      "en": "room",
+      "fa": "اتاق",
+      "pos": "noun"
+    },
+    {
+      "en": "door",
+      "fa": "در",
+      "pos": "noun"
+    },
+    {
+      "en": "window",
+      "fa": "پنجره",
+      "pos": "noun"
+    },
+    {
+      "en": "school",
+      "fa": "مدرسه",
+      "pos": "noun"
+    },
+    {
+      "en": "university",
+      "fa": "دانشگاه",
+      "pos": "noun"
+    },
+    {
+      "en": "teacher",
+      "fa": "معلم؛استاد",
+      "pos": "noun"
+    },
+    {
+      "en": "student",
+      "fa": "دانش‌آموز؛دانشجو",
+      "pos": "noun"
+    },
+    {
+      "en": "book",
+      "fa": "کتاب",
+      "pos": "noun"
+    },
+    {
+      "en": "page",
+      "fa": "صفحه",
+      "pos": "noun"
+    },
+    {
+      "en": "word",
+      "fa": "واژه؛کلمه",
+      "pos": "noun"
+    },
+    {
+      "en": "language",
+      "fa": "زبان",
+      "pos": "noun"
+    },
+    {
+      "en": "question",
+      "fa": "سؤال؛پرسش",
+      "pos": "noun"
+    },
+    {
+      "en": "answer",
+      "fa": "پاسخ؛جواب",
+      "pos": "noun"
+    },
+    {
+      "en": "example",
+      "fa": "مثال",
+      "pos": "noun"
+    },
+    {
+      "en": "time",
+      "fa": "زمان؛وقت",
+      "pos": "noun"
+    },
+    {
+      "en": "day",
+      "fa": "روز",
+      "pos": "noun"
+    },
+    {
+      "en": "week",
+      "fa": "هفته",
+      "pos": "noun"
+    },
+    {
+      "en": "month",
+      "fa": "ماه",
+      "pos": "noun"
+    },
+    {
+      "en": "year",
+      "fa": "سال",
+      "pos": "noun"
+    },
+    {
+      "en": "today",
+      "fa": "امروز",
+      "pos": "adverb"
+    },
+    {
+      "en": "tomorrow",
+      "fa": "فردا",
+      "pos": "adverb"
+    },
+    {
+      "en": "yesterday",
+      "fa": "دیروز",
+      "pos": "adverb"
+    },
+    {
+      "en": "morning",
+      "fa": "صبح",
+      "pos": "noun"
+    },
+    {
+      "en": "afternoon",
+      "fa": "بعدازظهر",
+      "pos": "noun"
+    },
+    {
+      "en": "evening",
+      "fa": "عصر؛شب",
+      "pos": "noun"
+    },
+    {
+      "en": "night",
+      "fa": "شب",
+      "pos": "noun"
+    },
+    {
+      "en": "hour",
+      "fa": "ساعت",
+      "pos": "noun"
+    },
+    {
+      "en": "minute",
+      "fa": "دقیقه",
+      "pos": "noun"
+    },
+    {
+      "en": "second",
+      "fa": "ثانیه",
+      "pos": "noun"
+    },
+    {
+      "en": "water",
+      "fa": "آب",
+      "pos": "noun"
+    },
+    {
+      "en": "food",
+      "fa": "غذا",
+      "pos": "noun"
+    },
+    {
+      "en": "bread",
+      "fa": "نان",
+      "pos": "noun"
+    },
+    {
+      "en": "rice",
+      "fa": "برنج",
+      "pos": "noun"
+    },
+    {
+      "en": "tea",
+      "fa": "چای",
+      "pos": "noun"
+    },
+    {
+      "en": "coffee",
+      "fa": "قهوه",
+      "pos": "noun"
+    },
+    {
+      "en": "milk",
+      "fa": "شیر",
+      "pos": "noun"
+    },
+    {
+      "en": "fruit",
+      "fa": "میوه",
+      "pos": "noun"
+    },
+    {
+      "en": "apple",
+      "fa": "سیب",
+      "pos": "noun"
+    },
+    {
+      "en": "orange",
+      "fa": "پرتقال",
+      "pos": "noun"
+    },
+    {
+      "en": "banana",
+      "fa": "موز",
+      "pos": "noun"
+    },
+    {
+      "en": "meat",
+      "fa": "گوشت",
+      "pos": "noun"
+    },
+    {
+      "en": "chicken",
+      "fa": "مرغ",
+      "pos": "noun"
+    },
+    {
+      "en": "fish",
+      "fa": "ماهی",
+      "pos": "noun"
+    },
+    {
+      "en": "salt",
+      "fa": "نمک",
+      "pos": "noun"
+    },
+    {
+      "en": "sugar",
+      "fa": "شکر",
+      "pos": "noun"
+    },
+    {
+      "en": "car",
+      "fa": "خودرو؛ماشین",
+      "pos": "noun"
+    },
+    {
+      "en": "bus",
+      "fa": "اتوبوس",
+      "pos": "noun"
+    },
+    {
+      "en": "train",
+      "fa": "قطار",
+      "pos": "noun"
+    },
+    {
+      "en": "airplane",
+      "fa": "هواپیما",
+      "pos": "noun"
+    },
+    {
+      "en": "road",
+      "fa": "جاده؛راه",
+      "pos": "noun"
+    },
+    {
+      "en": "street",
+      "fa": "خیابان",
+      "pos": "noun"
+    },
+    {
+      "en": "city",
+      "fa": "شهر",
+      "pos": "noun"
+    },
+    {
+      "en": "country",
+      "fa": "کشور",
+      "pos": "noun"
+    },
+    {
+      "en": "world",
+      "fa": "جهان؛دنیا",
+      "pos": "noun"
+    },
+    {
+      "en": "Iran",
+      "fa": "ایران",
+      "pos": "proper noun"
+    },
+    {
+      "en": "capital",
+      "fa": "پایتخت",
+      "pos": "noun"
+    },
+    {
+      "en": "good",
+      "fa": "خوب",
+      "pos": "adjective"
+    },
+    {
+      "en": "bad",
+      "fa": "بد",
+      "pos": "adjective"
+    },
+    {
+      "en": "big",
+      "fa": "بزرگ",
+      "pos": "adjective"
+    },
+    {
+      "en": "small",
+      "fa": "کوچک",
+      "pos": "adjective"
+    },
+    {
+      "en": "new",
+      "fa": "جدید؛نو",
+      "pos": "adjective"
+    },
+    {
+      "en": "old",
+      "fa": "قدیمی؛کهن",
+      "pos": "adjective"
+    },
+    {
+      "en": "young",
+      "fa": "جوان",
+      "pos": "adjective"
+    },
+    {
+      "en": "beautiful",
+      "fa": "زیبا",
+      "pos": "adjective"
+    },
+    {
+      "en": "easy",
+      "fa": "آسان",
+      "pos": "adjective"
+    },
+    {
+      "en": "difficult",
+      "fa": "سخت؛دشوار",
+      "pos": "adjective"
+    },
+    {
+      "en": "fast",
+      "fa": "سریع",
+      "pos": "adjective"
+    },
+    {
+      "en": "slow",
+      "fa": "کند؛آهسته",
+      "pos": "adjective"
+    },
+    {
+      "en": "hot",
+      "fa": "داغ؛گرم",
+      "pos": "adjective"
+    },
+    {
+      "en": "cold",
+      "fa": "سرد",
+      "pos": "adjective"
+    },
+    {
+      "en": "happy",
+      "fa": "خوشحال",
+      "pos": "adjective"
+    },
+    {
+      "en": "sad",
+      "fa": "غمگین",
+      "pos": "adjective"
+    },
+    {
+      "en": "strong",
+      "fa": "قوی",
+      "pos": "adjective"
+    },
+    {
+      "en": "weak",
+      "fa": "ضعیف",
+      "pos": "adjective"
+    },
+    {
+      "en": "safe",
+      "fa": "امن",
+      "pos": "adjective"
+    },
+    {
+      "en": "dangerous",
+      "fa": "خطرناک",
+      "pos": "adjective"
+    },
+    {
+      "en": "important",
+      "fa": "مهم",
+      "pos": "adjective"
+    },
+    {
+      "en": "possible",
+      "fa": "ممکن",
+      "pos": "adjective"
+    },
+    {
+      "en": "ready",
+      "fa": "آماده",
+      "pos": "adjective"
+    },
+    {
+      "en": "free",
+      "fa": "رایگان؛آزاد",
+      "pos": "adjective"
+    },
+    {
+      "en": "local",
+      "fa": "محلی",
+      "pos": "adjective"
+    },
+    {
+      "en": "offline",
+      "fa": "آفلاین؛بدون اینترنت",
+      "pos": "adjective"
+    },
+    {
+      "en": "online",
+      "fa": "آنلاین؛برخط",
+      "pos": "adjective"
+    },
+    {
+      "en": "private",
+      "fa": "خصوصی",
+      "pos": "adjective"
+    },
+    {
+      "en": "public",
+      "fa": "عمومی",
+      "pos": "adjective"
+    },
+    {
+      "en": "simple",
+      "fa": "ساده",
+      "pos": "adjective"
+    },
+    {
+      "en": "complex",
+      "fa": "پیچیده",
+      "pos": "adjective"
+    },
+    {
+      "en": "be",
+      "fa": "بودن",
+      "pos": "verb"
+    },
+    {
+      "en": "have",
+      "fa": "داشتن",
+      "pos": "verb"
+    },
+    {
+      "en": "do",
+      "fa": "انجام دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "make",
+      "fa": "ساختن؛ایجاد کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "go",
+      "fa": "رفتن",
+      "pos": "verb"
+    },
+    {
+      "en": "come",
+      "fa": "آمدن",
+      "pos": "verb"
+    },
+    {
+      "en": "see",
+      "fa": "دیدن",
+      "pos": "verb"
+    },
+    {
+      "en": "look",
+      "fa": "نگاه کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "know",
+      "fa": "دانستن",
+      "pos": "verb"
+    },
+    {
+      "en": "think",
+      "fa": "فکر کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "want",
+      "fa": "خواستن",
+      "pos": "verb"
+    },
+    {
+      "en": "need",
+      "fa": "نیاز داشتن",
+      "pos": "verb"
+    },
+    {
+      "en": "use",
+      "fa": "استفاده کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "find",
+      "fa": "پیدا کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "give",
+      "fa": "دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "take",
+      "fa": "گرفتن",
+      "pos": "verb"
+    },
+    {
+      "en": "get",
+      "fa": "گرفتن؛دریافت کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "put",
+      "fa": "گذاشتن",
+      "pos": "verb"
+    },
+    {
+      "en": "keep",
+      "fa": "نگه داشتن",
+      "pos": "verb"
+    },
+    {
+      "en": "help",
+      "fa": "کمک کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "work",
+      "fa": "کار کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "play",
+      "fa": "بازی کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "read",
+      "fa": "خواندن",
+      "pos": "verb"
+    },
+    {
+      "en": "write",
+      "fa": "نوشتن",
+      "pos": "verb"
+    },
+    {
+      "en": "learn",
+      "fa": "یاد گرفتن",
+      "pos": "verb"
+    },
+    {
+      "en": "teach",
+      "fa": "آموزش دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "study",
+      "fa": "مطالعه کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "open",
+      "fa": "باز کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "close",
+      "fa": "بستن",
+      "pos": "verb"
+    },
+    {
+      "en": "save",
+      "fa": "ذخیره کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "share",
+      "fa": "اشتراک‌گذاری کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "send",
+      "fa": "فرستادن؛ارسال کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "receive",
+      "fa": "دریافت کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "download",
+      "fa": "دانلود کردن؛بارگیری کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "upload",
+      "fa": "بارگذاری کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "search",
+      "fa": "جستجو کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "change",
+      "fa": "تغییر دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "convert",
+      "fa": "تبدیل کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "create",
+      "fa": "ایجاد کردن؛ساختن",
+      "pos": "verb"
+    },
+    {
+      "en": "delete",
+      "fa": "حذف کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "edit",
+      "fa": "ویرایش کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "cut",
+      "fa": "برش دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "copy",
+      "fa": "کپی کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "paste",
+      "fa": "چسباندن؛جای‌گذاری کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "compare",
+      "fa": "مقایسه کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "calculate",
+      "fa": "محاسبه کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "translate",
+      "fa": "ترجمه کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "computer",
+      "fa": "رایانه؛کامپیوتر",
+      "pos": "noun"
+    },
+    {
+      "en": "software",
+      "fa": "نرم‌افزار",
+      "pos": "noun"
+    },
+    {
+      "en": "hardware",
+      "fa": "سخت‌افزار",
+      "pos": "noun"
+    },
+    {
+      "en": "application",
+      "fa": "برنامه؛اپلیکیشن",
+      "pos": "noun"
+    },
+    {
+      "en": "app",
+      "fa": "برنامه؛اپلیکیشن",
+      "pos": "noun"
+    },
+    {
+      "en": "file",
+      "fa": "فایل؛پرونده",
+      "pos": "noun"
+    },
+    {
+      "en": "folder",
+      "fa": "پوشه",
+      "pos": "noun"
+    },
+    {
+      "en": "image",
+      "fa": "تصویر",
+      "pos": "noun"
+    },
+    {
+      "en": "photo",
+      "fa": "عکس؛تصویر",
+      "pos": "noun"
+    },
+    {
+      "en": "video",
+      "fa": "ویدئو",
+      "pos": "noun"
+    },
+    {
+      "en": "audio",
+      "fa": "صوت؛صدا",
+      "pos": "noun"
+    },
+    {
+      "en": "music",
+      "fa": "موسیقی",
+      "pos": "noun"
+    },
+    {
+      "en": "document",
+      "fa": "سند؛مدرک",
+      "pos": "noun"
+    },
+    {
+      "en": "text",
+      "fa": "متن",
+      "pos": "noun"
+    },
+    {
+      "en": "code",
+      "fa": "کد",
+      "pos": "noun"
+    },
+    {
+      "en": "programming",
+      "fa": "برنامه‌نویسی",
+      "pos": "noun"
+    },
+    {
+      "en": "developer",
+      "fa": "توسعه‌دهنده؛برنامه‌نویس",
+      "pos": "noun"
+    },
+    {
+      "en": "website",
+      "fa": "وب‌سایت؛تارنما",
+      "pos": "noun"
+    },
+    {
+      "en": "web page",
+      "fa": "صفحه وب",
+      "pos": "noun"
+    },
+    {
+      "en": "browser",
+      "fa": "مرورگر",
+      "pos": "noun"
+    },
+    {
+      "en": "internet",
+      "fa": "اینترنت",
+      "pos": "noun"
+    },
+    {
+      "en": "network",
+      "fa": "شبکه",
+      "pos": "noun"
+    },
+    {
+      "en": "server",
+      "fa": "سرور؛کارساز",
+      "pos": "noun"
+    },
+    {
+      "en": "database",
+      "fa": "پایگاه داده",
+      "pos": "noun"
+    },
+    {
+      "en": "data",
+      "fa": "داده",
+      "pos": "noun"
+    },
+    {
+      "en": "password",
+      "fa": "رمز عبور",
+      "pos": "noun"
+    },
+    {
+      "en": "security",
+      "fa": "امنیت",
+      "pos": "noun"
+    },
+    {
+      "en": "privacy",
+      "fa": "حریم خصوصی",
+      "pos": "noun"
+    },
+    {
+      "en": "camera",
+      "fa": "دوربین",
+      "pos": "noun"
+    },
+    {
+      "en": "microphone",
+      "fa": "میکروفون",
+      "pos": "noun"
+    },
+    {
+      "en": "screen",
+      "fa": "صفحه‌نمایش",
+      "pos": "noun"
+    },
+    {
+      "en": "keyboard",
+      "fa": "صفحه‌کلید",
+      "pos": "noun"
+    },
+    {
+      "en": "mouse",
+      "fa": "ماوس؛موشواره",
+      "pos": "noun"
+    },
+    {
+      "en": "memory",
+      "fa": "حافظه",
+      "pos": "noun"
+    },
+    {
+      "en": "storage",
+      "fa": "فضای ذخیره‌سازی",
+      "pos": "noun"
+    },
+    {
+      "en": "android",
+      "fa": "اندروید",
+      "pos": "proper noun"
+    },
+    {
+      "en": "javascript",
+      "fa": "جاوااسکریپت",
+      "pos": "noun"
+    },
+    {
+      "en": "python",
+      "fa": "پایتون",
+      "pos": "noun"
+    },
+    {
+      "en": "php",
+      "fa": "پی‌اچ‌پی",
+      "pos": "noun"
+    },
+    {
+      "en": "c++",
+      "fa": "سی‌پلاس‌پلاس",
+      "pos": "noun"
+    },
+    {
+      "en": "html",
+      "fa": "اچ‌تی‌ام‌ال",
+      "pos": "noun"
+    },
+    {
+      "en": "css",
+      "fa": "سی‌اس‌اس",
+      "pos": "noun"
+    },
+    {
+      "en": "json",
+      "fa": "جی‌سون",
+      "pos": "noun"
+    },
+    {
+      "en": "regex",
+      "fa": "عبارت باقاعده؛ریجکس",
+      "pos": "noun"
+    },
+    {
+      "en": "algorithm",
+      "fa": "الگوریتم",
+      "pos": "noun"
+    },
+    {
+      "en": "function",
+      "fa": "تابع",
+      "pos": "noun"
+    },
+    {
+      "en": "variable",
+      "fa": "متغیر",
+      "pos": "noun"
+    },
+    {
+      "en": "array",
+      "fa": "آرایه",
+      "pos": "noun"
+    },
+    {
+      "en": "object",
+      "fa": "شیء",
+      "pos": "noun"
+    },
+    {
+      "en": "class",
+      "fa": "کلاس",
+      "pos": "noun"
+    },
+    {
+      "en": "method",
+      "fa": "متد؛روش",
+      "pos": "noun"
+    },
+    {
+      "en": "library",
+      "fa": "کتابخانه",
+      "pos": "noun"
+    },
+    {
+      "en": "framework",
+      "fa": "چارچوب",
+      "pos": "noun"
+    },
+    {
+      "en": "api",
+      "fa": "رابط برنامه‌نویسی کاربردی؛API",
+      "pos": "noun"
+    },
+    {
+      "en": "plugin",
+      "fa": "افزونه",
+      "pos": "noun"
+    },
+    {
+      "en": "offline processing",
+      "fa": "پردازش آفلاین",
+      "pos": "phrase"
+    },
+    {
+      "en": "pdf",
+      "fa": "پی‌دی‌اف",
+      "pos": "noun"
+    },
+    {
+      "en": "portable document format",
+      "fa": "قالب سند قابل حمل",
+      "pos": "phrase"
+    },
+    {
+      "en": "qr code",
+      "fa": "کد QR؛کد پاسخ سریع",
+      "pos": "noun"
+    },
+    {
+      "en": "barcode",
+      "fa": "بارکد",
+      "pos": "noun"
+    },
+    {
+      "en": "compress",
+      "fa": "فشرده کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "compression",
+      "fa": "فشرده‌سازی",
+      "pos": "noun"
+    },
+    {
+      "en": "quality",
+      "fa": "کیفیت",
+      "pos": "noun"
+    },
+    {
+      "en": "format",
+      "fa": "قالب؛فرمت",
+      "pos": "noun"
+    },
+    {
+      "en": "crop",
+      "fa": "برش؛کراپ",
+      "pos": "noun"
+    },
+    {
+      "en": "rotate",
+      "fa": "چرخاندن",
+      "pos": "verb"
+    },
+    {
+      "en": "filter",
+      "fa": "فیلتر",
+      "pos": "noun"
+    },
+    {
+      "en": "merge",
+      "fa": "ادغام کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "split",
+      "fa": "جدا کردن؛تقسیم کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "resize",
+      "fa": "تغییر اندازه دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "favicon",
+      "fa": "فاوآیکون",
+      "pos": "noun"
+    },
+    {
+      "en": "svg",
+      "fa": "اس‌وی‌جی",
+      "pos": "noun"
+    },
+    {
+      "en": "jpeg",
+      "fa": "جی‌پگ",
+      "pos": "noun"
+    },
+    {
+      "en": "png",
+      "fa": "پی‌ان‌جی",
+      "pos": "noun"
+    },
+    {
+      "en": "webp",
+      "fa": "وب‌پی",
+      "pos": "noun"
+    },
+    {
+      "en": "mp3",
+      "fa": "ام‌پی‌تری",
+      "pos": "noun"
+    },
+    {
+      "en": "wav",
+      "fa": "ویو",
+      "pos": "noun"
+    },
+    {
+      "en": "aac",
+      "fa": "ای‌ای‌سی",
+      "pos": "noun"
+    },
+    {
+      "en": "m4a",
+      "fa": "ام‌فور‌ای",
+      "pos": "noun"
+    },
+    {
+      "en": "number",
+      "fa": "عدد؛شماره",
+      "pos": "noun"
+    },
+    {
+      "en": "one",
+      "fa": "یک",
+      "pos": "number"
+    },
+    {
+      "en": "two",
+      "fa": "دو",
+      "pos": "number"
+    },
+    {
+      "en": "three",
+      "fa": "سه",
+      "pos": "number"
+    },
+    {
+      "en": "four",
+      "fa": "چهار",
+      "pos": "number"
+    },
+    {
+      "en": "five",
+      "fa": "پنج",
+      "pos": "number"
+    },
+    {
+      "en": "six",
+      "fa": "شش",
+      "pos": "number"
+    },
+    {
+      "en": "seven",
+      "fa": "هفت",
+      "pos": "number"
+    },
+    {
+      "en": "eight",
+      "fa": "هشت",
+      "pos": "number"
+    },
+    {
+      "en": "nine",
+      "fa": "نه",
+      "pos": "number"
+    },
+    {
+      "en": "ten",
+      "fa": "ده",
+      "pos": "number"
+    },
+    {
+      "en": "hundred",
+      "fa": "صد",
+      "pos": "number"
+    },
+    {
+      "en": "thousand",
+      "fa": "هزار",
+      "pos": "number"
+    },
+    {
+      "en": "million",
+      "fa": "میلیون",
+      "pos": "number"
+    },
+    {
+      "en": "first",
+      "fa": "اول؛نخست",
+      "pos": "adjective"
+    },
+    {
+      "en": "last",
+      "fa": "آخر؛آخرین",
+      "pos": "adjective"
+    },
+    {
+      "en": "next",
+      "fa": "بعدی",
+      "pos": "adjective"
+    },
+    {
+      "en": "previous",
+      "fa": "قبلی",
+      "pos": "adjective"
+    },
+    {
+      "en": "more",
+      "fa": "بیشتر",
+      "pos": "adverb"
+    },
+    {
+      "en": "less",
+      "fa": "کمتر",
+      "pos": "adverb"
+    },
+    {
+      "en": "all",
+      "fa": "همه",
+      "pos": "determiner"
+    },
+    {
+      "en": "some",
+      "fa": "برخی؛مقداری",
+      "pos": "determiner"
+    },
+    {
+      "en": "many",
+      "fa": "بسیاری؛زیاد",
+      "pos": "determiner"
+    },
+    {
+      "en": "few",
+      "fa": "چند؛اندک",
+      "pos": "determiner"
+    },
+    {
+      "en": "because",
+      "fa": "زیرا؛چون",
+      "pos": "conjunction"
+    },
+    {
+      "en": "but",
+      "fa": "اما؛ولی",
+      "pos": "conjunction"
+    },
+    {
+      "en": "and",
+      "fa": "و",
+      "pos": "conjunction"
+    },
+    {
+      "en": "or",
+      "fa": "یا",
+      "pos": "conjunction"
+    },
+    {
+      "en": "if",
+      "fa": "اگر",
+      "pos": "conjunction"
+    },
+    {
+      "en": "when",
+      "fa": "وقتی که؛هنگامی که",
+      "pos": "conjunction"
+    },
+    {
+      "en": "where",
+      "fa": "کجا؛جایی که",
+      "pos": "adverb"
+    },
+    {
+      "en": "why",
+      "fa": "چرا",
+      "pos": "adverb"
+    },
+    {
+      "en": "how",
+      "fa": "چگونه؛چطور",
+      "pos": "adverb"
+    },
+    {
+      "en": "what",
+      "fa": "چه؛چی",
+      "pos": "pronoun"
+    },
+    {
+      "en": "who",
+      "fa": "چه کسی؛که",
+      "pos": "pronoun"
+    },
+    {
+      "en": "which",
+      "fa": "کدام",
+      "pos": "pronoun"
+    },
+    {
+      "en": "this",
+      "fa": "این",
+      "pos": "determiner"
+    },
+    {
+      "en": "that",
+      "fa": "آن؛اینکه",
+      "pos": "determiner"
+    },
+    {
+      "en": "here",
+      "fa": "اینجا",
+      "pos": "adverb"
+    },
+    {
+      "en": "there",
+      "fa": "آنجا",
+      "pos": "adverb"
+    },
+    {
+      "en": "before",
+      "fa": "قبل؛پیش از",
+      "pos": "preposition"
+    },
+    {
+      "en": "after",
+      "fa": "بعد؛پس از",
+      "pos": "preposition"
+    },
+    {
+      "en": "with",
+      "fa": "با",
+      "pos": "preposition"
+    },
+    {
+      "en": "without",
+      "fa": "بدون",
+      "pos": "preposition"
+    },
+    {
+      "en": "for",
+      "fa": "برای",
+      "pos": "preposition"
+    },
+    {
+      "en": "from",
+      "fa": "از",
+      "pos": "preposition"
+    },
+    {
+      "en": "to",
+      "fa": "به؛تا",
+      "pos": "preposition"
+    },
+    {
+      "en": "in",
+      "fa": "در؛داخل",
+      "pos": "preposition"
+    },
+    {
+      "en": "on",
+      "fa": "روی؛بر",
+      "pos": "preposition"
+    },
+    {
+      "en": "under",
+      "fa": "زیر",
+      "pos": "preposition"
+    },
+    {
+      "en": "between",
+      "fa": "بین",
+      "pos": "preposition"
+    },
+    {
+      "en": "love",
+      "fa": "عشق؛محبت",
+      "pos": "noun"
+    },
+    {
+      "en": "peace",
+      "fa": "صلح؛آرامش",
+      "pos": "noun"
+    },
+    {
+      "en": "hope",
+      "fa": "امید",
+      "pos": "noun"
+    },
+    {
+      "en": "life",
+      "fa": "زندگی",
+      "pos": "noun"
+    },
+    {
+      "en": "death",
+      "fa": "مرگ",
+      "pos": "noun"
+    },
+    {
+      "en": "heart",
+      "fa": "قلب؛دل",
+      "pos": "noun"
+    },
+    {
+      "en": "mind",
+      "fa": "ذهن",
+      "pos": "noun"
+    },
+    {
+      "en": "idea",
+      "fa": "ایده؛اندیشه",
+      "pos": "noun"
+    },
+    {
+      "en": "reason",
+      "fa": "دلیل؛منطق",
+      "pos": "noun"
+    },
+    {
+      "en": "problem",
+      "fa": "مشکل؛مسئله",
+      "pos": "noun"
+    },
+    {
+      "en": "solution",
+      "fa": "راه‌حل",
+      "pos": "noun"
+    },
+    {
+      "en": "result",
+      "fa": "نتیجه",
+      "pos": "noun"
+    },
+    {
+      "en": "success",
+      "fa": "موفقیت",
+      "pos": "noun"
+    },
+    {
+      "en": "failure",
+      "fa": "شکست",
+      "pos": "noun"
+    },
+    {
+      "en": "experience",
+      "fa": "تجربه",
+      "pos": "noun"
+    },
+    {
+      "en": "knowledge",
+      "fa": "دانش",
+      "pos": "noun"
+    },
+    {
+      "en": "information",
+      "fa": "اطلاعات",
+      "pos": "noun"
+    },
+    {
+      "en": "service",
+      "fa": "خدمت؛سرویس",
+      "pos": "noun"
+    },
+    {
+      "en": "system",
+      "fa": "سیستم؛سامانه",
+      "pos": "noun"
+    },
+    {
+      "en": "tool",
+      "fa": "ابزار",
+      "pos": "noun"
+    },
+    {
+      "en": "setting",
+      "fa": "تنظیم؛تنظیمات",
+      "pos": "noun"
+    },
+    {
+      "en": "history",
+      "fa": "تاریخچه",
+      "pos": "noun"
+    },
+    {
+      "en": "activity",
+      "fa": "فعالیت",
+      "pos": "noun"
+    },
+    {
+      "en": "privacy policy",
+      "fa": "سیاست حریم خصوصی",
+      "pos": "phrase"
+    },
+    {
+      "en": "user",
+      "fa": "کاربر",
+      "pos": "noun"
+    },
+    {
+      "en": "local data",
+      "fa": "داده محلی",
+      "pos": "phrase"
+    },
+    {
+      "en": "device",
+      "fa": "دستگاه",
+      "pos": "noun"
+    },
+    {
+      "en": "phone",
+      "fa": "گوشی؛تلفن",
+      "pos": "noun"
+    },
+    {
+      "en": "mobile",
+      "fa": "موبایل؛همراه",
+      "pos": "noun"
+    },
+    {
+      "en": "permission",
+      "fa": "مجوز",
+      "pos": "noun"
+    },
+    {
+      "en": "access",
+      "fa": "دسترسی",
+      "pos": "noun"
+    },
+    {
+      "en": "camera permission",
+      "fa": "مجوز دوربین",
+      "pos": "phrase"
+    },
+    {
+      "en": "storage permission",
+      "fa": "مجوز ذخیره‌سازی",
+      "pos": "phrase"
+    },
+    {
+      "en": "bookstore",
+      "fa": "کتاب‌فروشی",
+      "pos": "noun"
+    },
+    {
+      "en": "hospital",
+      "fa": "بیمارستان",
+      "pos": "noun"
+    },
+    {
+      "en": "doctor",
+      "fa": "پزشک؛دکتر",
+      "pos": "noun"
+    },
+    {
+      "en": "medicine",
+      "fa": "دارو",
+      "pos": "noun"
+    },
+    {
+      "en": "health",
+      "fa": "سلامت",
+      "pos": "noun"
+    },
+    {
+      "en": "weather",
+      "fa": "آب‌وهوا",
+      "pos": "noun"
+    },
+    {
+      "en": "rain",
+      "fa": "باران",
+      "pos": "noun"
+    },
+    {
+      "en": "snow",
+      "fa": "برف",
+      "pos": "noun"
+    },
+    {
+      "en": "sun",
+      "fa": "خورشید",
+      "pos": "noun"
+    },
+    {
+      "en": "moon",
+      "fa": "ماه",
+      "pos": "noun"
+    },
+    {
+      "en": "star",
+      "fa": "ستاره",
+      "pos": "noun"
+    },
+    {
+      "en": "sky",
+      "fa": "آسمان",
+      "pos": "noun"
+    },
+    {
+      "en": "sea",
+      "fa": "دریا",
+      "pos": "noun"
+    },
+    {
+      "en": "mountain",
+      "fa": "کوه",
+      "pos": "noun"
+    },
+    {
+      "en": "river",
+      "fa": "رود؛رودخانه",
+      "pos": "noun"
+    },
+    {
+      "en": "tree",
+      "fa": "درخت",
+      "pos": "noun"
+    },
+    {
+      "en": "flower",
+      "fa": "گل",
+      "pos": "noun"
+    },
+    {
+      "en": "animal",
+      "fa": "حیوان",
+      "pos": "noun"
+    },
+    {
+      "en": "bird",
+      "fa": "پرنده",
+      "pos": "noun"
+    },
+    {
+      "en": "dog",
+      "fa": "سگ",
+      "pos": "noun"
+    },
+    {
+      "en": "cat",
+      "fa": "گربه",
+      "pos": "noun"
+    },
+    {
+      "en": "business",
+      "fa": "کسب‌وکار؛تجارت",
+      "pos": "noun"
+    },
+    {
+      "en": "company",
+      "fa": "شرکت",
+      "pos": "noun"
+    },
+    {
+      "en": "job",
+      "fa": "شغل؛کار",
+      "pos": "noun"
+    },
+    {
+      "en": "office",
+      "fa": "دفتر؛اداره",
+      "pos": "noun"
+    },
+    {
+      "en": "manager",
+      "fa": "مدیر",
+      "pos": "noun"
+    },
+    {
+      "en": "customer",
+      "fa": "مشتری",
+      "pos": "noun"
+    },
+    {
+      "en": "price",
+      "fa": "قیمت",
+      "pos": "noun"
+    },
+    {
+      "en": "money",
+      "fa": "پول",
+      "pos": "noun"
+    },
+    {
+      "en": "market",
+      "fa": "بازار",
+      "pos": "noun"
+    },
+    {
+      "en": "product",
+      "fa": "محصول",
+      "pos": "noun"
+    },
+    {
+      "en": "order",
+      "fa": "سفارش",
+      "pos": "noun"
+    },
+    {
+      "en": "payment",
+      "fa": "پرداخت",
+      "pos": "noun"
+    },
+    {
+      "en": "account",
+      "fa": "حساب",
+      "pos": "noun"
+    },
+    {
+      "en": "bank",
+      "fa": "بانک",
+      "pos": "noun"
+    },
+    {
+      "en": "card",
+      "fa": "کارت",
+      "pos": "noun"
+    },
+    {
+      "en": "address",
+      "fa": "نشانی؛آدرس",
+      "pos": "noun"
+    },
+    {
+      "en": "email",
+      "fa": "ایمیل؛رایانامه",
+      "pos": "noun"
+    },
+    {
+      "en": "message",
+      "fa": "پیام",
+      "pos": "noun"
+    },
+    {
+      "en": "phone number",
+      "fa": "شماره تلفن",
+      "pos": "phrase"
+    },
+    {
+      "en": "travel",
+      "fa": "سفر",
+      "pos": "noun"
+    },
+    {
+      "en": "trip",
+      "fa": "سفر",
+      "pos": "noun"
+    },
+    {
+      "en": "hotel",
+      "fa": "هتل",
+      "pos": "noun"
+    },
+    {
+      "en": "airport",
+      "fa": "فرودگاه",
+      "pos": "noun"
+    },
+    {
+      "en": "station",
+      "fa": "ایستگاه",
+      "pos": "noun"
+    },
+    {
+      "en": "ticket",
+      "fa": "بلیط؛بلیت",
+      "pos": "noun"
+    },
+    {
+      "en": "map",
+      "fa": "نقشه",
+      "pos": "noun"
+    },
+    {
+      "en": "distance",
+      "fa": "فاصله",
+      "pos": "noun"
+    },
+    {
+      "en": "direction",
+      "fa": "جهت؛مسیر",
+      "pos": "noun"
+    },
+    {
+      "en": "north",
+      "fa": "شمال",
+      "pos": "noun"
+    },
+    {
+      "en": "south",
+      "fa": "جنوب",
+      "pos": "noun"
+    },
+    {
+      "en": "east",
+      "fa": "شرق",
+      "pos": "noun"
+    },
+    {
+      "en": "west",
+      "fa": "غرب",
+      "pos": "noun"
+    },
+    {
+      "en": "calendar",
+      "fa": "تقویم",
+      "pos": "noun"
+    },
+    {
+      "en": "date",
+      "fa": "تاریخ",
+      "pos": "noun"
+    },
+    {
+      "en": "age",
+      "fa": "سن",
+      "pos": "noun"
+    },
+    {
+      "en": "birthday",
+      "fa": "تولد؛روز تولد",
+      "pos": "noun"
+    },
+    {
+      "en": "year of birth",
+      "fa": "سال تولد",
+      "pos": "phrase"
+    },
+    {
+      "en": "jalali calendar",
+      "fa": "تقویم جلالی؛شمسی",
+      "pos": "noun"
+    },
+    {
+      "en": "gregorian calendar",
+      "fa": "تقویم میلادی؛گریگوری",
+      "pos": "noun"
+    },
+    {
+      "en": "hijri calendar",
+      "fa": "تقویم هجری قمری",
+      "pos": "noun"
+    },
+    {
+      "en": "note",
+      "fa": "یادداشت",
+      "pos": "noun"
+    },
+    {
+      "en": "notes",
+      "fa": "یادداشت‌ها",
+      "pos": "noun"
+    },
+    {
+      "en": "title",
+      "fa": "عنوان",
+      "pos": "noun"
+    },
+    {
+      "en": "description",
+      "fa": "توضیحات؛شرح",
+      "pos": "noun"
+    },
+    {
+      "en": "dictionary",
+      "fa": "دیکشنری؛فرهنگ لغت",
+      "pos": "noun"
+    },
+    {
+      "en": "translation",
+      "fa": "ترجمه",
+      "pos": "noun"
+    },
+    {
+      "en": "meaning",
+      "fa": "معنی؛مفهوم",
+      "pos": "noun"
+    },
+    {
+      "en": "synonym",
+      "fa": "مترادف",
+      "pos": "noun"
+    },
+    {
+      "en": "antonym",
+      "fa": "متضاد",
+      "pos": "noun"
+    },
+    {
+      "en": "example sentence",
+      "fa": "جمله نمونه",
+      "pos": "phrase"
+    },
+    {
+      "en": "pronunciation",
+      "fa": "تلفظ",
+      "pos": "noun"
+    },
+    {
+      "en": "analysis",
+      "fa": "تحلیل",
+      "pos": "noun"
+    },
+    {
+      "en": "character",
+      "fa": "حرف؛کاراکتر؛شخصیت",
+      "pos": "noun"
+    },
+    {
+      "en": "sentence",
+      "fa": "جمله",
+      "pos": "noun"
+    },
+    {
+      "en": "paragraph",
+      "fa": "پاراگراف؛بند",
+      "pos": "noun"
+    },
+    {
+      "en": "letter",
+      "fa": "حرف؛نامه",
+      "pos": "noun"
+    },
+    {
+      "en": "space",
+      "fa": "فاصله؛فضا",
+      "pos": "noun"
+    },
+    {
+      "en": "count",
+      "fa": "شمارش؛تعداد",
+      "pos": "noun"
+    },
+    {
+      "en": "reading time",
+      "fa": "زمان مطالعه",
+      "pos": "phrase"
+    },
+    {
+      "en": "regular expression",
+      "fa": "عبارت باقاعده",
+      "pos": "phrase"
+    },
+    {
+      "en": "pattern",
+      "fa": "الگو",
+      "pos": "noun"
+    },
+    {
+      "en": "flag",
+      "fa": "پرچم؛گزینه",
+      "pos": "noun"
+    },
+    {
+      "en": "group",
+      "fa": "گروه",
+      "pos": "noun"
+    },
+    {
+      "en": "match",
+      "fa": "تطبیق؛مطابقت",
+      "pos": "noun"
+    },
+    {
+      "en": "difference",
+      "fa": "تفاوت",
+      "pos": "noun"
+    },
+    {
+      "en": "strong password",
+      "fa": "رمز عبور قوی",
+      "pos": "phrase"
+    },
+    {
+      "en": "random",
+      "fa": "تصادفی",
+      "pos": "adjective"
+    },
+    {
+      "en": "uppercase",
+      "fa": "حروف بزرگ",
+      "pos": "noun"
+    },
+    {
+      "en": "lowercase",
+      "fa": "حروف کوچک",
+      "pos": "noun"
+    },
+    {
+      "en": "symbol",
+      "fa": "نماد",
+      "pos": "noun"
+    },
+    {
+      "en": "number",
+      "fa": "عدد",
+      "pos": "noun"
+    },
+    {
+      "en": "secure",
+      "fa": "ایمن؛امن",
+      "pos": "adjective"
+    },
+    {
+      "en": "encryption",
+      "fa": "رمزنگاری",
+      "pos": "noun"
+    },
+    {
+      "en": "backup",
+      "fa": "پشتیبان؛نسخه پشتیبان",
+      "pos": "noun"
+    },
+    {
+      "en": "restore",
+      "fa": "بازیابی کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "red",
+      "fa": "قرمز",
+      "pos": "adjective"
+    },
+    {
+      "en": "blue",
+      "fa": "آبی",
+      "pos": "adjective"
+    },
+    {
+      "en": "green",
+      "fa": "سبز",
+      "pos": "adjective"
+    },
+    {
+      "en": "yellow",
+      "fa": "زرد",
+      "pos": "adjective"
+    },
+    {
+      "en": "black",
+      "fa": "سیاه",
+      "pos": "adjective"
+    },
+    {
+      "en": "white",
+      "fa": "سفید",
+      "pos": "adjective"
+    },
+    {
+      "en": "gray",
+      "fa": "خاکستری",
+      "pos": "adjective"
+    },
+    {
+      "en": "brown",
+      "fa": "قهوه‌ای",
+      "pos": "adjective"
+    },
+    {
+      "en": "gold",
+      "fa": "طلایی",
+      "pos": "adjective"
+    },
+    {
+      "en": "orange",
+      "fa": "نارنجی؛پرتقال",
+      "pos": "adjective"
+    },
+    {
+      "en": "Iranian",
+      "fa": "ایرانی",
+      "pos": "adjective"
+    },
+    {
+      "en": "Persian",
+      "fa": "فارسی؛پارسی",
+      "pos": "adjective"
+    },
+    {
+      "en": "English",
+      "fa": "انگلیسی",
+      "pos": "adjective"
+    },
+    {
+      "en": "Arabic",
+      "fa": "عربی",
+      "pos": "adjective"
+    },
+    {
+      "en": "German",
+      "fa": "آلمانی",
+      "pos": "adjective"
+    },
+    {
+      "en": "French",
+      "fa": "فرانسوی",
+      "pos": "adjective"
+    },
+    {
+      "en": "language learning",
+      "fa": "یادگیری زبان",
+      "pos": "phrase"
+    },
+    {
+      "en": "vocabulary",
+      "fa": "واژگان؛لغات",
+      "pos": "noun"
+    },
+    {
+      "en": "grammar",
+      "fa": "دستور زبان؛گرامر",
+      "pos": "noun"
+    },
+    {
+      "en": "dictionary entry",
+      "fa": "مدخل فرهنگ لغت",
+      "pos": "phrase"
+    },
+    {
+      "en": "thankses",
+      "fa": "ممنون؛متشکرم",
+      "pos": "derived"
+    },
+    {
+      "en": "friends",
+      "fa": "دوست",
+      "pos": "derived"
+    },
+    {
+      "en": "familys",
+      "fa": "خانواده",
+      "pos": "derived"
+    },
+    {
+      "en": "mothers",
+      "fa": "مادر",
+      "pos": "derived"
+    },
+    {
+      "en": "fathers",
+      "fa": "پدر",
+      "pos": "derived"
+    },
+    {
+      "en": "brothers",
+      "fa": "برادر",
+      "pos": "derived"
+    },
+    {
+      "en": "sisters",
+      "fa": "خواهر",
+      "pos": "derived"
+    },
+    {
+      "en": "childs",
+      "fa": "کودک؛بچه",
+      "pos": "derived"
+    },
+    {
+      "en": "persons",
+      "fa": "شخص؛فرد",
+      "pos": "derived"
+    },
+    {
+      "en": "peoples",
+      "fa": "مردم؛افراد",
+      "pos": "derived"
+    },
+    {
+      "en": "mans",
+      "fa": "مرد",
+      "pos": "derived"
+    },
+    {
+      "en": "womans",
+      "fa": "زن",
+      "pos": "derived"
+    },
+    {
+      "en": "boys",
+      "fa": "پسر",
+      "pos": "derived"
+    },
+    {
+      "en": "girls",
+      "fa": "دختر",
+      "pos": "derived"
+    },
+    {
+      "en": "names",
+      "fa": "نام؛اسم",
+      "pos": "derived"
+    },
+    {
+      "en": "homes",
+      "fa": "خانه؛منزل",
+      "pos": "derived"
+    },
+    {
+      "en": "houses",
+      "fa": "خانه",
+      "pos": "derived"
+    },
+    {
+      "en": "rooms",
+      "fa": "اتاق",
+      "pos": "derived"
+    },
+    {
+      "en": "doors",
+      "fa": "در",
+      "pos": "derived"
+    },
+    {
+      "en": "windows",
+      "fa": "پنجره",
+      "pos": "derived"
+    },
+    {
+      "en": "schools",
+      "fa": "مدرسه",
+      "pos": "derived"
+    },
+    {
+      "en": "universitys",
+      "fa": "دانشگاه",
+      "pos": "derived"
+    },
+    {
+      "en": "teachers",
+      "fa": "معلم؛استاد",
+      "pos": "derived"
+    },
+    {
+      "en": "students",
+      "fa": "دانش‌آموز؛دانشجو",
+      "pos": "derived"
+    },
+    {
+      "en": "books",
+      "fa": "کتاب",
+      "pos": "derived"
+    },
+    {
+      "en": "pages",
+      "fa": "صفحه",
+      "pos": "derived"
+    },
+    {
+      "en": "words",
+      "fa": "واژه؛کلمه",
+      "pos": "derived"
+    },
+    {
+      "en": "languages",
+      "fa": "زبان",
+      "pos": "derived"
+    },
+    {
+      "en": "questions",
+      "fa": "سؤال؛پرسش",
+      "pos": "derived"
+    },
+    {
+      "en": "answers",
+      "fa": "پاسخ؛جواب",
+      "pos": "derived"
+    },
+    {
+      "en": "examples",
+      "fa": "مثال",
+      "pos": "derived"
+    },
+    {
+      "en": "times",
+      "fa": "زمان؛وقت",
+      "pos": "derived"
+    },
+    {
+      "en": "days",
+      "fa": "روز",
+      "pos": "derived"
+    },
+    {
+      "en": "weeks",
+      "fa": "هفته",
+      "pos": "derived"
+    },
+    {
+      "en": "months",
+      "fa": "ماه",
+      "pos": "derived"
+    },
+    {
+      "en": "years",
+      "fa": "سال",
+      "pos": "derived"
+    },
+    {
+      "en": "mornings",
+      "fa": "صبح",
+      "pos": "derived"
+    },
+    {
+      "en": "afternoons",
+      "fa": "بعدازظهر",
+      "pos": "derived"
+    },
+    {
+      "en": "evenings",
+      "fa": "عصر؛شب",
+      "pos": "derived"
+    },
+    {
+      "en": "nights",
+      "fa": "شب",
+      "pos": "derived"
+    },
+    {
+      "en": "hours",
+      "fa": "ساعت",
+      "pos": "derived"
+    },
+    {
+      "en": "minutes",
+      "fa": "دقیقه",
+      "pos": "derived"
+    },
+    {
+      "en": "seconds",
+      "fa": "ثانیه",
+      "pos": "derived"
+    },
+    {
+      "en": "waters",
+      "fa": "آب",
+      "pos": "derived"
+    },
+    {
+      "en": "foods",
+      "fa": "غذا",
+      "pos": "derived"
+    },
+    {
+      "en": "breads",
+      "fa": "نان",
+      "pos": "derived"
+    },
+    {
+      "en": "rices",
+      "fa": "برنج",
+      "pos": "derived"
+    },
+    {
+      "en": "teas",
+      "fa": "چای",
+      "pos": "derived"
+    },
+    {
+      "en": "coffees",
+      "fa": "قهوه",
+      "pos": "derived"
+    },
+    {
+      "en": "milks",
+      "fa": "شیر",
+      "pos": "derived"
+    },
+    {
+      "en": "fruits",
+      "fa": "میوه",
+      "pos": "derived"
+    },
+    {
+      "en": "apples",
+      "fa": "سیب",
+      "pos": "derived"
+    },
+    {
+      "en": "oranges",
+      "fa": "پرتقال",
+      "pos": "derived"
+    },
+    {
+      "en": "bananas",
+      "fa": "موز",
+      "pos": "derived"
+    },
+    {
+      "en": "meats",
+      "fa": "گوشت",
+      "pos": "derived"
+    },
+    {
+      "en": "chickens",
+      "fa": "مرغ",
+      "pos": "derived"
+    },
+    {
+      "en": "fishes",
+      "fa": "ماهی",
+      "pos": "derived"
+    },
+    {
+      "en": "salts",
+      "fa": "نمک",
+      "pos": "derived"
+    },
+    {
+      "en": "sugars",
+      "fa": "شکر",
+      "pos": "derived"
+    },
+    {
+      "en": "cars",
+      "fa": "خودرو؛ماشین",
+      "pos": "derived"
+    },
+    {
+      "en": "buses",
+      "fa": "اتوبوس",
+      "pos": "derived"
+    },
+    {
+      "en": "trains",
+      "fa": "قطار",
+      "pos": "derived"
+    },
+    {
+      "en": "airplanes",
+      "fa": "هواپیما",
+      "pos": "derived"
+    },
+    {
+      "en": "roads",
+      "fa": "جاده؛راه",
+      "pos": "derived"
+    },
+    {
+      "en": "streets",
+      "fa": "خیابان",
+      "pos": "derived"
+    },
+    {
+      "en": "citys",
+      "fa": "شهر",
+      "pos": "derived"
+    },
+    {
+      "en": "countrys",
+      "fa": "کشور",
+      "pos": "derived"
+    },
+    {
+      "en": "worlds",
+      "fa": "جهان؛دنیا",
+      "pos": "derived"
+    },
+    {
+      "en": "capitals",
+      "fa": "پایتخت",
+      "pos": "derived"
+    },
+    {
+      "en": "haves",
+      "fa": "داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "haved",
+      "fa": "داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "having",
+      "fa": "داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "makes",
+      "fa": "ساختن؛ایجاد کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "maked",
+      "fa": "ساختن؛ایجاد کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "making",
+      "fa": "ساختن؛ایجاد کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "comes",
+      "fa": "آمدن",
+      "pos": "derived"
+    },
+    {
+      "en": "comed",
+      "fa": "آمدن",
+      "pos": "derived"
+    },
+    {
+      "en": "coming",
+      "fa": "آمدن",
+      "pos": "derived"
+    },
+    {
+      "en": "sees",
+      "fa": "دیدن",
+      "pos": "derived"
+    },
+    {
+      "en": "seed",
+      "fa": "دیدن",
+      "pos": "derived"
+    },
+    {
+      "en": "seing",
+      "fa": "دیدن",
+      "pos": "derived"
+    },
+    {
+      "en": "looks",
+      "fa": "نگاه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "looked",
+      "fa": "نگاه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "looking",
+      "fa": "نگاه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "knows",
+      "fa": "دانستن",
+      "pos": "derived"
+    },
+    {
+      "en": "knowed",
+      "fa": "دانستن",
+      "pos": "derived"
+    },
+    {
+      "en": "knowing",
+      "fa": "دانستن",
+      "pos": "derived"
+    },
+    {
+      "en": "thinks",
+      "fa": "فکر کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "thinked",
+      "fa": "فکر کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "thinking",
+      "fa": "فکر کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "wants",
+      "fa": "خواستن",
+      "pos": "derived"
+    },
+    {
+      "en": "wanted",
+      "fa": "خواستن",
+      "pos": "derived"
+    },
+    {
+      "en": "wanting",
+      "fa": "خواستن",
+      "pos": "derived"
+    },
+    {
+      "en": "needs",
+      "fa": "نیاز داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "needed",
+      "fa": "نیاز داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "needing",
+      "fa": "نیاز داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "uses",
+      "fa": "استفاده کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "used",
+      "fa": "استفاده کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "using",
+      "fa": "استفاده کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "finds",
+      "fa": "پیدا کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "finded",
+      "fa": "پیدا کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "finding",
+      "fa": "پیدا کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "gives",
+      "fa": "دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "gived",
+      "fa": "دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "giving",
+      "fa": "دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "takes",
+      "fa": "گرفتن",
+      "pos": "derived"
+    },
+    {
+      "en": "taked",
+      "fa": "گرفتن",
+      "pos": "derived"
+    },
+    {
+      "en": "taking",
+      "fa": "گرفتن",
+      "pos": "derived"
+    },
+    {
+      "en": "gets",
+      "fa": "گرفتن؛دریافت کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "geted",
+      "fa": "گرفتن؛دریافت کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "geting",
+      "fa": "گرفتن؛دریافت کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "puts",
+      "fa": "گذاشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "puted",
+      "fa": "گذاشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "puting",
+      "fa": "گذاشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "keeps",
+      "fa": "نگه داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "keeped",
+      "fa": "نگه داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "keeping",
+      "fa": "نگه داشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "helps",
+      "fa": "کمک کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "helped",
+      "fa": "کمک کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "helping",
+      "fa": "کمک کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "works",
+      "fa": "کار کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "worked",
+      "fa": "کار کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "working",
+      "fa": "کار کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "plays",
+      "fa": "بازی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "played",
+      "fa": "بازی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "playing",
+      "fa": "بازی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "reads",
+      "fa": "خواندن",
+      "pos": "derived"
+    },
+    {
+      "en": "readed",
+      "fa": "خواندن",
+      "pos": "derived"
+    },
+    {
+      "en": "reading",
+      "fa": "خواندن",
+      "pos": "derived"
+    },
+    {
+      "en": "writes",
+      "fa": "نوشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "writed",
+      "fa": "نوشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "writing",
+      "fa": "نوشتن",
+      "pos": "derived"
+    },
+    {
+      "en": "learns",
+      "fa": "یاد گرفتن",
+      "pos": "derived"
+    },
+    {
+      "en": "learned",
+      "fa": "یاد گرفتن",
+      "pos": "derived"
+    },
+    {
+      "en": "learning",
+      "fa": "یاد گرفتن",
+      "pos": "derived"
+    },
+    {
+      "en": "teaches",
+      "fa": "آموزش دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "teached",
+      "fa": "آموزش دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "teaching",
+      "fa": "آموزش دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "studies",
+      "fa": "مطالعه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "studied",
+      "fa": "مطالعه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "studying",
+      "fa": "مطالعه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "opens",
+      "fa": "باز کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "opened",
+      "fa": "باز کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "opening",
+      "fa": "باز کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "closes",
+      "fa": "بستن",
+      "pos": "derived"
+    },
+    {
+      "en": "closed",
+      "fa": "بستن",
+      "pos": "derived"
+    },
+    {
+      "en": "closing",
+      "fa": "بستن",
+      "pos": "derived"
+    },
+    {
+      "en": "saves",
+      "fa": "ذخیره کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "saved",
+      "fa": "ذخیره کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "saving",
+      "fa": "ذخیره کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "shares",
+      "fa": "اشتراک‌گذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "shared",
+      "fa": "اشتراک‌گذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "sharing",
+      "fa": "اشتراک‌گذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "sends",
+      "fa": "فرستادن؛ارسال کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "sended",
+      "fa": "فرستادن؛ارسال کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "sending",
+      "fa": "فرستادن؛ارسال کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "receives",
+      "fa": "دریافت کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "received",
+      "fa": "دریافت کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "receiving",
+      "fa": "دریافت کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "downloads",
+      "fa": "دانلود کردن؛بارگیری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "downloaded",
+      "fa": "دانلود کردن؛بارگیری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "downloading",
+      "fa": "دانلود کردن؛بارگیری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "uploads",
+      "fa": "بارگذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "uploaded",
+      "fa": "بارگذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "uploading",
+      "fa": "بارگذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "searches",
+      "fa": "جستجو کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "searched",
+      "fa": "جستجو کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "searching",
+      "fa": "جستجو کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "changes",
+      "fa": "تغییر دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "changed",
+      "fa": "تغییر دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "changing",
+      "fa": "تغییر دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "converts",
+      "fa": "تبدیل کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "converted",
+      "fa": "تبدیل کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "converting",
+      "fa": "تبدیل کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "creates",
+      "fa": "ایجاد کردن؛ساختن",
+      "pos": "derived"
+    },
+    {
+      "en": "created",
+      "fa": "ایجاد کردن؛ساختن",
+      "pos": "derived"
+    },
+    {
+      "en": "creating",
+      "fa": "ایجاد کردن؛ساختن",
+      "pos": "derived"
+    },
+    {
+      "en": "deletes",
+      "fa": "حذف کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "deleted",
+      "fa": "حذف کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "deleting",
+      "fa": "حذف کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "edits",
+      "fa": "ویرایش کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "edited",
+      "fa": "ویرایش کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "editing",
+      "fa": "ویرایش کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "cuts",
+      "fa": "برش دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "cuted",
+      "fa": "برش دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "cuting",
+      "fa": "برش دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "copies",
+      "fa": "کپی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "copied",
+      "fa": "کپی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "copying",
+      "fa": "کپی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "pastes",
+      "fa": "چسباندن؛جای‌گذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "pasted",
+      "fa": "چسباندن؛جای‌گذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "pasting",
+      "fa": "چسباندن؛جای‌گذاری کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "compares",
+      "fa": "مقایسه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "compared",
+      "fa": "مقایسه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "comparing",
+      "fa": "مقایسه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "calculates",
+      "fa": "محاسبه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "calculated",
+      "fa": "محاسبه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "calculating",
+      "fa": "محاسبه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "translates",
+      "fa": "ترجمه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "translated",
+      "fa": "ترجمه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "translating",
+      "fa": "ترجمه کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "computers",
+      "fa": "رایانه؛کامپیوتر",
+      "pos": "derived"
+    },
+    {
+      "en": "softwares",
+      "fa": "نرم‌افزار",
+      "pos": "derived"
+    },
+    {
+      "en": "hardwares",
+      "fa": "سخت‌افزار",
+      "pos": "derived"
+    },
+    {
+      "en": "applications",
+      "fa": "برنامه؛اپلیکیشن",
+      "pos": "derived"
+    },
+    {
+      "en": "apps",
+      "fa": "برنامه؛اپلیکیشن",
+      "pos": "derived"
+    },
+    {
+      "en": "files",
+      "fa": "فایل؛پرونده",
+      "pos": "derived"
+    },
+    {
+      "en": "folders",
+      "fa": "پوشه",
+      "pos": "derived"
+    },
+    {
+      "en": "images",
+      "fa": "تصویر",
+      "pos": "derived"
+    },
+    {
+      "en": "photos",
+      "fa": "عکس؛تصویر",
+      "pos": "derived"
+    },
+    {
+      "en": "videos",
+      "fa": "ویدئو",
+      "pos": "derived"
+    },
+    {
+      "en": "audios",
+      "fa": "صوت؛صدا",
+      "pos": "derived"
+    },
+    {
+      "en": "musics",
+      "fa": "موسیقی",
+      "pos": "derived"
+    },
+    {
+      "en": "documents",
+      "fa": "سند؛مدرک",
+      "pos": "derived"
+    },
+    {
+      "en": "texts",
+      "fa": "متن",
+      "pos": "derived"
+    },
+    {
+      "en": "codes",
+      "fa": "کد",
+      "pos": "derived"
+    },
+    {
+      "en": "programmings",
+      "fa": "برنامه‌نویسی",
+      "pos": "derived"
+    },
+    {
+      "en": "developers",
+      "fa": "توسعه‌دهنده؛برنامه‌نویس",
+      "pos": "derived"
+    },
+    {
+      "en": "websites",
+      "fa": "وب‌سایت؛تارنما",
+      "pos": "derived"
+    },
+    {
+      "en": "browsers",
+      "fa": "مرورگر",
+      "pos": "derived"
+    },
+    {
+      "en": "internets",
+      "fa": "اینترنت",
+      "pos": "derived"
+    },
+    {
+      "en": "networks",
+      "fa": "شبکه",
+      "pos": "derived"
+    },
+    {
+      "en": "servers",
+      "fa": "سرور؛کارساز",
+      "pos": "derived"
+    },
+    {
+      "en": "databases",
+      "fa": "پایگاه داده",
+      "pos": "derived"
+    },
+    {
+      "en": "datas",
+      "fa": "داده",
+      "pos": "derived"
+    },
+    {
+      "en": "passwords",
+      "fa": "رمز عبور",
+      "pos": "derived"
+    },
+    {
+      "en": "securitys",
+      "fa": "امنیت",
+      "pos": "derived"
+    },
+    {
+      "en": "privacys",
+      "fa": "حریم خصوصی",
+      "pos": "derived"
+    },
+    {
+      "en": "cameras",
+      "fa": "دوربین",
+      "pos": "derived"
+    },
+    {
+      "en": "microphones",
+      "fa": "میکروفون",
+      "pos": "derived"
+    },
+    {
+      "en": "screens",
+      "fa": "صفحه‌نمایش",
+      "pos": "derived"
+    },
+    {
+      "en": "keyboards",
+      "fa": "صفحه‌کلید",
+      "pos": "derived"
+    },
+    {
+      "en": "mouses",
+      "fa": "ماوس؛موشواره",
+      "pos": "derived"
+    },
+    {
+      "en": "memorys",
+      "fa": "حافظه",
+      "pos": "derived"
+    },
+    {
+      "en": "storages",
+      "fa": "فضای ذخیره‌سازی",
+      "pos": "derived"
+    },
+    {
+      "en": "javascripts",
+      "fa": "جاوااسکریپت",
+      "pos": "derived"
+    },
+    {
+      "en": "pythons",
+      "fa": "پایتون",
+      "pos": "derived"
+    },
+    {
+      "en": "phps",
+      "fa": "پی‌اچ‌پی",
+      "pos": "derived"
+    },
+    {
+      "en": "htmls",
+      "fa": "اچ‌تی‌ام‌ال",
+      "pos": "derived"
+    },
+    {
+      "en": "csses",
+      "fa": "سی‌اس‌اس",
+      "pos": "derived"
+    },
+    {
+      "en": "jsons",
+      "fa": "جی‌سون",
+      "pos": "derived"
+    },
+    {
+      "en": "regexes",
+      "fa": "عبارت باقاعده؛ریجکس",
+      "pos": "derived"
+    },
+    {
+      "en": "algorithms",
+      "fa": "الگوریتم",
+      "pos": "derived"
+    },
+    {
+      "en": "functions",
+      "fa": "تابع",
+      "pos": "derived"
+    },
+    {
+      "en": "variables",
+      "fa": "متغیر",
+      "pos": "derived"
+    },
+    {
+      "en": "arrays",
+      "fa": "آرایه",
+      "pos": "derived"
+    },
+    {
+      "en": "objects",
+      "fa": "شیء",
+      "pos": "derived"
+    },
+    {
+      "en": "classes",
+      "fa": "کلاس",
+      "pos": "derived"
+    },
+    {
+      "en": "methods",
+      "fa": "متد؛روش",
+      "pos": "derived"
+    },
+    {
+      "en": "librarys",
+      "fa": "کتابخانه",
+      "pos": "derived"
+    },
+    {
+      "en": "frameworks",
+      "fa": "چارچوب",
+      "pos": "derived"
+    },
+    {
+      "en": "apis",
+      "fa": "رابط برنامه‌نویسی کاربردی؛API",
+      "pos": "derived"
+    },
+    {
+      "en": "plugins",
+      "fa": "افزونه",
+      "pos": "derived"
+    },
+    {
+      "en": "pdfs",
+      "fa": "پی‌دی‌اف",
+      "pos": "derived"
+    },
+    {
+      "en": "barcodes",
+      "fa": "بارکد",
+      "pos": "derived"
+    },
+    {
+      "en": "compresses",
+      "fa": "فشرده کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "compressed",
+      "fa": "فشرده کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "compressing",
+      "fa": "فشرده کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "compressions",
+      "fa": "فشرده‌سازی",
+      "pos": "derived"
+    },
+    {
+      "en": "qualitys",
+      "fa": "کیفیت",
+      "pos": "derived"
+    },
+    {
+      "en": "formats",
+      "fa": "قالب؛فرمت",
+      "pos": "derived"
+    },
+    {
+      "en": "crops",
+      "fa": "برش؛کراپ",
+      "pos": "derived"
+    },
+    {
+      "en": "rotates",
+      "fa": "چرخاندن",
+      "pos": "derived"
+    },
+    {
+      "en": "rotated",
+      "fa": "چرخاندن",
+      "pos": "derived"
+    },
+    {
+      "en": "rotating",
+      "fa": "چرخاندن",
+      "pos": "derived"
+    },
+    {
+      "en": "filters",
+      "fa": "فیلتر",
+      "pos": "derived"
+    },
+    {
+      "en": "merges",
+      "fa": "ادغام کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "merged",
+      "fa": "ادغام کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "merging",
+      "fa": "ادغام کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "splits",
+      "fa": "جدا کردن؛تقسیم کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "splited",
+      "fa": "جدا کردن؛تقسیم کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "spliting",
+      "fa": "جدا کردن؛تقسیم کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "resizes",
+      "fa": "تغییر اندازه دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "resized",
+      "fa": "تغییر اندازه دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "resizing",
+      "fa": "تغییر اندازه دادن",
+      "pos": "derived"
+    },
+    {
+      "en": "favicons",
+      "fa": "فاوآیکون",
+      "pos": "derived"
+    },
+    {
+      "en": "svgs",
+      "fa": "اس‌وی‌جی",
+      "pos": "derived"
+    },
+    {
+      "en": "jpegs",
+      "fa": "جی‌پگ",
+      "pos": "derived"
+    },
+    {
+      "en": "pngs",
+      "fa": "پی‌ان‌جی",
+      "pos": "derived"
+    },
+    {
+      "en": "webps",
+      "fa": "وب‌پی",
+      "pos": "derived"
+    },
+    {
+      "en": "wavs",
+      "fa": "ویو",
+      "pos": "derived"
+    },
+    {
+      "en": "aacs",
+      "fa": "ای‌ای‌سی",
+      "pos": "derived"
+    },
+    {
+      "en": "numbers",
+      "fa": "عدد؛شماره",
+      "pos": "derived"
+    },
+    {
+      "en": "loves",
+      "fa": "عشق؛محبت",
+      "pos": "derived"
+    },
+    {
+      "en": "peaces",
+      "fa": "صلح؛آرامش",
+      "pos": "derived"
+    },
+    {
+      "en": "hopes",
+      "fa": "امید",
+      "pos": "derived"
+    },
+    {
+      "en": "lifes",
+      "fa": "زندگی",
+      "pos": "derived"
+    },
+    {
+      "en": "deaths",
+      "fa": "مرگ",
+      "pos": "derived"
+    },
+    {
+      "en": "hearts",
+      "fa": "قلب؛دل",
+      "pos": "derived"
+    },
+    {
+      "en": "minds",
+      "fa": "ذهن",
+      "pos": "derived"
+    },
+    {
+      "en": "ideas",
+      "fa": "ایده؛اندیشه",
+      "pos": "derived"
+    },
+    {
+      "en": "reasons",
+      "fa": "دلیل؛منطق",
+      "pos": "derived"
+    },
+    {
+      "en": "problems",
+      "fa": "مشکل؛مسئله",
+      "pos": "derived"
+    },
+    {
+      "en": "solutions",
+      "fa": "راه‌حل",
+      "pos": "derived"
+    },
+    {
+      "en": "results",
+      "fa": "نتیجه",
+      "pos": "derived"
+    },
+    {
+      "en": "successes",
+      "fa": "موفقیت",
+      "pos": "derived"
+    },
+    {
+      "en": "failures",
+      "fa": "شکست",
+      "pos": "derived"
+    },
+    {
+      "en": "experiences",
+      "fa": "تجربه",
+      "pos": "derived"
+    },
+    {
+      "en": "knowledges",
+      "fa": "دانش",
+      "pos": "derived"
+    },
+    {
+      "en": "informations",
+      "fa": "اطلاعات",
+      "pos": "derived"
+    },
+    {
+      "en": "services",
+      "fa": "خدمت؛سرویس",
+      "pos": "derived"
+    },
+    {
+      "en": "systems",
+      "fa": "سیستم؛سامانه",
+      "pos": "derived"
+    },
+    {
+      "en": "tools",
+      "fa": "ابزار",
+      "pos": "derived"
+    },
+    {
+      "en": "settings",
+      "fa": "تنظیم؛تنظیمات",
+      "pos": "derived"
+    },
+    {
+      "en": "historys",
+      "fa": "تاریخچه",
+      "pos": "derived"
+    },
+    {
+      "en": "activitys",
+      "fa": "فعالیت",
+      "pos": "derived"
+    },
+    {
+      "en": "users",
+      "fa": "کاربر",
+      "pos": "derived"
+    },
+    {
+      "en": "devices",
+      "fa": "دستگاه",
+      "pos": "derived"
+    },
+    {
+      "en": "phones",
+      "fa": "گوشی؛تلفن",
+      "pos": "derived"
+    },
+    {
+      "en": "mobiles",
+      "fa": "موبایل؛همراه",
+      "pos": "derived"
+    },
+    {
+      "en": "permissions",
+      "fa": "مجوز",
+      "pos": "derived"
+    },
+    {
+      "en": "accesses",
+      "fa": "دسترسی",
+      "pos": "derived"
+    },
+    {
+      "en": "bookstores",
+      "fa": "کتاب‌فروشی",
+      "pos": "derived"
+    },
+    {
+      "en": "hospitals",
+      "fa": "بیمارستان",
+      "pos": "derived"
+    },
+    {
+      "en": "doctors",
+      "fa": "پزشک؛دکتر",
+      "pos": "derived"
+    },
+    {
+      "en": "medicines",
+      "fa": "دارو",
+      "pos": "derived"
+    },
+    {
+      "en": "healths",
+      "fa": "سلامت",
+      "pos": "derived"
+    },
+    {
+      "en": "weathers",
+      "fa": "آب‌وهوا",
+      "pos": "derived"
+    },
+    {
+      "en": "rains",
+      "fa": "باران",
+      "pos": "derived"
+    },
+    {
+      "en": "snows",
+      "fa": "برف",
+      "pos": "derived"
+    },
+    {
+      "en": "suns",
+      "fa": "خورشید",
+      "pos": "derived"
+    },
+    {
+      "en": "moons",
+      "fa": "ماه",
+      "pos": "derived"
+    },
+    {
+      "en": "stars",
+      "fa": "ستاره",
+      "pos": "derived"
+    },
+    {
+      "en": "skys",
+      "fa": "آسمان",
+      "pos": "derived"
+    },
+    {
+      "en": "seas",
+      "fa": "دریا",
+      "pos": "derived"
+    },
+    {
+      "en": "mountains",
+      "fa": "کوه",
+      "pos": "derived"
+    },
+    {
+      "en": "rivers",
+      "fa": "رود؛رودخانه",
+      "pos": "derived"
+    },
+    {
+      "en": "trees",
+      "fa": "درخت",
+      "pos": "derived"
+    },
+    {
+      "en": "flowers",
+      "fa": "گل",
+      "pos": "derived"
+    },
+    {
+      "en": "animals",
+      "fa": "حیوان",
+      "pos": "derived"
+    },
+    {
+      "en": "birds",
+      "fa": "پرنده",
+      "pos": "derived"
+    },
+    {
+      "en": "dogs",
+      "fa": "سگ",
+      "pos": "derived"
+    },
+    {
+      "en": "cats",
+      "fa": "گربه",
+      "pos": "derived"
+    },
+    {
+      "en": "businesses",
+      "fa": "کسب‌وکار؛تجارت",
+      "pos": "derived"
+    },
+    {
+      "en": "companys",
+      "fa": "شرکت",
+      "pos": "derived"
+    },
+    {
+      "en": "jobs",
+      "fa": "شغل؛کار",
+      "pos": "derived"
+    },
+    {
+      "en": "offices",
+      "fa": "دفتر؛اداره",
+      "pos": "derived"
+    },
+    {
+      "en": "managers",
+      "fa": "مدیر",
+      "pos": "derived"
+    },
+    {
+      "en": "customers",
+      "fa": "مشتری",
+      "pos": "derived"
+    },
+    {
+      "en": "prices",
+      "fa": "قیمت",
+      "pos": "derived"
+    },
+    {
+      "en": "moneys",
+      "fa": "پول",
+      "pos": "derived"
+    },
+    {
+      "en": "markets",
+      "fa": "بازار",
+      "pos": "derived"
+    },
+    {
+      "en": "products",
+      "fa": "محصول",
+      "pos": "derived"
+    },
+    {
+      "en": "orders",
+      "fa": "سفارش",
+      "pos": "derived"
+    },
+    {
+      "en": "payments",
+      "fa": "پرداخت",
+      "pos": "derived"
+    },
+    {
+      "en": "accounts",
+      "fa": "حساب",
+      "pos": "derived"
+    },
+    {
+      "en": "banks",
+      "fa": "بانک",
+      "pos": "derived"
+    },
+    {
+      "en": "cards",
+      "fa": "کارت",
+      "pos": "derived"
+    },
+    {
+      "en": "addresses",
+      "fa": "نشانی؛آدرس",
+      "pos": "derived"
+    },
+    {
+      "en": "emails",
+      "fa": "ایمیل؛رایانامه",
+      "pos": "derived"
+    },
+    {
+      "en": "messages",
+      "fa": "پیام",
+      "pos": "derived"
+    },
+    {
+      "en": "travels",
+      "fa": "سفر",
+      "pos": "derived"
+    },
+    {
+      "en": "trips",
+      "fa": "سفر",
+      "pos": "derived"
+    },
+    {
+      "en": "hotels",
+      "fa": "هتل",
+      "pos": "derived"
+    },
+    {
+      "en": "airports",
+      "fa": "فرودگاه",
+      "pos": "derived"
+    },
+    {
+      "en": "stations",
+      "fa": "ایستگاه",
+      "pos": "derived"
+    },
+    {
+      "en": "tickets",
+      "fa": "بلیط؛بلیت",
+      "pos": "derived"
+    },
+    {
+      "en": "maps",
+      "fa": "نقشه",
+      "pos": "derived"
+    },
+    {
+      "en": "distances",
+      "fa": "فاصله",
+      "pos": "derived"
+    },
+    {
+      "en": "directions",
+      "fa": "جهت؛مسیر",
+      "pos": "derived"
+    },
+    {
+      "en": "norths",
+      "fa": "شمال",
+      "pos": "derived"
+    },
+    {
+      "en": "souths",
+      "fa": "جنوب",
+      "pos": "derived"
+    },
+    {
+      "en": "easts",
+      "fa": "شرق",
+      "pos": "derived"
+    },
+    {
+      "en": "wests",
+      "fa": "غرب",
+      "pos": "derived"
+    },
+    {
+      "en": "calendars",
+      "fa": "تقویم",
+      "pos": "derived"
+    },
+    {
+      "en": "dates",
+      "fa": "تاریخ",
+      "pos": "derived"
+    },
+    {
+      "en": "ages",
+      "fa": "سن",
+      "pos": "derived"
+    },
+    {
+      "en": "birthdays",
+      "fa": "تولد؛روز تولد",
+      "pos": "derived"
+    },
+    {
+      "en": "notes",
+      "fa": "یادداشت",
+      "pos": "derived"
+    },
+    {
+      "en": "noteses",
+      "fa": "یادداشت‌ها",
+      "pos": "derived"
+    },
+    {
+      "en": "titles",
+      "fa": "عنوان",
+      "pos": "derived"
+    },
+    {
+      "en": "descriptions",
+      "fa": "توضیحات؛شرح",
+      "pos": "derived"
+    },
+    {
+      "en": "dictionarys",
+      "fa": "دیکشنری؛فرهنگ لغت",
+      "pos": "derived"
+    },
+    {
+      "en": "translations",
+      "fa": "ترجمه",
+      "pos": "derived"
+    },
+    {
+      "en": "meanings",
+      "fa": "معنی؛مفهوم",
+      "pos": "derived"
+    },
+    {
+      "en": "synonyms",
+      "fa": "مترادف",
+      "pos": "derived"
+    },
+    {
+      "en": "antonyms",
+      "fa": "متضاد",
+      "pos": "derived"
+    },
+    {
+      "en": "pronunciations",
+      "fa": "تلفظ",
+      "pos": "derived"
+    },
+    {
+      "en": "analysises",
+      "fa": "تحلیل",
+      "pos": "derived"
+    },
+    {
+      "en": "characters",
+      "fa": "حرف؛کاراکتر؛شخصیت",
+      "pos": "derived"
+    },
+    {
+      "en": "sentences",
+      "fa": "جمله",
+      "pos": "derived"
+    },
+    {
+      "en": "paragraphs",
+      "fa": "پاراگراف؛بند",
+      "pos": "derived"
+    },
+    {
+      "en": "letters",
+      "fa": "حرف؛نامه",
+      "pos": "derived"
+    },
+    {
+      "en": "spaces",
+      "fa": "فاصله؛فضا",
+      "pos": "derived"
+    },
+    {
+      "en": "counts",
+      "fa": "شمارش؛تعداد",
+      "pos": "derived"
+    },
+    {
+      "en": "patterns",
+      "fa": "الگو",
+      "pos": "derived"
+    },
+    {
+      "en": "flags",
+      "fa": "پرچم؛گزینه",
+      "pos": "derived"
+    },
+    {
+      "en": "groups",
+      "fa": "گروه",
+      "pos": "derived"
+    },
+    {
+      "en": "matches",
+      "fa": "تطبیق؛مطابقت",
+      "pos": "derived"
+    },
+    {
+      "en": "differences",
+      "fa": "تفاوت",
+      "pos": "derived"
+    },
+    {
+      "en": "uppercases",
+      "fa": "حروف بزرگ",
+      "pos": "derived"
+    },
+    {
+      "en": "lowercases",
+      "fa": "حروف کوچک",
+      "pos": "derived"
+    },
+    {
+      "en": "symbols",
+      "fa": "نماد",
+      "pos": "derived"
+    },
+    {
+      "en": "numbers",
+      "fa": "عدد",
+      "pos": "derived"
+    },
+    {
+      "en": "encryptions",
+      "fa": "رمزنگاری",
+      "pos": "derived"
+    },
+    {
+      "en": "backups",
+      "fa": "پشتیبان؛نسخه پشتیبان",
+      "pos": "derived"
+    },
+    {
+      "en": "restores",
+      "fa": "بازیابی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "restored",
+      "fa": "بازیابی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "restoring",
+      "fa": "بازیابی کردن",
+      "pos": "derived"
+    },
+    {
+      "en": "vocabularys",
+      "fa": "واژگان؛لغات",
+      "pos": "derived"
+    },
+    {
+      "en": "grammars",
+      "fa": "دستور زبان؛گرامر",
+      "pos": "derived"
+    },
+    {
+      "en": "accessibility",
+      "fa": "دسترس‌پذیری",
+      "pos": "noun"
+    },
+    {
+      "en": "architecture",
+      "fa": "معماری",
+      "pos": "noun"
+    },
+    {
+      "en": "authentication",
+      "fa": "احراز هویت",
+      "pos": "noun"
+    },
+    {
+      "en": "authorization",
+      "fa": "مجوز دسترسی",
+      "pos": "noun"
+    },
+    {
+      "en": "binary",
+      "fa": "دودویی؛باینری",
+      "pos": "adjective"
+    },
+    {
+      "en": "build",
+      "fa": "ساخت؛فرآیند ساخت",
+      "pos": "noun"
+    },
+    {
+      "en": "cache",
+      "fa": "حافظه نهان؛کش",
+      "pos": "noun"
+    },
+    {
+      "en": "callback",
+      "fa": "تابع بازگشتی؛کال‌بک",
+      "pos": "noun"
+    },
+    {
+      "en": "compiler",
+      "fa": "کامپایلر",
+      "pos": "noun"
+    },
+    {
+      "en": "compile",
+      "fa": "کامپایل کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "configuration",
+      "fa": "پیکربندی",
+      "pos": "noun"
+    },
+    {
+      "en": "constant",
+      "fa": "ثابت",
+      "pos": "noun"
+    },
+    {
+      "en": "constructor",
+      "fa": "سازنده",
+      "pos": "noun"
+    },
+    {
+      "en": "container",
+      "fa": "محفظه؛کانتینر",
+      "pos": "noun"
+    },
+    {
+      "en": "content",
+      "fa": "محتوا",
+      "pos": "noun"
+    },
+    {
+      "en": "context",
+      "fa": "زمینه؛کانتکست",
+      "pos": "noun"
+    },
+    {
+      "en": "cookie",
+      "fa": "کوکی",
+      "pos": "noun"
+    },
+    {
+      "en": "debug",
+      "fa": "اشکال‌زدایی کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "debugger",
+      "fa": "اشکال‌زدا",
+      "pos": "noun"
+    },
+    {
+      "en": "dependency",
+      "fa": "وابستگی",
+      "pos": "noun"
+    },
+    {
+      "en": "deployment",
+      "fa": "استقرار",
+      "pos": "noun"
+    },
+    {
+      "en": "device storage",
+      "fa": "حافظه دستگاه",
+      "pos": "phrase"
+    },
+    {
+      "en": "directory",
+      "fa": "فهرست؛دایرکتوری",
+      "pos": "noun"
+    },
+    {
+      "en": "domain",
+      "fa": "دامنه",
+      "pos": "noun"
+    },
+    {
+      "en": "driver",
+      "fa": "درایور",
+      "pos": "noun"
+    },
+    {
+      "en": "encoding",
+      "fa": "کدگذاری",
+      "pos": "noun"
+    },
+    {
+      "en": "endpoint",
+      "fa": "نقطه پایانی",
+      "pos": "noun"
+    },
+    {
+      "en": "event",
+      "fa": "رویداد",
+      "pos": "noun"
+    },
+    {
+      "en": "exception",
+      "fa": "استثنا",
+      "pos": "noun"
+    },
+    {
+      "en": "export",
+      "fa": "خروجی گرفتن؛صادر کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "extension",
+      "fa": "پسوند؛افزونه",
+      "pos": "noun"
+    },
+    {
+      "en": "fetch",
+      "fa": "دریافت کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "frontend",
+      "fa": "رابط کاربری؛فرانت‌اند",
+      "pos": "noun"
+    },
+    {
+      "en": "backend",
+      "fa": "بک‌اند؛سمت سرور",
+      "pos": "noun"
+    },
+    {
+      "en": "git",
+      "fa": "گیت",
+      "pos": "noun"
+    },
+    {
+      "en": "github",
+      "fa": "گیت‌هاب",
+      "pos": "noun"
+    },
+    {
+      "en": "header",
+      "fa": "سربرگ",
+      "pos": "noun"
+    },
+    {
+      "en": "icon",
+      "fa": "نماد؛آیکون",
+      "pos": "noun"
+    },
+    {
+      "en": "import",
+      "fa": "وارد کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "index",
+      "fa": "شاخص؛فهرست",
+      "pos": "noun"
+    },
+    {
+      "en": "interface",
+      "fa": "رابط",
+      "pos": "noun"
+    },
+    {
+      "en": "json file",
+      "fa": "فایل JSON",
+      "pos": "phrase"
+    },
+    {
+      "en": "keyword",
+      "fa": "کلیدواژه",
+      "pos": "noun"
+    },
+    {
+      "en": "log",
+      "fa": "گزارش؛لاگ",
+      "pos": "noun"
+    },
+    {
+      "en": "markup",
+      "fa": "نشانه‌گذاری",
+      "pos": "noun"
+    },
+    {
+      "en": "metadata",
+      "fa": "فراداده",
+      "pos": "noun"
+    },
+    {
+      "en": "module",
+      "fa": "ماژول",
+      "pos": "noun"
+    },
+    {
+      "en": "null",
+      "fa": "تهی؛نال",
+      "pos": "adjective"
+    },
+    {
+      "en": "object-oriented",
+      "fa": "شیءگرا",
+      "pos": "adjective"
+    },
+    {
+      "en": "open source",
+      "fa": "متن‌باز",
+      "pos": "adjective"
+    },
+    {
+      "en": "package",
+      "fa": "بسته؛پکیج",
+      "pos": "noun"
+    },
+    {
+      "en": "parameter",
+      "fa": "پارامتر",
+      "pos": "noun"
+    },
+    {
+      "en": "parser",
+      "fa": "تجزیه‌گر",
+      "pos": "noun"
+    },
+    {
+      "en": "path",
+      "fa": "مسیر",
+      "pos": "noun"
+    },
+    {
+      "en": "process",
+      "fa": "فرآیند؛پردازش",
+      "pos": "noun"
+    },
+    {
+      "en": "promise",
+      "fa": "وعده؛پرامیس",
+      "pos": "noun"
+    },
+    {
+      "en": "property",
+      "fa": "ویژگی؛خاصیت",
+      "pos": "noun"
+    },
+    {
+      "en": "query",
+      "fa": "پرس‌وجو",
+      "pos": "noun"
+    },
+    {
+      "en": "request",
+      "fa": "درخواست",
+      "pos": "noun"
+    },
+    {
+      "en": "response",
+      "fa": "پاسخ",
+      "pos": "noun"
+    },
+    {
+      "en": "runtime",
+      "fa": "زمان اجرا",
+      "pos": "noun"
+    },
+    {
+      "en": "script",
+      "fa": "اسکریپت",
+      "pos": "noun"
+    },
+    {
+      "en": "source code",
+      "fa": "کد منبع",
+      "pos": "phrase"
+    },
+    {
+      "en": "string",
+      "fa": "رشته؛رشته متنی",
+      "pos": "noun"
+    },
+    {
+      "en": "syntax",
+      "fa": "نحو؛سینتکس",
+      "pos": "noun"
+    },
+    {
+      "en": "test",
+      "fa": "آزمون؛تست",
+      "pos": "noun"
+    },
+    {
+      "en": "thread",
+      "fa": "رشته اجرایی",
+      "pos": "noun"
+    },
+    {
+      "en": "timeout",
+      "fa": "مهلت زمانی",
+      "pos": "noun"
+    },
+    {
+      "en": "token",
+      "fa": "توکن؛نشانه",
+      "pos": "noun"
+    },
+    {
+      "en": "type",
+      "fa": "نوع",
+      "pos": "noun"
+    },
+    {
+      "en": "URL",
+      "fa": "نشانی اینترنتی",
+      "pos": "noun"
+    },
+    {
+      "en": "value",
+      "fa": "مقدار",
+      "pos": "noun"
+    },
+    {
+      "en": "version",
+      "fa": "نسخه",
+      "pos": "noun"
+    },
+    {
+      "en": "webview",
+      "fa": "نمای وب",
+      "pos": "noun"
+    },
+    {
+      "en": "widget",
+      "fa": "ویجت",
+      "pos": "noun"
+    },
+    {
+      "en": "workflow",
+      "fa": "گردش کار",
+      "pos": "noun"
+    },
+    {
+      "en": "XML",
+      "fa": "اکس‌ام‌ال",
+      "pos": "noun"
+    },
+    {
+      "en": "zip",
+      "fa": "فشرده؛زیپ",
+      "pos": "noun"
+    },
+    {
+      "en": "archive",
+      "fa": "بایگانی",
+      "pos": "noun"
+    },
+    {
+      "en": "attachment",
+      "fa": "پیوست",
+      "pos": "noun"
+    },
+    {
+      "en": "brightness",
+      "fa": "روشنایی",
+      "pos": "noun"
+    },
+    {
+      "en": "contrast",
+      "fa": "کنتراست",
+      "pos": "noun"
+    },
+    {
+      "en": "resolution",
+      "fa": "وضوح؛رزولوشن",
+      "pos": "noun"
+    },
+    {
+      "en": "width",
+      "fa": "عرض",
+      "pos": "noun"
+    },
+    {
+      "en": "height",
+      "fa": "ارتفاع",
+      "pos": "noun"
+    },
+    {
+      "en": "pixel",
+      "fa": "پیکسل",
+      "pos": "noun"
+    },
+    {
+      "en": "portrait",
+      "fa": "عمودی؛پرتره",
+      "pos": "adjective"
+    },
+    {
+      "en": "landscape",
+      "fa": "افقی؛منظره",
+      "pos": "adjective"
+    },
+    {
+      "en": "quality control",
+      "fa": "کنترل کیفیت",
+      "pos": "phrase"
+    },
+    {
+      "en": "sample",
+      "fa": "نمونه",
+      "pos": "noun"
+    },
+    {
+      "en": "output",
+      "fa": "خروجی",
+      "pos": "noun"
+    },
+    {
+      "en": "input",
+      "fa": "ورودی",
+      "pos": "noun"
+    },
+    {
+      "en": "preview",
+      "fa": "پیش‌نمایش",
+      "pos": "noun"
+    },
+    {
+      "en": "error",
+      "fa": "خطا",
+      "pos": "noun"
+    },
+    {
+      "en": "warning",
+      "fa": "هشدار",
+      "pos": "noun"
+    },
+    {
+      "en": "cancel",
+      "fa": "لغو کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "retry",
+      "fa": "تلاش دوباره کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "reset",
+      "fa": "بازنشانی کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "select",
+      "fa": "انتخاب کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "choose",
+      "fa": "انتخاب کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "confirm",
+      "fa": "تأیید کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "continue",
+      "fa": "ادامه دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "back",
+      "fa": "بازگشت؛عقب",
+      "pos": "noun"
+    },
+    {
+      "en": "finish",
+      "fa": "تمام کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "start",
+      "fa": "شروع کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "stop",
+      "fa": "متوقف کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "pause",
+      "fa": "مکث کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "resume",
+      "fa": "ادامه دادن",
+      "pos": "verb"
+    },
+    {
+      "en": "playback",
+      "fa": "پخش",
+      "pos": "noun"
+    },
+    {
+      "en": "volume",
+      "fa": "بلندی صدا؛حجم",
+      "pos": "noun"
+    },
+    {
+      "en": "bitrate",
+      "fa": "نرخ بیت",
+      "pos": "noun"
+    },
+    {
+      "en": "sample rate",
+      "fa": "نرخ نمونه‌برداری",
+      "pos": "phrase"
+    },
+    {
+      "en": "codec",
+      "fa": "کُدک",
+      "pos": "noun"
+    },
+    {
+      "en": "encoder",
+      "fa": "رمزگذار؛انکودر",
+      "pos": "noun"
+    },
+    {
+      "en": "decoder",
+      "fa": "رمزگشا؛دیکودر",
+      "pos": "noun"
+    },
+    {
+      "en": "media",
+      "fa": "رسانه",
+      "pos": "noun"
+    },
+    {
+      "en": "track",
+      "fa": "ترک؛مسیر",
+      "pos": "noun"
+    },
+    {
+      "en": "trim",
+      "fa": "برش کوتاه؛کوتاه کردن",
+      "pos": "verb"
+    },
+    {
+      "en": "merge pdf",
+      "fa": "ادغام PDF",
+      "pos": "phrase"
+    },
+    {
+      "en": "image to pdf",
+      "fa": "تبدیل تصویر به PDF",
+      "pos": "phrase"
+    },
+    {
+      "en": "text to pdf",
+      "fa": "تبدیل متن به PDF",
+      "pos": "phrase"
+    },
+    {
+      "en": "audio cutter",
+      "fa": "برش‌دهنده صدا",
+      "pos": "phrase"
+    },
+    {
+      "en": "audio compression",
+      "fa": "فشرده‌سازی صدا",
+      "pos": "phrase"
+    },
+    {
+      "en": "audio to mp3",
+      "fa": "تبدیل صدا به MP3",
+      "pos": "phrase"
+    },
+    {
+      "en": "background removal",
+      "fa": "حذف پس‌زمینه",
+      "pos": "phrase"
+    },
+    {
+      "en": "heic",
+      "fa": "اچ‌ای‌آی‌سی",
+      "pos": "noun"
+    },
+    {
+      "en": "heic to jpg",
+      "fa": "تبدیل HEIC به JPG",
+      "pos": "phrase"
+    },
+    {
+      "en": "pdf to image",
+      "fa": "تبدیل PDF به تصویر",
+      "pos": "phrase"
+    },
+    {
+      "en": "favicon generator",
+      "fa": "سازنده فاوآیکون",
+      "pos": "phrase"
+    },
+    {
+      "en": "text analyzer",
+      "fa": "تحلیلگر متن",
+      "pos": "phrase"
+    },
+    {
+      "en": "text comparison",
+      "fa": "مقایسه متن",
+      "pos": "phrase"
+    },
+    {
+      "en": "meta tag",
+      "fa": "تگ متا",
+      "pos": "phrase"
+    },
+    {
+      "en": "city distance",
+      "fa": "فاصله شهرها",
+      "pos": "phrase"
+    },
+    {
+      "en": "hafez fortune",
+      "fa": "فال حافظ",
+      "pos": "phrase"
+    },
+    {
+      "en": "calendar conversion",
+      "fa": "تبدیل تقویم",
+      "pos": "phrase"
+    },
+    {
+      "en": "age calculator",
+      "fa": "محاسبه سن",
+      "pos": "phrase"
+    },
+    {
+      "en": "strong password generator",
+      "fa": "تولیدکننده رمز قوی",
+      "pos": "phrase"
+    },
+    {
+      "en": "note taking",
+      "fa": "یادداشت‌برداری",
+      "pos": "phrase"
+    },
+    {
+      "en": "QR scanner",
+      "fa": "اسکنر QR",
+      "pos": "phrase"
+    },
+    {
+      "en": "QR generator",
+      "fa": "سازنده QR",
+      "pos": "phrase"
+    }
+  ]
+}
