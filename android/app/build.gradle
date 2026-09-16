@@ -5,5 +5,5 @@ android { namespace 'ir.aryaei.tools'; compileSdk 35
 }
 
 dependencies {
-    implementation 'com.capacitorjs:capacitor-android:8.5.2'
+    implementation 'com.capacitorjs:core:8.5.2'
 }
