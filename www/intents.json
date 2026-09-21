@@ -1,292 +1,137 @@
 {
+  "version": 1,
   "intents": [
     {
-      "id": "compress-image",
-      "name": "کاهش حجم عکس",
-      "keywords": [
-        "کاهش حجم عکس",
-        "کم کردن حجم عکس",
-        "فشرده سازی عکس",
-        "فشرده‌سازی عکس",
-        "compress image"
-      ]
+      "toolId": "img-resize",
+      "keywords": ["کاهش حجم عکس", "کوچیک کردن عکس", "کم کردن حجم تصویر", "فشرده", "کوچک کردن حجم", "حجم عکس", "سایز عکس کم"]
     },
     {
-      "id": "image-convert",
-      "name": "فشرده‌ساز و مبدل تصویر",
-      "keywords": [
-        "تبدیل تصویر",
-        "تبدیل عکس",
-        "jpg",
-        "png",
-        "webp"
-      ]
+      "toolId": "img-convert",
+      "keywords": ["تبدیل عکس", "png به jpg", "jpg به png", "webp", "فرمت عکس", "تبدیل فرمت تصویر"]
     },
     {
-      "id": "crop-image",
-      "name": "برش عکس",
-      "keywords": [
-        "برش عکس",
-        "کراپ عکس",
-        "crop"
-      ]
+      "toolId": "img-crop",
+      "keywords": ["برش عکس", "کراپ", "برش تصویر", "قاب عکس", "نسبت تصویر"]
     },
     {
-      "id": "edit-image",
-      "name": "ویرایش و برش تصویر",
-      "keywords": [
-        "ویرایش عکس",
-        "چرخش عکس",
-        "آینه عکس",
-        "فیلتر عکس"
-      ]
+      "toolId": "img-edit",
+      "keywords": ["ویرایش عکس", "چرخش عکس", "آینه", "فیلتر عکس", "روتیت"]
     },
     {
-      "id": "image-text",
-      "name": "عکس‌نوشته ساز",
-      "keywords": [
-        "عکس نوشته",
-        "نوشتن روی عکس",
-        "متن روی عکس"
-      ]
+      "toolId": "img-text",
+      "keywords": ["نوشتن روی عکس", "متن روی عکس", "افزودن متن به عکس", "کپشن عکس"]
     },
     {
-      "id": "qr-create",
-      "name": "ساخت QR کد",
-      "keywords": [
-        "ساخت qr",
-        "تولید qr",
-        "qr کد",
-        "کیو آر"
-      ]
+      "toolId": "qr-gen",
+      "keywords": ["ساخت qr", "کیو آر", "بارکد", "qr code", "کد qr", "تولید qr"]
     },
     {
-      "id": "qr-scan",
-      "name": "اسکن QR کد",
-      "keywords": [
-        "اسکن qr",
-        "خواندن qr",
-        "qr خوان"
-      ]
+      "toolId": "qr-scan",
+      "keywords": ["اسکن qr", "خواندن qr", "اسکن بارکد", "خواندن بارکد"]
     },
     {
-      "id": "image-pdf",
-      "name": "تبدیل عکس به PDF",
-      "keywords": [
-        "عکس به pdf",
-        "تصویر به pdf",
-        "ساخت pdf از عکس"
-      ]
+      "toolId": "img-to-pdf",
+      "keywords": ["عکس به pdf", "تبدیل عکس به pdf", "ساخت pdf از عکس"]
     },
     {
-      "id": "pdf-merge",
-      "name": "ادغام PDF",
-      "keywords": [
-        "ادغام pdf",
-        "چسباندن pdf",
-        "merge pdf"
-      ]
+      "toolId": "pdf-merge",
+      "keywords": ["ادغام pdf", "ترکیب pdf", "یکی کردن pdf", "الحاق pdf"]
     },
     {
-      "id": "text-pdf",
-      "name": "پی‌دی‌اف ساز",
-      "keywords": [
-        "متن به pdf",
-        "ساخت pdf از متن",
-        "pdf ساز"
-      ]
+      "toolId": "pdf-text",
+      "keywords": ["متن به pdf", "ساخت pdf", "تبدیل متن به pdf", "پی دی اف از متن"]
     },
     {
-      "id": "favicon",
-      "name": "ساخت فاوآیکون",
-      "keywords": [
-        "ساخت فاوآیکون",
-        "favicon"
-      ]
+      "toolId": "favicon-gen",
+      "keywords": ["فاوآیکون", "favicon", "آیکون سایت"]
     },
     {
-      "id": "svg-image",
-      "name": "تبدیل SVG به عکس",
-      "keywords": [
-        "تبدیل SVG به عکس",
-        "svg image"
-      ]
+      "toolId": "svg-to-img",
+      "keywords": ["svg به عکس", "تبدیل svg"]
     },
     {
-      "id": "password",
-      "name": "تولید رمز عبور قوی",
-      "keywords": [
-        "تولید رمز عبور قوی",
-        "password"
-      ]
+      "toolId": "password-gen",
+      "keywords": ["رمز عبور", "پسورد قوی", "ساخت رمز", "پسورد رندوم"]
     },
     {
-      "id": "notes",
-      "name": "دفترچه یادداشت",
-      "keywords": [
-        "دفترچه یادداشت",
-        "notes"
-      ]
+      "toolId": "notepad",
+      "keywords": ["یادداشت", "نوت", "یادداشت جدید"]
     },
     {
-      "id": "text-analyzer",
-      "name": "تحلیلگر متن",
-      "keywords": [
-        "تحلیلگر متن",
-        "text analyzer"
-      ]
+      "toolId": "text-analyzer",
+      "keywords": ["تحلیل متن", "تعداد کلمات", "شمارش کاراکتر", "زمان مطالعه"]
     },
     {
-      "id": "code-format",
-      "name": "فرمت‌دهی و فشرده‌سازی کد",
-      "keywords": [
-        "فرمت‌دهی و فشرده‌سازی کد",
-        "code format"
-      ]
+      "toolId": "code-format",
+      "keywords": ["فرمت کد", "مینیفای", "زیباسازی کد", "فرمت json"]
     },
     {
-      "id": "regex",
-      "name": "تست ریجکس",
-      "keywords": [
-        "تست ریجکس",
-        "regex"
-      ]
+      "toolId": "regex-test",
+      "keywords": ["regex", "عبارت باقاعده", "تست ریجکس"]
     },
     {
-      "id": "text-compare",
-      "name": "مقایسه متن",
-      "keywords": [
-        "مقایسه متن",
-        "text compare"
-      ]
+      "toolId": "text-diff",
+      "keywords": ["مقایسه متن", "تفاوت دو متن", "دیف متن"]
     },
     {
-      "id": "meta-tags",
-      "name": "تولید تگ متا",
-      "keywords": [
-        "تولید تگ متا",
-        "meta tags"
-      ]
+      "toolId": "meta-gen",
+      "keywords": ["متا تگ", "seo تگ", "meta tag"]
     },
     {
-      "id": "calendar",
-      "name": "تقویم",
-      "keywords": [
-        "تقویم",
-        "calendar"
-      ]
+      "toolId": "calendar",
+      "keywords": ["تقویم", "تقویم شمسی"]
     },
     {
-      "id": "date-convert",
-      "name": "تبدیل تاریخ",
-      "keywords": [
-        "تبدیل تاریخ",
-        "date convert"
-      ]
+      "toolId": "date-convert",
+      "keywords": ["تبدیل تاریخ", "شمسی به میلادی", "میلادی به شمسی", "قمری"]
     },
     {
-      "id": "age",
-      "name": "محاسبه سن",
-      "keywords": [
-        "محاسبه سن",
-        "age"
-      ]
+      "toolId": "age-calc",
+      "keywords": ["محاسبه سن", "سن دقیق", "تاریخ تولد"]
     },
     {
-      "id": "distance",
-      "name": "فاصله‌یاب شهرها",
-      "keywords": [
-        "فاصله‌یاب شهرها",
-        "distance"
-      ]
+      "toolId": "city-distance",
+      "keywords": ["فاصله شهرها", "مسافت بین شهر", "فاصله تا"]
     },
     {
-      "id": "dictionary",
-      "name": "دیکشنری",
-      "keywords": [
-        "دیکشنری",
-        "dictionary"
-      ]
+      "toolId": "dictionary",
+      "keywords": ["دیکشنری", "معنی کلمه", "ترجمه لغت"]
     },
     {
-      "id": "hafez",
-      "name": "فال حافظ",
-      "keywords": [
-        "فال حافظ",
-        "hafez"
-      ]
+      "toolId": "hafez",
+      "keywords": ["فال حافظ", "غزل حافظ", "فال"]
     },
     {
-      "id": "audio-cutter",
-      "name": "برش فایل صوتی",
-      "keywords": [
-        "برش فایل صوتی",
-        "audio cutter"
-      ]
+      "toolId": "audio-trim",
+      "keywords": ["برش صدا", "بریدن فایل صوتی"]
     },
     {
-      "id": "audio-compress",
-      "name": "فشرده‌سازی صدا",
-      "keywords": [
-        "فشرده‌سازی صدا",
-        "audio compress"
-      ]
+      "toolId": "audio-reduce",
+      "keywords": ["کاهش حجم صدا", "فشرده صدا"]
     },
     {
-      "id": "audio-mp3",
-      "name": "تبدیل صدا به MP3",
-      "keywords": [
-        "تبدیل صدا به MP3",
-        "audio mp3"
-      ]
+      "toolId": "audio-to-mp3",
+      "keywords": ["تبدیل به mp3", "صدا به mp3"]
     },
     {
-      "id": "video-compress",
-      "name": "فشرده‌سازی ویدئو",
-      "keywords": [
-        "فشرده سازی ویدئو",
-        "فشرده‌سازی ویدئو",
-        "کاهش حجم ویدئو",
-        "compress video"
-      ]
+      "toolId": "video-reduce",
+      "keywords": ["کاهش حجم ویدیو", "فشرده ویدیو"]
     },
     {
-      "id": "image-heic",
-      "name": "تبدیل عکس به HEIC",
-      "keywords": [
-        "تبدیل عکس به heic",
-        "تبدیل تصویر به heic",
-        "heic"
-      ]
+      "toolId": "img-to-heic",
+      "keywords": ["تبدیل به heic", "عکس به heic"]
     },
     {
-      "id": "heic-jpg",
-      "name": "تبدیل HEIC به JPG",
-      "keywords": [
-        "heic به jpg",
-        "heic به jpeg",
-        "تبدیل heic"
-      ]
+      "toolId": "heic-to-jpg",
+      "keywords": ["heic به jpg", "تبدیل heic"]
     },
     {
-      "id": "background-remove",
-      "name": "حذف پس‌زمینه",
-      "keywords": [
-        "حذف پس زمینه",
-        "حذف پس‌زمینه",
-        "برداشتن پس زمینه",
-        "background removal"
-      ]
+      "toolId": "bg-remove",
+      "keywords": ["حذف پس زمینه", "پس زمینه عکس", "بک گراند عکس"]
     },
     {
-      "id": "pdf-images",
-      "name": "PDF به تصاویر",
-      "keywords": [
-        "pdf به تصویر",
-        "pdf به عکس",
-        "تبدیل pdf به عکس",
-        "pdf to image"
-      ]
+      "toolId": "pdf-to-img",
+      "keywords": ["pdf به عکس", "تبدیل pdf به تصویر"]
     }
   ]
 }

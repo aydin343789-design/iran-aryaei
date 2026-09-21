@@ -5,8 +5,21 @@ const config: CapacitorConfig = {
   appName: 'ایران آریایی',
   webDir: 'www',
   bundledWebRuntime: false,
+  server: {
+    androidScheme: 'https',
+    // No remote origins are ever whitelisted here — the app is 100% offline.
+    allowNavigation: []
+  },
   android: {
-    backgroundColor: '#F8F9FB'
+    allowMixedContent: false,
+    captureInput: true
+  },
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 600,
+      backgroundColor: '#0F4C81',
+      showSpinner: false
+    }
   }
 };
 

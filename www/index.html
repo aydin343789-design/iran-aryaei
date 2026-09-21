@@ -1,91 +1,163 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0F4C81">
-  <meta name="description" content="ایران آریایی؛ جعبه‌ابزار آفلاین فارسی">
-  <title>ایران آریایی</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>ایران آریایی</title>
+<link rel="icon" href="./assets/icons/favicon-32.png" type="image/png">
+<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div id="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">🇮🇷</div>
-        <div><strong>ایران آریایی</strong><small>Smart Offline Workspace</small></div>
+<div class="app" id="app">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><img src="./assets/icons/logo-rounded.png" alt="ایران آریایی"></div>
+      <div>
+        <div class="brand-title">ایران آریایی</div>
+        <div class="brand-sub">جعبه‌ابزار آفلاین</div>
       </div>
-      <button id="themeBtn" class="icon-btn" aria-label="تغییر ظاهر">☾</button>
-    </header>
-
-    <main id="homePage" class="page active">
-      <section class="hero agent-glow">
-        <div class="eyebrow"><span class="status-dot"></span> دستیار محلی آماده است</div>
-        <h1>چه کاری براتون انجام بدم؟</h1>
-        <p>درخواستتان را بنویسید؛ تشخیص ابزار کاملاً روی گوشی انجام می‌شود.</p>
-        <div class="agent-input">
-          <span>✦</span>
-          <input id="intentInput" autocomplete="off" placeholder="مثلاً: حجم عکس را کم کن">
-          <button id="intentBtn">اجرا</button>
-        </div>
-        <div class="badges">
-          <span>بدون اینترنت</span><span>بدون آپلود</span><span>پردازش روی گوشی</span>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-title"><h2>دسترسی سریع</h2><span>۳ ابزار</span></div>
-        <div class="quick-grid">
-          <button class="quick-card" data-tool="compress-image"><b>🗜️</b><strong>فشرده‌سازی عکس</strong><small>کاهش حجم با کنترل کیفیت</small></button>
-          <button class="quick-card" data-tool="qr-create"><b>▦</b><strong>ساخت QR</strong><small>تولید QR بدون اینترنت</small></button>
-          <button class="quick-card" data-tool="image-pdf"><b>📄</b><strong>عکس به PDF</strong><small>ساخت PDF چندصفحه‌ای</small></button>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-title"><h2>Workspace</h2><span>۱۰ ابزار مرحله اول</span></div>
-        <div id="chips" class="chips"></div>
-        <div id="toolsGrid" class="tools-grid"></div>
-      </section>
-    </main>
-
-    <main id="activityPage" class="page">
-      <section class="page-head"><h1>فعالیت</h1><p>همه سوابق فقط روی همین دستگاه نگهداری می‌شوند.</p></section>
-      <div class="stats"><div><b id="totalActivity">۰</b><span>کل عملیات</span></div><div><b>۰</b><span>ارسال به سرور</span></div></div>
-      <div id="activityList" class="activity-list"></div>
-      <button id="clearHistory" class="danger-btn">حذف تاریخچه</button>
-    </main>
-
-    <main id="settingsPage" class="page">
-      <section class="page-head"><h1>تنظیمات</h1><p>کنترل ظاهر، حریم خصوصی و داده‌های محلی.</p></section>
-      <div class="settings-card">
-        <div class="setting-row"><div><b>حالت شب</b><small>تغییر ظاهر برنامه</small></div><label class="switch"><input id="darkToggle" type="checkbox"><span></span></label></div>
-        <div class="setting-row"><div><b>نمایش فشرده</b><small>کارت‌های کوچک‌تر در Workspace</small></div><label class="switch"><input id="compactToggle" type="checkbox"><span></span></label></div>
-        <div class="privacy-box">🔒 <div><b>حریم خصوصی</b><small>پردازش محلی فعال است؛ این نسخه هیچ داده‌ای را آپلود نمی‌کند.</small></div></div>
-        <button id="clearNotes" class="secondary-btn">حذف یادداشت‌ها</button>
-        <div class="about"><b>ایران آریایی</b><span>نسخه ۱.۰.۰ · مرحله اول</span></div>
-      </div>
-    </main>
+    </div>
+    <button class="icon-btn" id="themeToggle" aria-label="حالت شب/روز">🌙</button>
   </div>
 
-  <nav class="bottom-nav">
-    <button class="nav-item active" data-page="homePage">⌂<span>خانه</span></button>
-    <button class="nav-item" data-page="activityPage">◷<span>فعالیت</span></button>
-    <button class="nav-item" data-page="settingsPage">⚙<span>تنظیمات</span></button>
-  </nav>
+  <!-- ===================== HOME SCREEN ===================== -->
+  <section class="screen active" id="screen-home">
 
-  <div id="sheetBackdrop" class="sheet-backdrop"></div>
-  <section id="toolSheet" class="bottom-sheet" aria-hidden="true">
-    <div class="sheet-handle"></div>
-    <div class="sheet-head"><div><span class="sheet-kicker">🇮🇷 SMART TOOL</span><h2 id="sheetTitle"></h2></div><button id="closeSheet" class="icon-btn">×</button></div>
-    <div class="ready-line"><span class="status-dot"></span> آماده پردازش روی گوشی</div>
-    <p id="sheetDescription" class="sheet-description"></p>
-    <div id="toolBody"></div>
-    <button id="runTool" class="primary-btn">اجرای عملیات</button>
-    <div id="resultBox" class="result-box hidden"></div>
+    <div class="hero">
+      <div class="hero-status"><span class="glow-dot"></span> دستیار محلی آماده است</div>
+      <h1>چه کاری برایت انجام بدهم؟</h1>
+      <div class="hero-input-wrap">
+        <input type="text" class="hero-input" id="heroInput" placeholder="مثلاً: کاهش حجم عکس">
+        <button class="hero-send" id="heroSend" aria-label="ارسال">➤</button>
+      </div>
+      <div class="hero-suggest" id="heroSuggest"></div>
+      <div class="hero-badges">
+        <span class="badge">📵 بدون اینترنت</span>
+        <span class="badge">🚫 بدون آپلود</span>
+        <span class="badge">📱 پردازش روی دستگاه</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">دسترسی سریع</div>
+      <div class="quick-grid" id="quickGrid"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">فضای کاری <span class="hint" id="toolCountHint"></span></div>
+      <div class="chip-row" id="chipRow"></div>
+      <div class="tool-grid" id="toolGrid"></div>
+    </div>
+
   </section>
 
-  <script src="vendor/qr-lite.js"></script>
-  <script src="app.js"></script>
+  <!-- ===================== ACTIVITY SCREEN ===================== -->
+  <section class="screen" id="screen-activity">
+    <div class="section" style="padding-top:14px">
+      <div class="section-title">فعالیت</div>
+      <div class="activity-summary">
+        <div class="stat-card">
+          <div class="stat-num" id="statTotal">0</div>
+          <div class="stat-label">عملیات انجام‌شده</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statUpload">۰</div>
+          <div class="stat-label">آپلود به سرور</div>
+        </div>
+      </div>
+      <div id="historyList"></div>
+    </div>
+  </section>
+
+  <!-- ===================== SETTINGS SCREEN ===================== -->
+  <section class="screen" id="screen-settings">
+    <div class="section" style="padding-top:14px">
+      <div class="section-title">تنظیمات</div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">ظاهر برنامه</div>
+        <div class="settings-row">
+          <div>
+            <div class="label">حالت شب</div>
+            <div class="desc">تغییر تم به رنگ‌های تیره</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="nightSwitch"><span class="track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="label">نمای فشرده</div>
+            <div class="desc">کارت‌های کوچک‌تر در فضای کاری</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="compactSwitch"><span class="track"></span></label>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">حریم خصوصی</div>
+        <div class="settings-row">
+          <div>
+            <div class="label">پردازش محلی</div>
+            <div class="desc">تمام عملیات روی همین دستگاه انجام می‌شود</div>
+          </div>
+          <label class="switch"><input type="checkbox" checked disabled><span class="track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="label">حالت آفلاین</div>
+            <div class="desc">برنامه به هیچ سروری متصل نمی‌شود</div>
+          </div>
+          <label class="switch"><input type="checkbox" checked disabled><span class="track"></span></label>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">داده‌ها</div>
+        <button class="danger-btn" id="clearHistoryBtn">پاک‌کردن تاریخچه فعالیت</button>
+        <button class="danger-btn" id="clearNotesBtn">پاک‌کردن یادداشت‌ها</button>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">درباره برنامه</div>
+        <div class="settings-row"><div class="label">نسخه</div><div class="desc" style="margin:0">1.0.0</div></div>
+        <div class="settings-row"><div class="label">وضعیت</div><div class="desc" style="margin:0">۳۳ ابزار · کاملاً آفلاین</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BOTTOM NAV ===================== -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-screen="home"><span class="nav-icon">🏠</span>خانه</div>
+    <div class="nav-item" data-screen="activity"><span class="nav-icon">📊</span>فعالیت</div>
+    <div class="nav-item" data-screen="settings"><span class="nav-icon">⚙️</span>تنظیمات</div>
+  </nav>
+
+  <!-- ===================== BOTTOM SHEET (tool window) ===================== -->
+  <div class="sheet-overlay" id="sheetOverlay"></div>
+  <div class="sheet" id="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head">
+      <div class="sheet-head-title">
+        <div class="sheet-head-icon" id="sheetIcon">🛠️</div>
+        <div>
+          <h2 id="sheetTitle">ابزار</h2>
+          <div class="sheet-ready"><span class="glow-dot" style="width:6px;height:6px"></span><span id="sheetStatus">آماده پردازش روی دستگاه</span></div>
+        </div>
+      </div>
+      <button class="sheet-close" id="sheetClose">✕</button>
+    </div>
+    <div class="sheet-desc" id="sheetDesc"></div>
+    <div class="sheet-body" id="sheetBody"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<!-- Offline libraries only — no CDNs -->
+<script src="./vendor/qrcode.js"></script>
+<script src="./vendor/pdf-lite.js"></script>
+<script src="./app.js"></script>
 </body>
 </html>
