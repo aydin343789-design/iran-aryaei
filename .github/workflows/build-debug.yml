@@ -26,14 +26,14 @@ jobs:
       - name: Install JS dependencies
         run: npm install
 
-      - name: Install Capacitor CLI
-        run: npm install @capacitor/cli @capacitor/core @capacitor/android
-
       - name: Build web (if script exists)
         run: npm run build --if-present
 
-      - name: Sync Capacitor
-        run: npx cap sync android
+      - name: Copy www to android assets manually
+        run: |
+          mkdir -p android/app/src/main/assets/public
+          cp -r www/* android/app/src/main/assets/public/
+          cp capacitor.config.* android/app/src/main/assets/ 2>/dev/null || true
 
       - name: Grant execute permission for gradlew
         run: chmod +x android/gradlew
