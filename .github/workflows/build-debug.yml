@@ -12,11 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup JDK 17
+      - name: Setup JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Copy www to android assets manually
         run: |
@@ -24,10 +24,7 @@ jobs:
           cp -r www/* android/app/src/main/assets/public/ 2>/dev/null || true
 
       - name: Create local.properties
-        run: |
-          echo "sdk.dir=$ANDROID_HOME" > android/local.properties
-          echo "ANDROID_HOME is: $ANDROID_HOME"
-          ls $ANDROID_HOME
+        run: echo "sdk.dir=$ANDROID_HOME" > android/local.properties
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
