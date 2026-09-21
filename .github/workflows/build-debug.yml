@@ -18,9 +18,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Copy www to android assets manually
         run: |
           mkdir -p android/app/src/main/assets/public
@@ -29,6 +26,8 @@ jobs:
       - name: Create local.properties
         run: |
           echo "sdk.dir=$ANDROID_HOME" > android/local.properties
+          echo "ANDROID_HOME is: $ANDROID_HOME"
+          ls $ANDROID_HOME
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
