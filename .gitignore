@@ -1,0 +1,17 @@
+# Gradle / Android build outputs
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/captures/
+android/.cxx/
+
+# Capacitor sync output — regenerated from www/ on every build by CI
+# ("cp -r www/* android/app/src/main/assets/public/"); committing it
+# risks exactly the kind of stale-vs-source confusion this fix addressed.
+android/app/src/main/assets/public/
+
+# OS/editor cruft
+.DS_Store
+*.iml
+.idea/

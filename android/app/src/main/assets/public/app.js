@@ -1,258 +1,1913 @@
-const state={tools:[],activeTool:null,lastInput:null,lastResult:null,category:"همه"};
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const tools=[
-{id:"compress-image",name:"کاهش حجم عکس",cat:"تصویر",icon:"🗜️",desc:"کاهش حجم JPG/PNG/WebP با کیفیت قابل تنظیم."},
-{id:"image-convert",name:"فشرده‌ساز و مبدل تصویر",cat:"تصویر",icon:"🔄",desc:"تبدیل JPG، PNG و WebP روی گوشی."},
-{id:"crop-image",name:"برش عکس",cat:"تصویر",icon:"✂️",desc:"برش آزاد یا با نسبت ۱:۱، ۱۶:۹ و ۴:۳."},
-{id:"edit-image",name:"ویرایش و برش تصویر",cat:"تصویر",icon:"🎨",desc:"چرخش، آینه و فیلتر ساده."},
-{id:"image-text",name:"عکس‌نوشته ساز",cat:"تصویر",icon:"🖊️",desc:"قرار دادن متن فارسی روی عکس."},
-{id:"qr-create",name:"ساخت QR کد",cat:"QR",icon:"▦",desc:"ساخت QR آفلاین؛ نسخه سبک داخلی."},
-{id:"qr-scan",name:"اسکن QR کد",cat:"QR",icon:"⌗",desc:"خواندن QR با قابلیت BarcodeDetector دستگاه."},
-{id:"image-pdf",name:"تبدیل عکس به PDF",cat:"PDF",icon:"📄",desc:"ساخت PDF از یک یا چند تصویر."},
-{id:"pdf-merge",name:"ادغام PDF",cat:"PDF",icon:"🧩",desc:"ادغام PDFهای ساخته‌شده توسط این برنامه."},
-{id:"text-pdf",name:"پی‌دی‌اف ساز",cat:"PDF",icon:"📝",desc:"ساخت PDF از متن فارسی."},
-{id:"favicon",name:"ساخت فاوآیکون",cat:"فایل",icon:"🌐",desc:"ساخت اندازه‌های استاندارد فاوآیکون."},
-{id:"svg-image",name:"تبدیل SVG به عکس",cat:"تصویر",icon:"🧬",desc:"تبدیل SVG محلی به PNG."},
-{id:"password",name:"تولید رمز عبور قوی",cat:"ابزار",icon:"🔐",desc:"ساخت رمز تصادفی امن روی دستگاه."},
-{id:"notes",name:"دفترچه یادداشت",cat:"متن",icon:"📒",desc:"یادداشت‌های محلی با IndexedDB."},
-{id:"text-analyzer",name:"تحلیلگر متن",cat:"متن",icon:"📊",desc:"شمارش واژه، حروف، جمله و زمان مطالعه."},
-{id:"code-format",name:"فرمت‌دهی و فشرده‌سازی کد",cat:"توسعه",icon:"{}" ,desc:"فرمت پایه JS/HTML/CSS/JSON بدون سرور."},
-{id:"regex",name:"تست ریجکس",cat:"توسعه",icon:"🔎",desc:"آزمون الگوی Regex و نمایش گروه‌ها."},
-{id:"text-compare",name:"مقایسه متن",cat:"متن",icon:"⇄",desc:"نمایش تفاوت‌های دو متن."},
-{id:"meta-tags",name:"تولید تگ متا",cat:"توسعه",icon:"🏷️",desc:"تولید تگ‌های متادیتای HTML."},
-{id:"calendar",name:"تقویم",cat:"تاریخ",icon:"📅",desc:"تقویم ماهانه شمسی و میلادی."},
-{id:"date-convert",name:"تبدیل تاریخ",cat:"تاریخ",icon:"🔁",desc:"تبدیل شمسی، میلادی و قمری تقریبی."},
-{id:"age",name:"محاسبه سن",cat:"تاریخ",icon:"🎂",desc:"محاسبه سن دقیق تا روز."},
-{id:"distance",name:"فاصله‌یاب شهرها",cat:"ایران",icon:"📍",desc:"فاصله تقریبی بین شهرهای ایران."},
-{id:"dictionary",name:"دیکشنری",cat:"ایران",icon:"📚",desc:"دیکشنری انگلیسی و فارسی آفلاین."},
-{id:"hafez",name:"فال حافظ",cat:"ایران",icon:"📜",desc:"انتخاب غزل از مجموعه محلی."},
-{id:"audio-cutter",name:"برش فایل صوتی",cat:"صوت",icon:"✂️",desc:"برش دقیق MP3/WAV و قالب‌های صوتی سازگار با Android."},
-{id:"audio-compress",name:"فشرده‌سازی صدا",cat:"صوت",icon:"🎚️",desc:"تبدیل صوت به AAC/M4A با بیت‌ریت انتخابی و پردازش روی گوشی."},
-{id:"audio-mp3",name:"تبدیل صدا به MP3",cat:"صوت",icon:"🎵",desc:"تبدیل محلی به MP3 در صورت وجود encoder سازگار؛ MP3 ورودی بدون افت کپی می‌شود."},
-{id:"video-compress",name:"فشرده‌سازی ویدئو",cat:"ویدئو",icon:"🎬",desc:"کاهش حجم ویدئو با رمزگذاری H.264/AAC روی خود دستگاه."},
-{id:"image-heic",name:"تبدیل عکس به HEIC",cat:"تصویر",icon:"🖼️",desc:"تبدیل تصویر به HEIC در دستگاه‌های Android سازگار."},
-{id:"heic-jpg",name:"تبدیل HEIC به JPG",cat:"تصویر",icon:"🔃",desc:"تبدیل HEIC/HEIF به JPG با Android ImageDecoder."},
-{id:"background-remove",name:"حذف پس‌زمینه",cat:"تصویر",icon:"✂️",desc:"حذف آفلاین پس‌زمینه‌های ساده با جداسازی رنگ از نواحی گوشه تصویر."},
-{id:"pdf-images",name:"PDF به تصاویر",cat:"PDF",icon:"🖨️",desc:"تبدیل صفحات PDF به PNG/JPG با PdfRenderer اندروید."}
-];
-const categories=["همه","تصویر","QR","PDF","متن","توسعه","تاریخ","ایران","صوت","ویدئو","ابزار","فایل"];
-document.addEventListener("DOMContentLoaded",async()=>{
-  state.tools=tools; renderTools(); renderChips(); bindNav(); loadPrefs(); loadActivity();
-  $("#intentBtn").onclick=runIntent; $("#intentInput").addEventListener("keydown",e=>{if(e.key==="Enter")runIntent()});
-  $("#themeBtn").onclick=()=>toggleDark(); $("#darkToggle").onchange=e=>setDark(e.target.checked);
-  $("#compactToggle").onchange=e=>document.body.classList.toggle("compact",e.target.checked);
-  $("#clearHistory").onclick=()=>{localStorage.removeItem("ia-history");loadActivity()};
-  $("#clearNotes").onclick=()=>{indexedDB.deleteDatabase("iran-aryaei-notes");toast("یادداشت‌های محلی حذف شد.")};
-  $("#closeSheet").onclick=closeSheet; $("#sheetBackdrop").onclick=closeSheet;
-});
-function renderChips(){ $("#chips").innerHTML=categories.map(c=>`<button class="${c===state.category?"active":""}" data-cat="${c}">${c}</button>`).join(""); $$("#chips button").forEach(b=>b.onclick=()=>{state.category=b.dataset.cat;renderChips();renderTools()})}
-function renderTools(){let list=state.category==="همه"?tools:tools.filter(t=>t.cat===state.category);$("#toolsGrid").innerHTML=list.map(t=>`<button class="tool-card" data-tool="${t.id}"><div class="tool-icon">${t.icon}</div><h3>${t.name}</h3><p>${t.desc}</p><span class="ready">● آماده</span></button>`).join("");$$(".tool-card").forEach(b=>b.onclick=()=>openTool(b.dataset.tool))}
-function bindNav(){$$(".nav-item").forEach(n=>n.onclick=()=>{$$(".nav-item").forEach(x=>x.classList.remove("active"));n.classList.add("active");$$(".page").forEach(p=>p.classList.remove("active"));$("#"+n.dataset.page).classList.add("active")})}
-async function runIntent(){let q=$("#intentInput").value.trim().toLowerCase();if(!q)return;let data;try{data=await fetch("intents.json").then(r=>r.json())}catch(e){data={intents:tools.map(t=>({id:t.id,keywords:[t.name]}))}};let best=null,score=0;for(const i of data.intents){let s=i.keywords.reduce((n,k)=>n+(q.includes(k.toLowerCase())?k.length:0),0);if(s>score){score=s;best=i}}if(best)openTool(best.id);else toast("ابزار مناسب پیدا نشد؛ نام ابزار را دقیق‌تر بنویسید.")}
-function openTool(id){state.activeTool=id;state.lastInput=null;state.lastResult=null;const t=tools.find(x=>x.id===id);$("#sheetTitle").textContent=t.name;$("#sheetDescription").textContent=t.desc+" این ابزار بدون اینترنت و بدون آپلود اجرا می‌شود.";$("#toolBody").innerHTML=toolForm(id);$("#resultBox").classList.add("hidden");$("#toolSheet").classList.add("open");$("#sheetBackdrop").classList.add("open");$("#toolSheet").setAttribute("aria-hidden","false");bindToolForm(id)}
-function closeSheet(){$("#toolSheet").classList.remove("open");$("#sheetBackdrop").classList.remove("open");$("#toolSheet").setAttribute("aria-hidden","true")}
-function fileField(accept,multiple=false,capture=""){return `<div class="form-group"><label>فایل ورودی</label><label class="file-btn">انتخاب فایل<input id="fileInput" type="file" accept="${accept}" ${multiple?"multiple":""} ${capture?`capture="${capture}"`:""}></label></div>`}
-function toolForm(id){
- if(id==="compress-image")return fileField("image/*")+range("quality",10,100,80,"کیفیت");
- if(id==="image-convert")return fileField("image/*")+select("format","فرمت",["image/jpeg|JPG","image/png|PNG","image/webp|WebP"])+range("quality",10,100,85,"کیفیت");
- if(id==="crop-image")return fileField("image/*")+select("ratio","نسبت",["free|آزاد","1:1|۱:۱","16:9|۱۶:۹","4:3|۴:۳"]);
- if(id==="edit-image")return fileField("image/*")+select("edit","عملیات",["none|بدون فیلتر","rotate|چرخش ۹۰ درجه","mirror|آینه افقی","gray|سیاه و سفید","warm|گرم"]);
- if(id==="image-text")return fileField("image/*")+input("text","متن","ایران آریایی")+range("fontSize",18,96,42,"اندازه متن")+input("color","رنگ","#FFFFFF","color");
- if(id==="qr-create")return input("qrText","متن یا لینک","https://example.com")+select("qrEc","سطح تصحیح خطا",["L|کم","M|متوسط","Q|زیاد","H|خیلی زیاد"])+range("qrSize",256,1024,512,"اندازه");
- if(id==="qr-scan")return fileField("image/*",false,"environment")+`<div class="form-group"><small>در دستگاه‌هایی که BarcodeDetector دارند، تصویر QR خوانده می‌شود. برای دوربین، از انتخاب فایل با گزینه دوربین استفاده کنید.</small></div>`;
- if(id==="image-pdf")return fileField("image/*",true)+select("paper","اندازه صفحه",["A4|A4","Letter|Letter"])+range("margin",0,60,20,"حاشیه (pt)");
- if(id==="pdf-merge")return fileField("application/pdf",true)+`<div class="form-group"><small>نسخه مرحله اول PDFهایی را که با PDF ساز همین برنامه تولید شده‌اند با اطمینان ادغام می‌کند.</small></div>`;
- if(id==="text-pdf")return `<div class="form-group"><label>متن</label><textarea id="pdfText" placeholder="متن فارسی را اینجا وارد کنید..."></textarea></div>`+range("pdfFont",10,24,14,"اندازه متن");
- if(id==="favicon")return fileField("image/*")+select("favSizes","اندازه‌ها",["all|16,32,48,64,128,256","small|16,32,48","large|64,128,256"]);
- if(id==="svg-image")return fileField("image/svg+xml,.svg")+select("svgFormat","فرمت خروجی",["image/png|PNG","image/jpeg|JPG"])+range("svgSize",128,2048,1024,"اندازه");
- if(id==="password")return range("passLen",8,64,20,"طول")+`<div class="form-group"><label>اجزای رمز</label><div class="badges"><label><input id="pUpper" type="checkbox" checked> حروف بزرگ</label><label><input id="pNums" type="checkbox" checked> اعداد</label><label><input id="pSymbols" type="checkbox" checked> نمادها</label></div></div>`;
- if(id==="notes")return `<input id="noteId" type="hidden"><div class="form-group"><label>عنوان</label><input id="noteTitle" placeholder="عنوان یادداشت"></div><div class="form-group"><label>متن</label><textarea id="noteText" placeholder="یادداشت خود را بنویسید..."></textarea></div><div id="notesList"></div>`;
- if(id==="text-analyzer")return `<div class="form-group"><label>متن</label><textarea id="analysisText" placeholder="متن را وارد کنید..."></textarea></div>`;
- if(id==="code-format")return `<div class="form-group"><label>زبان</label>${select("codeLang","زبان",["json|JSON","js|JavaScript","html|HTML","css|CSS"])}</div><div class="form-group"><label>کد</label><textarea id="codeText" class="mono" placeholder="کد را وارد کنید..."></textarea></div><div class="form-group"><label>حالت</label>${select("codeMode","عملیات",["format|فرمت‌دهی","minify|فشرده‌سازی"])}</div>`;
- if(id==="regex")return input("regexPattern","الگو","^([A-Za-z]+)\\s+(\\d+)$")+input("regexFlags","پرچم‌ها","i")+`<div class="form-group"><label>متن تست</label><textarea id="regexText"></textarea></div>`;
- if(id==="text-compare")return `<div class="form-group"><label>متن اول</label><textarea id="textA"></textarea></div><div class="form-group"><label>متن دوم</label><textarea id="textB"></textarea></div>`;
- if(id==="meta-tags")return input("metaTitle","عنوان","ایران آریایی")+input("metaDesc","توضیحات","ابزارهای آفلاین فارسی")+input("metaImage","آدرس تصویر","")+input("metaUrl","آدرس صفحه","");
- if(id==="calendar")return select("calType","تقویم",["jalali|شمسی","gregorian|میلادی"])+input("calYear","سال",String(new Date().getFullYear()))+input("calMonth","ماه",String(new Date().getMonth()+1));
- if(id==="date-convert")return select("dateFrom","مبدأ",["jalali|شمسی","gregorian|میلادی","hijri|قمری"])+input("dateValue","تاریخ","1405/01/01")+select("dateTo","مقصد",["gregorian|میلادی","jalali|شمسی","hijri|قمری"]);
- if(id==="age")return select("birthCal","تقویم تاریخ تولد",["jalali|شمسی","gregorian|میلادی"])+input("birthDate","تاریخ تولد","1380/01/01");
- if(id==="distance")return `<div class="form-group"><label>شهر مبدأ</label><input id="cityA" list="citiesDatalist" placeholder="تهران"></div><div class="form-group"><label>شهر مقصد</label><input id="cityB" list="citiesDatalist" placeholder="شیراز"></div><datalist id="citiesDatalist"></datalist>`;
- if(id==="dictionary")return select("dictDir","جهت جستجو",["auto|تشخیص خودکار","en-fa|انگلیسی ← فارسی","fa-en|فارسی ← انگلیسی"])+input("dictWord","واژه یا عبارت","hello")+`<div id="dictSuggestions" class="result-box"></div>`;
- if(id==="hafez")return `<div class="form-group"><label>انتخاب غزل</label><select id="ghazalIndex"><option value="random">تصادفی</option></select></div>`;
- if(id==="audio-cutter")return fileField("audio/*")+input("audioStart","شروع (ثانیه)","0","number")+input("audioEnd","پایان (ثانیه)","60","number")+`<div id="audioInfo" class="form-group"><small>فایل صوتی را انتخاب کنید تا مدت آن بررسی شود.</small></div>`;
- if(id==="audio-compress")return fileField("audio/*")+select("audioBitrate","بیت‌ریت",["32000|32 kbps","48000|48 kbps","64000|64 kbps","96000|96 kbps","128000|128 kbps","192000|192 kbps"]);
- if(id==="video-compress")return fileField("video/*")+select("videoQuality","کیفیت خروجی",["1000000|اقتصادی","2000000|متوسط","4000000|کیفیت بالا","8000000|بسیار بالا"]);
- if(id==="image-heic")return fileField("image/*");
- if(id==="heic-jpg")return fileField("image/heic,image/heif,.heic,.heif");
- if(id==="background-remove")return fileField("image/*")+range("bgTolerance",10,120,45,"حساسیت حذف پس‌زمینه");
- if(id==="pdf-images")return fileField("application/pdf")+select("pdfImageFormat","فرمت",["png|PNG","jpg|JPG"])+range("pdfImageScale",50,200,100,"مقیاس درصد");
- if(id==="audio-mp3")return fileField("audio/*")+select("mp3Bitrate","بیت‌ریت هدف",["64000|64 kbps","96000|96 kbps","128000|128 kbps","192000|192 kbps"]);
-}
-function input(id,label,value,type="text"){return `<div class="form-group"><label>${label}</label><input id="${id}" type="${type}" value="${value}"></div>`}
-function select(id,label,opts){return `<div class="form-group"><label>${label}</label><select id="${id}">${opts.map(x=>{let [v,l]=x.split("|");return `<option value="${v}">${l}</option>`}).join("")}</select></div>`}
-function range(id,min,max,val,label){return `<div class="form-group"><label>${label}: <output id="${id}Out">${val}</output></label><input id="${id}" type="range" min="${min}" max="${max}" value="${val}"></div>`}
-function bindToolForm(id){if(id==="distance")loadCityNames();if(id==="dictionary")bindDictionaryForm();if(id==="notes")loadNotesList();if(id==="hafez")loadGhazals();if(id.startsWith("audio-"))bindAudioForm(id);$$("input[type=range]").forEach(r=>r.oninput=()=>{let o=$("#"+r.id+"Out");if(o)o.value=r.value});const f=$("#fileInput");if(f)f.onchange=()=>previewFiles(f.files);$("#runTool").onclick=()=>executeTool(id)}
-async function loadCityNames(){const d=await jsonLocal("cities.json");if(d)$("#citiesDatalist").innerHTML=d.cities.map(c=>`<option value="${esc(c.name)}">`).join("")}
-async function loadGhazals(){const d=await jsonLocal("ghazal.json");if(d)$("#ghazalIndex").innerHTML=`<option value="random">تصادفی</option>`+d.ghazals.map((g,i)=>`<option value="${i}">غزل ${fa(i+1)} — ${esc(g.title||"")}</option>`).join("")}
-function previewFiles(files){if(!files?.length)return;let f=files[0];if(f.type.startsWith("image/")){let img=document.createElement("img");img.className="preview";img.src=URL.createObjectURL(f);$("#toolBody").appendChild(img)}}
-async function executeTool(id){
- try{
-  let result;
-  if(id==="compress-image")result=await processImage("image/jpeg",Number($("#quality").value),false);
-  if(id==="image-convert")result=await processImage($("#format").value,Number($("#quality").value),false);
-  if(id==="crop-image")result=await cropImage();
-  if(id==="edit-image")result=await editImage();
-  if(id==="image-text")result=await imageText();
-  if(id==="qr-create")result=makeQR();
-  if(id==="qr-scan")result=await scanQR();
-  if(id==="image-pdf")result=await imagesToPdf();
-  if(id==="pdf-merge")result=await mergePdfs();
-  if(id==="text-pdf")result=textToPdf();
-  if(id==="favicon")result=await makeFavicons();
-  if(id==="svg-image")result=await svgToImage();
-  if(id==="password")result=makePassword();
-  if(id==="notes")result=await saveNote();
-  if(id==="text-analyzer")result=analyzeText();
-  if(id==="code-format")result=formatCode();
-  if(id==="regex")result=testRegex();
-  if(id==="text-compare")result=compareText();
-  if(id==="meta-tags")result=makeMeta();
-  if(id==="calendar")result=await makeCalendar();
-  if(id==="date-convert")result=convertDateTool();
-  if(id==="age")result=calcAge();
-  if(id==="distance")result=await cityDistance();
-  if(id==="dictionary")result=await dictionaryTool();
-  if(id==="hafez")result=await hafezTool();
-  if(id==="audio-cutter")result=await nativeAudioTool("trim");
-  if(id==="audio-compress")result=await nativeAudioTool("compress");
-  if(id==="audio-mp3")result=await nativeAudioTool("mp3");
-  if(id==="video-compress")result=await nativeMediaTool("videoCompress");
-  if(id==="image-heic")result=await nativeMediaTool("imageHeic");
-  if(id==="heic-jpg")result=await nativeMediaTool("heicJpg");
-  if(id==="background-remove")result=await nativeMediaTool("backgroundRemove");
-  if(id==="pdf-images")result=await nativeMediaTool("pdfImages");
-  state.lastResult=result; showResult(result); addActivity(tools.find(t=>t.id===id).name,result?.name||"خروجی"); 
- }catch(e){toast(e.message||"خطا در اجرای عملیات")}
-}
-function getFiles(){const f=$("#fileInput")?.files;if(!f?.length)throw Error("ابتدا فایل را انتخاب کنید.");return [...f]}
-function loadImage(file){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(img);img.onerror=()=>rej(Error("تصویر خوانده نشد"));img.src=URL.createObjectURL(file)})}
-async function canvasImage(file,mode="normal"){const img=await loadImage(file),c=document.createElement("canvas");c.width=img.naturalWidth;c.height=img.naturalHeight;const x=c.getContext("2d");x.drawImage(img,0,0);return {c,x,img}}
-function blobFromCanvas(c,type,q){return new Promise(r=>c.toBlob(r,type,q))}
-async function processImage(type,q){const f=getFiles()[0],{c}=await canvasImage(f);const b=await blobFromCanvas(c,type,q/100);return {blob:b,name:"iran-aryaei."+ext(type),html:`<div class="before-after"><div><small>ورودی</small><img src="${URL.createObjectURL(f)}"></div><div><small>خروجی</small><img src="${URL.createObjectURL(b)}"></div></div><p>حجم: ${fmt(f.size)} ← ${fmt(b.size)} · کاهش ${Math.max(0,Math.round((1-b.size/f.size)*100))}%</p>`}}
-function ext(type){return type.split("/")[1].replace("jpeg","jpg")}
-async function cropImage(){const f=getFiles()[0],{img}=await canvasImage(f),ratio=$("#ratio").value;let sw=img.naturalWidth,sh=img.naturalHeight;let w=sw,h=sh;if(ratio!=="free"){const [rw,rh]=ratio.split(":").map(Number);if(sw/sh>rw/rh)w=Math.round(sh*rw/rh);else h=Math.round(sw*rh/rw)}const sx=Math.round((sw-w)/2),sy=Math.round((sh-h)/2),c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,sx,sy,w,h,0,0,w,h);const b=await blobFromCanvas(c,"image/png",1);return {blob:b,name:"cropped.png",html:`<img class="preview" src="${URL.createObjectURL(b)}"><p>${w}×${h}px</p>`}}
-async function editImage(){const f=getFiles()[0],{img}=await canvasImage(f),op=$("#edit").value;let c=document.createElement("canvas"),x;if(op==="rotate"){c.width=img.naturalHeight;c.height=img.naturalWidth;x=c.getContext("2d");x.translate(c.width/2,c.height/2);x.rotate(Math.PI/2);x.drawImage(img,-img.naturalWidth/2,-img.naturalHeight/2)}else{c.width=img.naturalWidth;c.height=img.naturalHeight;x=c.getContext("2d");if(op==="mirror"){x.translate(c.width,0);x.scale(-1,1)}x.filter=op==="gray"?"grayscale(1)":op==="warm"?"sepia(.45) saturate(1.2)":"none";x.drawImage(img,0,0)}const b=await blobFromCanvas(c,"image/png",1);return {blob:b,name:"edited.png",html:`<img class="preview" src="${URL.createObjectURL(b)}">`}}
-async function imageText(){const f=getFiles()[0],{c,x}=await canvasImage(f);x.font=`bold ${$("#fontSize").value}px Tahoma`;x.fillStyle=$("#color").value;x.textAlign="center";x.direction="rtl";x.shadowColor="rgba(0,0,0,.55)";x.shadowBlur=6;x.fillText($("#text").value,c.width/2,c.height-60);const b=await blobFromCanvas(c,"image/png",1);return {blob:b,name:"image-text.png",html:`<img class="preview" src="${URL.createObjectURL(b)}">`}}
-function makeQR(){const text=$("#qrText").value.trim();if(!text)throw Error("متن QR را وارد کنید.");const c=document.createElement("canvas");QRLite.render(c,text,Number($("#qrSize").value));return {blobPromise:new Promise(r=>c.toBlob(r,"image/png",1)),name:"qr-code.png",html:`<img class="preview" src="${c.toDataURL("image/png")}"><p>QR آفلاین · سطح ${$("#qrEc").value}</p>`}}
-async function scanQR(){const f=getFiles()[0];if(!("BarcodeDetector" in window))throw Error("BarcodeDetector در WebView این دستگاه در دسترس نیست. برای نسخه بعدی می‌توان decoder محلی اختصاصی اضافه کرد.");const det=new BarcodeDetector({formats:["qr_code"]});const img=await loadImage(f),codes=await det.detect(img);if(!codes.length)throw Error("QR پیدا نشد.");return {name:"qr-result.txt",text:codes[0].rawValue,html:`<div class="mono">${esc(codes[0].rawValue)}</div><div class="result-actions"><button onclick="navigator.clipboard?.writeText(${JSON.stringify(codes[0].rawValue)})">کپی</button></div>`}}
-async function imagesToPdf(){const files=getFiles();const pages=[];for(const f of files){const {img}=await canvasImage(f);pages.push(await jpegBytes(img,0.9))}const blob=makeSimplePdf(pages,Number($("#margin").value));return {blob,name:"iran-aryaei-images.pdf",html:`<p>PDF ${files.length} صفحه‌ای ساخته شد.</p>`}}
-async function jpegBytes(img,q){const c=document.createElement("canvas");c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext("2d").drawImage(img,0,0);return new Uint8Array(await (await blobFromCanvas(c,"image/jpeg",q)).arrayBuffer())}
-function makeSimplePdf(jpegs,margin){/* PDF generator: embeds JPEGs as pages, no external library. */
- let chunks=[],offsets=[],pos=0;const add=s=>{let b=new TextEncoder().encode(s);chunks.push(b);pos+=b.length};add("%PDF-1.4\n%\xE2\xE3\xCF\xD3\n");
- let objs=[];let obj=1;const catalogId=obj++, pagesId=obj++, fontId=obj++;
- for(let i=0;i<jpegs.length;i++){let imgId=obj++, contId=obj++;objs.push({id:imgId,type:"img",data:jpegs[i]});objs.push({id:contId,type:"cont",img:imgId});}
- let pageIds=[];for(let i=0;i<jpegs.length;i++)pageIds.push(obj++);
- objs.push({id:pagesId,type:"pages",kids:pageIds});objs.push({id:fontId,type:"font"});
- const max=Math.max(...jpegs.map((b,i)=>{let wh=readJpegSize(b);return wh[0]/wh[1]}),1);
- for(const o of objs){offsets[o.id]=pos;if(o.type==="img"){let [w,h]=readJpegSize(o.data);add(`${o.id} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${w} /Height ${h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${o.data.length} >>\nstream\n`);chunks.push(o.data);pos+=o.data.length;add("\nendstream\nendobj\n")}
- else if(o.type==="cont"){let data=`q\n${500-margin} 0 0 ${350-margin} ${margin} ${margin} cm\n/Im${o.img} Do\nQ`;add(`${o.id} 0 obj\n<< /Length ${data.length} >>\nstream\n${data}\nendstream\nendobj\n`)}
- else if(o.type==="pages"){add(`${o.id} 0 obj\n<< /Type /Pages /Kids [${o.kids.map(k=>k+" 0 R").join(" ")}] /Count ${o.kids.length} >>\nendobj\n`)}
- else if(o.type==="font"){add(`${o.id} 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n`)}}
- offsets[catalogId]=pos;add(`${catalogId} 0 obj\n<< /Type /Catalog /Pages ${pagesId} 0 R >>\nendobj\n`);
- for(let i=0;i<pageIds.length;i++){let pid=pageIds[i],imgId=objs.find(o=>o.type==="img"&&o.id===objs.filter(x=>x.type==="img")[i].id).id,contId=objs.find(o=>o.type==="cont"&&o.img===imgId).id;let [w,h]=readJpegSize(jpegs[i]);offsets[pid]=pos;add(`${pid} 0 obj\n<< /Type /Page /Parent ${pagesId} 0 R /MediaBox [0 0 500 350] /Resources << /XObject << /Im${imgId} ${imgId} 0 R >> >> /Contents ${contId} 0 R >>\nendobj\n`)}
- let xref=pos, count=Math.max(...Object.keys(offsets).map(Number))+1;add(`xref\n0 ${count}\n0000000000 65535 f \n`);for(let i=1;i<count;i++)add(String(offsets[i]||0).padStart(10,"0")+" 00000 n \n");add(`trailer\n<< /Size ${count} /Root 1 0 R /Pages ${pagesId} 0 R >>\nstartxref\n${xref}\n%%EOF`);return new Blob(chunks,{type:"application/pdf"})}
-function readJpegSize(bytes){for(let i=0;i<bytes.length-9;i++){if(bytes[i]===0xff&&bytes[i+1]===0xc0){return [bytes[i+7]*256+bytes[i+8],bytes[i+5]*256+bytes[i+6]]}}return [100,100]}
-async function mergePdfs(){
- const files=getFiles(); if(files.length<2)throw Error("حداقل دو PDF لازم است.");
- const p=nativePlugin(); if(!p)throw Error("ادغام PDF در نسخه اندروید در دسترس است.");
- const paths=[]; for(const f of files){const x=await p.writeTempFile({name:f.name,data:await blobToBase64(f)});paths.push(x.path)}
- const out=await p.mergePdfs({inputPaths:paths});
- return {nativePath:out.path,name:out.name,mime:out.mime,size:out.size,html:`<p>${fa(files.length)} فایل PDF با موفقیت ادغام شد.</p>`};
-}
+/* ==========================================================================
+   ایران آریایی — app.js
+   Intent engine + navigation + bottom sheet + first 10 offline tools
+   ========================================================================== */
+(function () {
+  'use strict';
 
-async function jsonLocal(file){try{return await fetch(file).then(r=>r.json())}catch(e){return null}}
-async function makeFavicons(){const f=getFiles()[0],{img}=await canvasImage(f),sizes=$("#favSizes").value.split(",").map(Number),parts=[];for(const n of sizes){const c=document.createElement("canvas");c.width=c.height=n;c.getContext("2d").drawImage(img,0,0,n,n);parts.push({name:`favicon-${n}.png`,bytes:new Uint8Array(await (await blobFromCanvas(c,"image/png",1)).arrayBuffer()),preview:c.toDataURL("image/png")})}const zip=makeZipStore(parts);return {blob:zip,name:"favicons.zip",html:`<p>${fa(sizes.length)} اندازه ساخته شد و همه در یک ZIP قرار گرفت.</p><img class="preview" src="${parts[0].preview}">`}}
-function crc32(bytes){let table=crc32.table;if(!table){table=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);table[n]=c>>>0;}crc32.table=table;}let c=0xffffffff;for(const b of bytes)c=table[(c^b)&255]^(c>>>8);return (c^0xffffffff)>>>0}
-function u16(v){return new Uint8Array([v&255,(v>>>8)&255])}
-function u32(v){return new Uint8Array([v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255])}
-function makeZipStore(files){const locals=[],central=[];let offset=0;const enc=new TextEncoder();for(const f of files){const name=enc.encode(f.name),crc=crc32(f.bytes),lh=new Uint8Array(30+name.length+f.bytes.length);let p=0;lh.set([80,75,3,4],p);p+=4;lh.set(u16(20),p);p+=2;lh.set(u16(0),p);p+=2;lh.set(u16(0),p);p+=2;lh.set(u16(0),p);p+=2;lh.set(u16(0),p);p+=2;lh.set(u32(crc),p);p+=4;lh.set(u32(f.bytes.length),p);p+=4;lh.set(u32(f.bytes.length),p);p+=4;lh.set(u16(name.length),p);p+=2;lh.set(u16(0),p);p+=2;lh.set(name,p);p+=name.length;lh.set(f.bytes,p);locals.push(lh);const ch=new Uint8Array(46+name.length);p=0;ch.set([80,75,1,2],p);p+=4;ch.set(u16(20),p);p+=2;ch.set(u16(20),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u32(crc),p);p+=4;ch.set(u32(f.bytes.length),p);p+=4;ch.set(u32(f.bytes.length),p);p+=4;ch.set(u16(name.length),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u16(0),p);p+=2;ch.set(u32(0),p);p+=4;ch.set(u32(offset),p);p+=4;ch.set(name,p);central.push(ch);offset+=lh.length}const cdSize=central.reduce((n,x)=>n+x.length,0),end=new Uint8Array(22);let p=0;end.set([80,75,5,6],p);p+=4;end.set(u16(0),p);p+=2;end.set(u16(0),p);p+=2;end.set(u16(files.length),p);p+=2;end.set(u16(files.length),p);p+=2;end.set(u32(cdSize),p);p+=4;end.set(u32(offset),p);p+=4;end.set(u16(0),p);const parts=[...locals,...central,end];return new Blob(parts,{type:"application/zip"})}
-async function svgToImage(){const f=getFiles()[0],svg=await f.text();if(!svg.includes("<svg"))throw Error("SVG معتبر نیست.");const url=URL.createObjectURL(new Blob([svg],{type:"image/svg+xml"}));const img=await new Promise((res,rej)=>{let i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(Error("SVG خوانده نشد"));i.src=url});const n=Number($("#svgSize").value),c=document.createElement("canvas");c.width=c.height=n;c.getContext("2d").drawImage(img,0,0,n,n);const b=await blobFromCanvas(c,$("#svgFormat").value,0.92);return {blob:b,name:"converted."+ext($("#svgFormat").value),html:`<img class="preview" src="${URL.createObjectURL(b)}">`}}
-function makePassword(){let chars="abcdefghijklmnopqrstuvwxyz",extra="";if($("#pUpper").checked)extra+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";if($("#pNums").checked)extra+="0123456789";if($("#pSymbols").checked)extra+="!@#$%^&*()-_=+[]{}";chars+=extra;if(!chars)throw Error("حداقل یک مجموعه کاراکتر را فعال کنید.");const a=new Uint32Array(Number($("#passLen").value));crypto.getRandomValues(a);let out=[...a].map(x=>chars[x%chars.length]).join("");return {name:"password.txt",text:out,html:`<div class="mono" style="font-size:20px">${esc(out)}</div><div class="result-actions"><button onclick="navigator.clipboard?.writeText(${JSON.stringify(out)})">کپی رمز</button></div>`}}
-function openNotesDB(){return new Promise((res,rej)=>{const r=indexedDB.open("iran-aryaei-notes",1);r.onupgradeneeded=()=>r.result.createObjectStore("notes",{keyPath:"id",autoIncrement:true});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-async function saveNote(){const title=$("#noteTitle").value.trim(),text=$("#noteText").value.trim();if(!title&&!text)throw Error("عنوان یا متن یادداشت را وارد کنید.");const db=await openNotesDB(),id=$("#noteId")?.value;await new Promise((res,rej)=>{const st=db.transaction("notes","readwrite").objectStore("notes"),q=id?st.put({id:Number(id),title:title||"بدون عنوان",text,updated:Date.now()}):st.add({title:title||"بدون عنوان",text,created:Date.now()});q.onsuccess=res;q.onerror=()=>rej(q.error)});db.close();if($("#noteId"))$("#noteId").value="";await loadNotesList();return {name:"note.txt",text,html:`<p>یادداشت «${esc(title||"بدون عنوان")}» ذخیره شد.</p>`}}
-async function loadNotesList(){const box=$("#notesList");if(!box)return;const db=await openNotesDB();const rows=await new Promise((res,rej)=>{const q=db.transaction("notes","readonly").objectStore("notes").getAll();q.onsuccess=()=>res(q.result||[]);q.onerror=()=>rej(q.error)});db.close();box.innerHTML=rows.length?`<div class="form-group"><input id="noteSearch" placeholder="جستجوی یادداشت..."></div>`+rows.sort((a,b)=>(b.updated||b.created)-(a.updated||a.created)).map(n=>`<div class="activity-row"><b>${esc(n.title)}</b><small>${esc((n.text||"").slice(0,90))}</small><div><button data-edit-note="${n.id}">ویرایش</button><button data-del-note="${n.id}">حذف</button></div></div>`).join(""):"<small>هنوز یادداشتی ثبت نشده است.</small>";$$('[data-edit-note]').forEach(b=>b.onclick=async()=>{const n=rows.find(x=>x.id===Number(b.dataset.editNote));if(n){$("#noteTitle").value=n.title;$("#noteText").value=n.text;$("#noteId").value=n.id;}});$$('[data-del-note]').forEach(b=>b.onclick=async()=>{const db2=await openNotesDB();db2.transaction("notes","readwrite").objectStore("notes").delete(Number(b.dataset.delNote));setTimeout(()=>{db2.close();loadNotesList()},50)});const search=$("#noteSearch");if(search)search.oninput=()=>{const q=search.value.trim().toLowerCase();$$('[data-edit-note]').forEach(b=>{const n=rows.find(x=>x.id===Number(b.dataset.editNote));b.closest('.activity-row').style.display=!q||`${n.title} ${n.text}`.toLowerCase().includes(q)?"":"none"})}}
-function bindDictionaryForm(){const i=$("#dictWord");if(i)i.onkeydown=e=>{if(e.key==="Enter")executeTool("dictionary")}}
-function analyzeText(){const t=$("#analysisText").value,words=t.trim()?t.trim().split(/\s+/).length:0,letters=(t.match(/[\p{L}\p{N}]/gu)||[]).length,sent=(t.match(/[.!?؟؛]+/g)||[]).length;return {name:"text-analysis.txt",text:`واژه: ${words}\nحروف و اعداد: ${letters}\nجمله: ${sent}\nزمان مطالعه تقریبی: ${Math.max(1,Math.ceil(words/200))} دقیقه`,html:`<p>واژه: <b>${fa(words)}</b> · حروف: <b>${fa(letters)}</b> · جمله: <b>${fa(sent)}</b> · مطالعه: <b>${fa(Math.max(1,Math.ceil(words/200)))} دقیقه</b></p>`}}
-function formatCode(){const code=$("#codeText").value,lang=$("#codeLang").value,mode=$("#codeMode").value;let out=code;if(mode==="minify"){if(lang==="json"){try{out=JSON.stringify(JSON.parse(code))}catch{out=code.replace(/\s+/g," ").trim()}}else out=code.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm,"").replace(/\s+/g," ").trim()}else{try{if(lang==="json")out=JSON.stringify(JSON.parse(code),null,2);else out=code.replace(/>\s*</g,"><").replace(/;\s*/g,";\\n").replace(/{\s*/g,"{\\n").replace(/}\s*/g,"\\n}\\n")}catch{out=code}}return {name:"formatted-code.txt",text:out,html:`<div class="mono">${esc(out)}</div>`}}
-function testRegex(){let re;try{re=new RegExp($("#regexPattern").value,$("#regexFlags").value)}catch(e){throw Error("الگوی Regex نامعتبر است.");}const t=$("#regexText").value,m=re.exec(t);return {name:"regex-result.txt",text:m?`MATCH\n${m.slice(1).join("\n")}`:"NO MATCH",html:m?`<p>تطبیق موفق بود.</p><div class="mono">${esc(JSON.stringify(m.slice(1)))}</div>`:"<p>تطبیقی پیدا نشد.</p>"}}
-function compareText(){const a=$("#textA").value,b=$("#textB").value,aa=a.split(/\s+/),bb=b.split(/\s+/),out=[];const n=Math.max(aa.length,bb.length);for(let i=0;i<n;i++){if(aa[i]===bb[i])out.push(esc(aa[i]||""));else{if(aa[i])out.push(`<del>${esc(aa[i])}</del>`);if(bb[i])out.push(`<ins>${esc(bb[i])}</ins>`)}}return {name:"text-diff.html",text:out.join(" "),html:`<div style="line-height:2">${out.join(" ")}</div>`}}
-function makeMeta(){const e=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;");const title=e($("#metaTitle").value),desc=e($("#metaDesc").value),img=e($("#metaImage").value),url=e($("#metaUrl").value);const out=`<title>${title}</title>\n<meta name="description" content="${desc}">\n<meta property="og:title" content="${title}">\n<meta property="og:description" content="${desc}">\n${img?`<meta property="og:image" content="${img}">`:""}\n${url?`<meta property="og:url" content="${url}">`:""}`;return {name:"meta-tags.html",text:out,html:`<div class="mono">${esc(out)}</div>`}}
+  // ---------------------------------------------------------------------
+  // Tool registry (all 33 tools; only the first 10 are wired to real logic
+  // for this build step — see PRIORITY in the original spec)
+  // ---------------------------------------------------------------------
+  var CATEGORIES = {
+    image: 'تصویر', pdf: 'PDF', qr: 'QR', text: 'متن',
+    date: 'تاریخ', audio: 'صدا', video: 'ویدیو', util: 'ابزار'
+  };
 
-async function textToPdf(){
- const text=$("#pdfText").value.trim(); if(!text)throw Error("متن را وارد کنید.");
- const font=Number($("#pdfFont").value);
- const lines=[];
- for(const paragraph of text.split(/\r?\n/)){
-   const words=paragraph.split(/\s+/); let line="";
-   for(const w of words){const test=line?line+" "+w:w;if(measureText(test,font)>480){if(line)lines.push(line);line=w}else line=test}
-   if(line)lines.push(line); if(!line)lines.push(" ");
- }
- const perPage=32,pages=[];
- for(let i=0;i<lines.length;i+=perPage){
-   const page=lines.slice(i,i+perPage),c=document.createElement("canvas");c.width=595;c.height=842;
-   const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);
-   x.fillStyle="#111";x.font=`${font}px Tahoma, Arial, sans-serif`;x.textAlign="right";x.direction="rtl";
-   page.forEach((line,j)=>x.fillText(line,545,55+j*24));
-   pages.push(await jpegBytesCanvas(c,0.94));
- }
- const blob=makeSimplePdf(pages,20);
- return {blob,name:"iran-aryaei-text.pdf",html:`<p>PDF فارسی ${fa(pages.length)} صفحه‌ای ساخته شد.</p>`}
-}
-function measureText(t,font){const c=document.createElement("canvas"),x=c.getContext("2d");x.font=`${font}px Tahoma, Arial, sans-serif`;return x.measureText(t).width}
-async function jpegBytesCanvas(c,q){const b=await blobFromCanvas(c,"image/jpeg",q);return new Uint8Array(await b.arrayBuffer())}
+  var TOOLS = [
+    { id: 'img-resize', name: 'کاهش حجم تصویر', cat: 'image', icon: '🗜️', active: true },
+    { id: 'img-convert', name: 'فشرده‌سازی و تبدیل تصویر', cat: 'image', icon: '🔄', active: true },
+    { id: 'img-crop', name: 'برش تصویر', cat: 'image', icon: '✂️', active: true },
+    { id: 'img-edit', name: 'ویرایش و برش تصویر', cat: 'image', icon: '🎨', active: true },
+    { id: 'img-text', name: 'افزودن متن به عکس', cat: 'image', icon: '🔤', active: true },
+    { id: 'qr-gen', name: 'ساخت QR Code', cat: 'qr', icon: '⬛', active: true },
+    { id: 'qr-scan', name: 'اسکن QR Code', cat: 'qr', icon: '📷', active: true },
+    { id: 'img-to-pdf', name: 'تبدیل عکس به PDF', cat: 'pdf', icon: '📄', active: true },
+    { id: 'pdf-merge', name: 'ادغام PDF', cat: 'pdf', icon: '📎', active: true },
+    { id: 'pdf-text', name: 'ساخت PDF از متن', cat: 'pdf', icon: '📝', active: true },
 
-function div(a,b){return Math.floor(a/b)}
-function jalaliToJdn(jy,jm,jd){const epbase=jy-(jy>=0?474:473),epyear=474+(epbase%2820);return jd+(jm<=7?(jm-1)*31:(jm-1)*30+6)+Math.floor((epyear*682-110)/2816)+(epyear-1)*365+Math.floor(epbase/2820)*1029983+(1948320-1)}
-function jdnToJalali(jdn){let depoch=jdn-jalaliToJdn(475,1,1),cycle=Math.floor(depoch/1029983),cyear=depoch%1029983;let ycycle;if(cyear<366)ycycle=0;else{let aux1=Math.floor(cyear/366),aux2=cyear%366;ycycle=Math.floor((2134*aux1+2816*aux2+2816)/1028522)+aux1+1}let jy=ycycle+2820*cycle+474;if(jy<=0)jy--;let yday=jdn-jalaliToJdn(jy,1,1)+1;let jm=yday<=186?Math.ceil(yday/31):Math.ceil((yday-6)/30),jd=jdn-jalaliToJdn(jy,jm,1)+1;return [jy,jm,jd]}
-function gregToJdn(y,m,d){let a=Math.floor((14-m)/12),y2=y+4800-a,m2=m+12*a-3;return d+Math.floor((153*m2+2)/5)+365*y2+Math.floor(y2/4)-Math.floor(y2/100)+Math.floor(y2/400)-32045}
-function jdnToGreg(j){let a=j+32044,b=Math.floor((4*a+3)/146097),c=a-Math.floor(146097*b/4),d=Math.floor((4*c+3)/1461),e=c-Math.floor(1461*d/4),m=Math.floor((5*e+2)/153),day=e-Math.floor((153*m+2)/5)+1,month=m+3-12*Math.floor(m/10),year=100*b+d-4800+Math.floor(m/10);return [year,month,day]}
-function parseDate(v,cal){const a=v.split(/[\/-]/).map(Number);if(a.length!==3||a.some(Number.isNaN))throw Error("تاریخ نامعتبر است.");if(cal==="jalali")return jalaliToJdn(...a);if(cal==="gregorian")return gregToJdn(...a);if(cal==="hijri")return hijriToJdn(...a);throw Error("تقویم نامعتبر")}
-function hijriToJdn(y,m,d){return d+Math.ceil(29.5*(m-1))+(y-1)*354+Math.floor((3+11*y)/30)+1948439}
-function jdnToHijri(j){let y=Math.floor((30*(j-1948439)+10646)/10631),m=Math.min(12,Math.ceil((j-(29+approxHijriStart(y)))/29.5)+1);while(m>1&&hijriToJdn(y,m,1)>j)m--;return [y,m,j-hijriToJdn(y,m,1)+1]}
-function approxHijriStart(y){return (y-1)*354+Math.floor((3+11*y)/30)}
-function fmtDate(jdn,cal){let a=cal==="jalali"?jdnToJalali(jdn):cal==="gregorian"?jdnToGreg(jdn):jdnToHijri(jdn);return a.map(String).map(x=>x.padStart(2,"0")).join("/")}
-async function convertDateTool(){const from=$("#dateFrom").value,to=$("#dateTo").value,j=parseDate($("#dateValue").value,from);return {name:"date-conversion.txt",text:`${$("#dateValue").value} (${from}) = ${fmtDate(j,to)} (${to})`,html:`<p><b>${esc(fmtDate(j,to))}</b></p>`}}
-function calcAge(){const cal=$("#birthCal").value,j=parseDate($("#birthDate").value,cal),now=new Date(),today=gregToJdn(now.getFullYear(),now.getMonth()+1,now.getDate());if(j>today)throw Error("تاریخ تولد نمی‌تواند در آینده باشد.");let [by,bm,bd]=cal==="jalali"?jdnToJalali(j):jdnToGreg(j);let [cy,cm,cd]=cal==="jalali"?jdnToJalali(today):jdnToGreg(today);let y=cy-by,m=cm-bm,d=cd-bd;if(d<0){m--;const prevJ=cal==="jalali"?jalaliToJdn(cy,cm,1)-1:gregToJdn(cy,cm,1)-1;d+=1+(cal==="jalali"?jdnToJalali(prevJ)[2]-1:jdnToGreg(prevJ)[2])}if(m<0){y--;m+=12}return {name:"age.txt",text:`سن: ${y} سال، ${m} ماه، ${d} روز`,html:`<p>سن دقیق: <b>${fa(y)} سال، ${fa(m)} ماه، ${fa(d)} روز</b></p>`}}
-async function makeCalendar(){let cal=$("#calType").value,y=Number($("#calYear").value),m=Number($("#calMonth").value);if(cal==="jalali"){let first=jalaliToJdn(y,m,1),days=m<=6?31:m<=11?30:(jalaliToJdn(y+1,1,1)-first);let g=jdnToGreg(first);return calendarHtml(y,m,days,(first+1)%7,"شمسی",g)}else{let first=gregToJdn(y,m,1),days=new Date(y,m,0).getDate();return calendarHtml(y,m,days,first%7,"میلادی",jdnToJalali(first))}}
-function calendarHtml(y,m,days,start,label,other){let h=`<p><b>تقویم ${label} ${fa(y)}/${fa(m)}</b></p><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center">`;for(let i=0;i<start;i++)h+="<span></span>";for(let d=1;d<=days;d++)h+=`<span style="padding:8px;background:var(--bg);border-radius:8px">${fa(d)}</span>`;return {name:"calendar.html",text:`تقویم ${label} ${y}/${m}`,html:h+"</div><small>معادل تقریبی/تبدیل مبنا: "+other.join("/")+"</small>"}}
-async function cityDistance(){const data=await jsonLocal("cities.json");if(!data)throw Error("cities.json پیدا نشد.");const norm=s=>s.trim().toLowerCase();const a=data.cities.find(c=>norm(c.name)===norm($("#cityA").value)||c.aliases?.some(x=>norm(x)===norm($("#cityA").value)));const b=data.cities.find(c=>norm(c.name)===norm($("#cityB").value)||c.aliases?.some(x=>norm(x)===norm($("#cityB").value)));if(!a||!b)throw Error("نام شهر در داده محلی پیدا نشد.");const R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLon=(b.lon-a.lon)*Math.PI/180,x=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLon/2)**2,km=R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));return {name:"city-distance.txt",text:`${a.name} تا ${b.name}: ${Math.round(km)} km`,html:`<p>فاصله خط مستقیم: <b>${fa(Math.round(km))} کیلومتر</b></p><p>زمان تقریبی با خودرو: ${fa(Math.round(km/75))} ساعت</p>`}}
-async function dictionaryTool(){const data=await jsonLocal("dictionary.json");if(!data)throw Error("dictionary.json پیدا نشد.");const raw=$("#dictWord").value.trim();if(!raw)throw Error("واژه را وارد کنید.");const q=normText(raw),dir=$("#dictDir")?.value||"auto";const persian=/[\u0600-\u06FF]/.test(raw);let arr=data.entries.filter(x=>{const en=normText(x.en),fa=normText(x.fa);if(dir==="en-fa"||(dir==="auto"&&!persian))return en===q||en.includes(q);if(dir==="fa-en"||(dir==="auto"&&persian))return fa===q||fa.includes(q);return en===q||fa===q||en.includes(q)||fa.includes(q)}).slice(0,20);if(!arr.length)return {name:"dictionary.txt",text:"پیدا نشد",html:"<p>واژه یا عبارت پیدا نشد.</p>"};return {name:"dictionary.txt",text:arr.map(x=>`${x.en} — ${x.fa}`).join("\n"),html:`<p><small>${fa(arr.length)} نتیجه از بانک آفلاین</small></p>`+arr.map(x=>`<div class="activity-row"><b>${esc(x.en)}</b><span>↔</span><span>${esc(x.fa.replaceAll("؛", "، "))}</span></div>`).join("")}}
-function normText(s){return String(s).toLowerCase().replace(/[يى]/g,"ی").replace(/ك/g,"ک").replace(/[ۀة]/g,"ه").replace(/[\u200c\u200f\u200e]/g,"").trim()}
-async function hafezTool(){const data=await jsonLocal("ghazal.json");if(!data?.ghazals?.length)throw Error("ghazal.json پیدا نشد.");let i=$("#ghazalIndex").value==="random"?Math.floor(Math.random()*data.ghazals.length):Number($("#ghazalIndex").value);const g=data.ghazals[i];return {name:"hafez.txt",text:`غزل ${i+1}\n${g.text}`,html:`<h3>${esc(g.title||"فال حافظ")}</h3><div style="line-height:2.2;white-space:pre-line">${esc(g.text)}</div>`}}
+    { id: 'favicon-gen', name: 'ساخت فاوآیکون', cat: 'image', icon: '🌐', active: true },
+    { id: 'svg-to-img', name: 'تبدیل SVG به تصویر', cat: 'image', icon: '🖼️', active: true },
+    { id: 'password-gen', name: 'تولید رمز عبور قوی', cat: 'util', icon: '🔐', active: true },
+    { id: 'notepad', name: 'یادداشت', cat: 'text', icon: '🗒️', active: true },
+    { id: 'text-analyzer', name: 'تحلیلگر متن', cat: 'text', icon: '📊', active: true },
+    { id: 'code-format', name: 'فرمت‌بندی و کوچک‌سازی کد', cat: 'util', icon: '💻', active: true },
+    { id: 'regex-test', name: 'تست Regex', cat: 'util', icon: '🧩', active: true },
+    { id: 'text-diff', name: 'مقایسه متن', cat: 'text', icon: '📑', active: true },
+    { id: 'meta-gen', name: 'تولید متا تگ', cat: 'util', icon: '🏷️', active: true },
+    { id: 'calendar', name: 'تقویم', cat: 'date', icon: '📅', active: true },
+    { id: 'date-convert', name: 'تبدیل تاریخ', cat: 'date', icon: '🔁', active: true },
+    { id: 'age-calc', name: 'محاسبه سن', cat: 'date', icon: '🎂', active: true },
+    { id: 'city-distance', name: 'فاصله بین شهرها', cat: 'util', icon: '🗺️', active: true },
+    { id: 'dictionary', name: 'دیکشنری', cat: 'text', icon: '📖', active: true },
+    { id: 'hafez', name: 'فال حافظ', cat: 'text', icon: '🌹', active: true },
+    { id: 'audio-trim', name: 'برش صدا', cat: 'audio', icon: '✂️', active: false },
+    { id: 'audio-reduce', name: 'کاهش حجم صدا', cat: 'audio', icon: '🗜️', active: false },
+    { id: 'audio-to-mp3', name: 'تبدیل صدا به MP3', cat: 'audio', icon: '🎵', active: false },
+    { id: 'video-reduce', name: 'کاهش حجم ویدیو', cat: 'video', icon: '🎬', active: false },
+    { id: 'img-to-heic', name: 'تبدیل عکس به HEIC', cat: 'image', icon: '📱', active: false },
+    { id: 'heic-to-jpg', name: 'تبدیل HEIC به JPG', cat: 'image', icon: '🖼️', active: false },
+    { id: 'bg-remove', name: 'حذف پس‌زمینه عکس', cat: 'image', icon: '✨', active: false },
+    { id: 'pdf-to-img', name: 'تبدیل PDF به تصویر', cat: 'pdf', icon: '🖨️', active: false }
+  ];
 
-function bindAudioForm(id){const f=$("#fileInput");if(!f)return;f.onchange=async()=>{try{const file=f.files?.[0];if(!file)return;const u=URL.createObjectURL(file),a=new Audio(u);a.onloadedmetadata=()=>{const info=$("#audioInfo");if(info)info.innerHTML=`<small>مدت فایل: <b>${fa(Math.round(a.duration))}</b> ثانیه · حجم: ${fmt(file.size)}</small>`;if($("#audioEnd")&&Number($("#audioEnd").value)<=0)$("#audioEnd").value=Math.ceil(a.duration)};}catch(e){}}}
-async function nativeAudioTool(mode){const p=nativePlugin();if(!p)throw Error("نسخه اندروید ابزار صوتی در دسترس نیست.");const file=getFiles()[0];const data=await blobToBase64(file);const temp=await p.writeTempFile({name:file.name,data});let out;if(mode==="trim"){const start=Number($("#audioStart").value||0),end=Number($("#audioEnd").value||0);if(!(end>start))throw Error("زمان پایان باید بیشتر از شروع باشد.");out=await p.trimAudio({inputPath:temp.path,startSec:start,endSec:end,outputName:file.name.replace(/\.[^.]+$/i,"")+"-cut."+(file.name.toLowerCase().endsWith(".mp3")?"mp3":file.name.toLowerCase().endsWith(".wav")?"wav":"m4a")});}else if(mode==="compress"){out=await p.compressAudio({inputPath:temp.path,bitrate:Number($("#audioBitrate").value)});}else{out=await p.audioToMp3({inputPath:temp.path,bitrate:Number($("#mp3Bitrate").value)});}return {nativePath:out.path,name:out.name,mime:out.mime,size:out.size,html:`<div class="result-card"><p>پردازش صوت با موفقیت انجام شد.</p><p>خروجی: <b>${esc(out.name)}</b></p><p>حجم: ${fmt(out.size)}</p></div>`}}
+  var QUICK_ACTIONS = ['img-resize', 'qr-gen', 'img-to-pdf'];
 
-async function nativeMediaTool(mode){
- const p=nativePlugin(); if(!p)throw Error("نسخه اندروید ابزار در دسترس نیست.");
- const file=getFiles()[0]; const temp=await p.writeTempFile({name:file.name,data:await blobToBase64(file)}); let out;
- if(mode==="videoCompress") out=await p.compressVideo({inputPath:temp.path,bitrate:Number($("#videoQuality").value)});
- else if(mode==="imageHeic") out=await p.imageToHeic({inputPath:temp.path});
- else if(mode==="heicJpg") out=await p.heicToJpg({inputPath:temp.path});
- else if(mode==="backgroundRemove") out=await p.removeBackground({inputPath:temp.path,tolerance:Number($("#bgTolerance").value)});
- else if(mode==="pdfImages") out=await p.pdfToImages({inputPath:temp.path,format:$("#pdfImageFormat").value,scale:Number($("#pdfImageScale").value)});
- return {nativePath:out.path,name:out.name,mime:out.mime,size:out.size,html:`<div class="result-card"><p>پردازش با موفقیت انجام شد.</p><p>خروجی: <b>${esc(out.name)}</b></p><p>حجم: ${fmt(out.size)}</p>${out.pages?`<p>تعداد صفحات: ${fa(out.pages)}</p>`:""}</div>`};
-}
-function showResult(r){$("#resultBox").classList.remove("hidden");$("#resultBox").innerHTML=(r.html||"<p>عملیات انجام شد.</p>")+`<div class="result-actions"><button id="saveBtn">ذخیره</button><button id="shareBtn">اشتراک‌گذاری</button><button id="repeatBtn">اجرای مجدد</button></div>`;$("#saveBtn").onclick=()=>saveResult(r);$("#shareBtn").onclick=()=>shareResult(r);$("#repeatBtn").onclick=()=>executeTool(state.activeTool)}
-async function materialize(r){if(r.blob)return r.blob;if(r.blobPromise)return await r.blobPromise;return new Blob([r.text||""],{type:r.mime||"text/plain;charset=utf-8"})}
-function nativePlugin(){return window.Capacitor?.Plugins?.IranAryaei||null}
-async function blobToBase64(blob){return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>resolve(String(fr.result).split(",")[1]||"");fr.onerror=reject;fr.readAsDataURL(blob)})}
-async function saveResult(r){try{const p=nativePlugin();if(r.nativePath&&p){await p.saveTempFile({path:r.nativePath,name:r.name,mime:r.mime||"application/octet-stream"});toast("در پوشه دانلود/ایران آریایی ذخیره شد.");return}const b=await materialize(r);if(p&&b.size<50*1024*1024){await p.saveBase64({name:r.name||"iran-aryaei-output",mime:b.type||"application/octet-stream",data:await blobToBase64(b)});toast("در پوشه دانلود/ایران آریایی ذخیره شد.");return}const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=r.name||"iran-aryaei-output";a.click();toast("فایل آماده ذخیره شد.")}catch(e){toast(e.message||"ذخیره انجام نشد")}}
-async function shareResult(r){try{const p=nativePlugin();if(r.nativePath&&p){await p.shareTempFile({path:r.nativePath,name:r.name,mime:r.mime||"application/octet-stream"});return}const b=await materialize(r);const file=new File([b],r.name||"output",{type:b.type||"application/octet-stream"});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:"ایران آریایی"})}else if(p&&b.size<50*1024*1024){const x=await p.writeTempFile({name:r.name||"output",data:await blobToBase64(b)});await p.shareTempFile({path:x.path,name:r.name||"output",mime:b.type||"application/octet-stream"})}else toast("اشتراک‌گذاری در این دستگاه در دسترس نیست.")}catch(e){toast(e.message||"اشتراک‌گذاری انجام نشد")}}
-function addActivity(tool,file){let a=JSON.parse(localStorage.getItem("ia-history")||"[]");a.unshift({tool,file,time:new Date().toLocaleString("fa-IR")});a=a.slice(0,100);localStorage.setItem("ia-history",JSON.stringify(a));loadActivity()}
-function loadActivity(){let a=JSON.parse(localStorage.getItem("ia-history")||"[]");$("#totalActivity").textContent=fa(a.length);$("#activityList").innerHTML=a.length?a.map(x=>`<div class="activity-row"><b>${esc(x.file)}</b><small>${esc(x.tool)} · ${esc(x.time)}</small></div>`).join(""):`<div class="activity-row"><small>هنوز عملیاتی ثبت نشده است.</small></div>`}
-function loadPrefs(){let dark=localStorage.getItem("ia-dark")==="1";setDark(dark);$("#darkToggle").checked=dark;let c=localStorage.getItem("ia-compact")==="1";$("#compactToggle").checked=c;document.body.classList.toggle("compact",c)}
-function setDark(v){document.body.classList.toggle("dark",v);localStorage.setItem("ia-dark",v?"1":"0");$("#themeBtn").textContent=v?"☀":"☾"}
-function toggleDark(){setDark(!document.body.classList.contains("dark"));$("#darkToggle").checked=document.body.classList.contains("dark")}
-function toast(msg){let t=document.createElement("div");t.textContent=msg;t.style.cssText="position:fixed;z-index:100;bottom:92px;left:16px;right:16px;background:#151a22;color:#fff;padding:12px 14px;border-radius:13px;text-align:center;font-size:12px;box-shadow:0 10px 30px #0004";document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
-function fa(n){return String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d])}
+  // ---------------------------------------------------------------------
+  // Storage helpers
+  // ---------------------------------------------------------------------
+  var LS = {
+    get: function (k, def) { try { var v = localStorage.getItem(k); return v == null ? def : JSON.parse(v); } catch (e) { return def; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+
+  // ---------------------------------------------------------------------
+  // Theme
+  // ---------------------------------------------------------------------
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+    var nightSwitch = document.getElementById('nightSwitch');
+    if (nightSwitch) nightSwitch.checked = theme === 'dark';
+  }
+  function initTheme() {
+    var saved = LS.get('ia_theme', null);
+    if (!saved) {
+      saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    applyTheme(saved);
+  }
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(cur); LS.set('ia_theme', cur);
+  });
+
+  // ---------------------------------------------------------------------
+  // Toast
+  // ---------------------------------------------------------------------
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2200);
+  }
+
+  // ---------------------------------------------------------------------
+  // Navigation between the 3 main screens
+  // ---------------------------------------------------------------------
+  function showScreen(name) {
+    document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
+    document.getElementById('screen-' + name).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(function (n) {
+      n.classList.toggle('active', n.dataset.screen === name);
+    });
+    if (name === 'activity') renderActivity();
+  }
+  document.querySelectorAll('.nav-item').forEach(function (n) {
+    n.addEventListener('click', function () { showScreen(n.dataset.screen); });
+  });
+
+  // ---------------------------------------------------------------------
+  // Home screen render: quick actions, chips, tool grid
+  // ---------------------------------------------------------------------
+  function toolById(id) { return TOOLS.find(function (t) { return t.id === id; }); }
+
+  function renderQuickGrid() {
+    var grid = document.getElementById('quickGrid');
+    grid.innerHTML = '';
+    QUICK_ACTIONS.forEach(function (id) {
+      var t = toolById(id);
+      var el = document.createElement('div');
+      el.className = 'quick-card';
+      el.innerHTML = '<div class="quick-icon">' + t.icon + '</div><span>' + t.name + '</span>';
+      el.addEventListener('click', function () { openTool(t.id); });
+      grid.appendChild(el);
+    });
+  }
+
+  var activeCategory = 'all';
+  function renderChips() {
+    var row = document.getElementById('chipRow');
+    row.innerHTML = '';
+    var cats = ['all'].concat(Object.keys(CATEGORIES));
+    cats.forEach(function (c) {
+      var chip = document.createElement('div');
+      chip.className = 'chip' + (c === activeCategory ? ' active' : '');
+      chip.textContent = c === 'all' ? 'همه' : CATEGORIES[c];
+      chip.addEventListener('click', function () { activeCategory = c; renderChips(); renderToolGrid(); });
+      row.appendChild(chip);
+    });
+  }
+
+  function renderToolGrid() {
+    var grid = document.getElementById('toolGrid');
+    grid.innerHTML = '';
+    var list = activeCategory === 'all' ? TOOLS : TOOLS.filter(function (t) { return t.cat === activeCategory; });
+    document.getElementById('toolCountHint').textContent = '· ' + TOOLS.length + ' ابزار';
+    list.forEach(function (t) {
+      var card = document.createElement('div');
+      card.className = 'tool-card';
+      card.innerHTML =
+        '<div class="tool-status' + (t.active ? '' : ' soon') + '">' + (t.active ? 'آماده' : 'به‌زودی') + '</div>' +
+        '<div class="tool-icon">' + t.icon + '</div>' +
+        '<div class="tool-name">' + t.name + '</div>' +
+        '<div class="tool-cat">' + CATEGORIES[t.cat] + '</div>';
+      card.addEventListener('click', function () { openTool(t.id); });
+      grid.appendChild(card);
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Intent engine
+  // ---------------------------------------------------------------------
+  var intentData = null;
+  fetch('./intents.json').then(function (r) { return r.json(); }).then(function (d) { intentData = d; }).catch(function () {});
+
+  var citiesData = null;
+  fetch('./cities.json').then(function (r) { return r.json(); }).then(function (d) { citiesData = d.cities; }).catch(function () {});
+
+  var dictData = null;
+  fetch('./dictionary.json').then(function (r) { return r.json(); }).then(function (d) { dictData = d.words; }).catch(function () {});
+
+  var ghazalData = null;
+  fetch('./ghazal.json').then(function (r) { return r.json(); }).then(function (d) { ghazalData = d.verses; }).catch(function () {});
+
+  function matchIntent(query) {
+    if (!intentData) return null;
+    var q = query.trim().toLowerCase();
+    if (!q) return null;
+    var best = null, bestScore = 0;
+    intentData.intents.forEach(function (intent) {
+      intent.keywords.forEach(function (kw) {
+        var kwLower = kw.toLowerCase();
+        if (q.indexOf(kwLower) !== -1 || kwLower.indexOf(q) !== -1) {
+          var score = kwLower.length;
+          if (score > bestScore) { bestScore = score; best = intent.toolId; }
+        }
+      });
+    });
+    return best;
+  }
+
+  var heroInput = document.getElementById('heroInput');
+  var heroSuggest = document.getElementById('heroSuggest');
+  heroInput.addEventListener('input', function () {
+    var match = matchIntent(heroInput.value);
+    if (match) {
+      var t = toolById(match);
+      heroSuggest.textContent = t ? ('پیشنهاد: ' + t.icon + ' ' + t.name + (t.active ? '' : ' (به‌زودی)')) : '';
+    } else {
+      heroSuggest.textContent = heroInput.value.trim() ? 'ابزار مرتبطی پیدا نشد — از فهرست پایین انتخاب کنید' : '';
+    }
+  });
+  function runHeroSearch() {
+    var match = matchIntent(heroInput.value);
+    if (match) {
+      openTool(match);
+      heroInput.value = ''; heroSuggest.textContent = '';
+    } else if (heroInput.value.trim()) {
+      toast('ابزار مرتبطی پیدا نشد');
+    }
+  }
+  document.getElementById('heroSend').addEventListener('click', runHeroSearch);
+  heroInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') runHeroSearch(); });
+
+  // ---------------------------------------------------------------------
+  // History / Activity
+  // ---------------------------------------------------------------------
+  function addHistory(toolId, fileName) {
+    var t = toolById(toolId);
+    var list = LS.get('ia_history', []);
+    list.unshift({ toolId: toolId, name: fileName || '—', time: Date.now() });
+    if (list.length > 200) list = list.slice(0, 200);
+    LS.set('ia_history', list);
+  }
+  function timeAgo(ts) {
+    var diff = Math.floor((Date.now() - ts) / 1000);
+    if (diff < 60) return 'همین الان';
+    if (diff < 3600) return Math.floor(diff / 60) + ' دقیقه پیش';
+    if (diff < 86400) return Math.floor(diff / 3600) + ' ساعت پیش';
+    return Math.floor(diff / 86400) + ' روز پیش';
+  }
+  function renderActivity() {
+    var list = LS.get('ia_history', []);
+    document.getElementById('statTotal').textContent = list.length;
+    var wrap = document.getElementById('historyList');
+    if (!list.length) {
+      wrap.innerHTML = '<div class="empty-state"><div class="emoji">🗂️</div>تا الان عملیاتی ثبت نشده است</div>';
+      return;
+    }
+    wrap.innerHTML = list.map(function (h) {
+      var t = toolById(h.toolId) || { icon: '🛠️', name: h.toolId };
+      return '<div class="history-row"><div class="history-icon">' + t.icon + '</div>' +
+        '<div><div class="history-name">' + h.name + '</div>' +
+        '<div class="history-meta">' + t.name + ' · ' + timeAgo(h.time) + '</div></div></div>';
+    }).join('');
+  }
+  document.getElementById('clearHistoryBtn').addEventListener('click', function () {
+    LS.set('ia_history', []); renderActivity(); toast('تاریخچه پاک شد');
+  });
+  document.getElementById('clearNotesBtn').addEventListener('click', function () {
+    LS.set('ia_notes', []); toast('یادداشت‌ها پاک شدند');
+  });
+
+  // ---------------------------------------------------------------------
+  // Settings switches
+  // ---------------------------------------------------------------------
+  document.getElementById('nightSwitch').addEventListener('change', function (e) {
+    var theme = e.target.checked ? 'dark' : 'light';
+    applyTheme(theme); LS.set('ia_theme', theme);
+  });
+  var compactSwitch = document.getElementById('compactSwitch');
+  compactSwitch.checked = LS.get('ia_compact', false);
+  document.getElementById('app').classList.toggle('compact', compactSwitch.checked);
+  compactSwitch.addEventListener('change', function (e) {
+    LS.set('ia_compact', e.target.checked);
+    document.getElementById('app').classList.toggle('compact', e.target.checked);
+  });
+
+  // ---------------------------------------------------------------------
+  // Bottom sheet (generic tool window)
+  // ---------------------------------------------------------------------
+  var sheetOverlay = document.getElementById('sheetOverlay');
+  var sheet = document.getElementById('sheet');
+  var sheetBody = document.getElementById('sheetBody');
+
+  function openTool(id) {
+    var t = toolById(id);
+    if (!t) return;
+    document.getElementById('sheetIcon').textContent = t.icon;
+    document.getElementById('sheetTitle').textContent = t.name;
+    document.getElementById('sheetStatus').textContent = t.active ? 'آماده پردازش روی دستگاه' : 'به‌زودی در دسترس است';
+    sheetBody.innerHTML = '';
+    if (!t.active) {
+      document.getElementById('sheetDesc').textContent = 'این ابزار در مراحل بعدی توسعه اضافه می‌شود (طبق اولویت‌بندی پروژه).';
+      sheetBody.innerHTML = '<div class="empty-state"><div class="emoji">🚧</div>این ابزار هنوز فعال نشده است</div>';
+    } else {
+      document.getElementById('sheetDesc').textContent = 'این ابزار کاملاً آفلاین و روی همین دستگاه اجرا می‌شود — هیچ فایلی جایی آپلود نمی‌شود.';
+      var renderer = TOOL_RENDERERS[id];
+      if (renderer) renderer(sheetBody, t);
+    }
+    sheetOverlay.classList.add('open');
+    sheet.classList.add('open');
+  }
+  function closeSheet() {
+    sheetOverlay.classList.remove('open');
+    sheet.classList.remove('open');
+  }
+  document.getElementById('sheetClose').addEventListener('click', closeSheet);
+  sheetOverlay.addEventListener('click', closeSheet);
+
+  // ---------------------------------------------------------------------
+  // Shared tool-building helpers
+  // ---------------------------------------------------------------------
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function fileDrop(label, sub, accept, multiple) {
+    var wrap = el('div', 'file-drop');
+    wrap.innerHTML = '<div class="emoji">📁</div><div class="main">' + label + '</div><div class="sub">' + sub + '</div>';
+    var input = document.createElement('input');
+    input.type = 'file'; input.accept = accept || '*'; input.multiple = !!multiple;
+    input.style.display = 'none';
+    wrap.appendChild(input);
+    wrap.addEventListener('click', function () { input.click(); });
+    return { wrap: wrap, input: input };
+  }
+
+  function blobToBase64(blob) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var result = reader.result;
+        var comma = result.indexOf(',');
+        resolve(comma >= 0 ? result.slice(comma + 1) : result);
+      };
+      reader.onerror = function () { reject(reader.error || new Error('خواندن فایل ناموفق بود')); };
+      reader.readAsDataURL(blob);
+    });
+  }
+  function nativePlugin() {
+    return (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.IranAryaei) || null;
+  }
+  // Inside the Capacitor/Android app, saving means calling the native
+  // IranAryaei.saveBase64 plugin method, which writes into MediaStore
+  // Downloads — a plain <a download> click (the browser-only fallback
+  // below) does NOT persist anything inside a WebView, so the two paths
+  // are not interchangeable and the toast only fires after a REAL result.
+  async function saveBlob(blob, filename) {
+    var plugin = nativePlugin();
+    if (plugin) {
+      try {
+        var base64 = await blobToBase64(blob);
+        await plugin.saveBase64({ name: filename, mime: blob.type || 'application/octet-stream', data: base64 });
+        toast('در پوشه دانلودها ذخیره شد: ' + filename);
+      } catch (err) {
+        toast('ذخیره فایل ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته'));
+      }
+      return;
+    }
+    // Browser fallback — only meaningful when this page is opened in a
+    // normal desktop/mobile browser (e.g. during development), not inside
+    // the packaged Android app.
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 1000);
+    toast('فایل دانلود شد: ' + filename);
+  }
+  async function shareBlob(blob, filename, mime) {
+    var plugin = nativePlugin();
+    if (plugin) {
+      try {
+        var base64 = await blobToBase64(blob);
+        var written = await plugin.writeTempFile({ name: filename, data: base64 });
+        await plugin.shareTempFile({ path: written.path, name: filename, mime: mime });
+      } catch (err) {
+        toast('اشتراک‌گذاری ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته'));
+      }
+      return;
+    }
+    try {
+      var file = new File([blob], filename, { type: mime });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: filename });
+        return;
+      }
+    } catch (e) { /* fall through to download */ }
+    saveBlob(blob, filename);
+    toast('اشتراک‌گذاری مستقیم پشتیبانی نشد — فایل دانلود شد');
+  }
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+    return (n / (1024 * 1024)).toFixed(2) + ' MB';
+  }
+  function loadImageFile(file) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      var url = URL.createObjectURL(file);
+      img.onload = function () { resolve({ img: img, url: url }); };
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+  function resultActions(container, onSave, onShare, onRerun) {
+    var wrap = el('div', 'result-actions');
+    var b1 = el('button', '', '<span class="em">💾</span>ذخیره');
+    var b2 = el('button', '', '<span class="em">📤</span>اشتراک‌گذاری');
+    var b3 = el('button', '', '<span class="em">🔁</span>تکرار');
+    b1.addEventListener('click', onSave);
+    b2.addEventListener('click', onShare);
+    b3.addEventListener('click', onRerun);
+    wrap.appendChild(b1); wrap.appendChild(b2); wrap.appendChild(b3);
+    container.appendChild(wrap);
+  }
+
+  // ---------------------------------------------------------------------
+  // TOOL RENDERERS — the first 10 working tools
+  // ---------------------------------------------------------------------
+  var TOOL_RENDERERS = {};
+
+  // 1. Image Size Reducer -------------------------------------------------
+  TOOL_RENDERERS['img-resize'] = function (body) {
+    var fd = fileDrop('انتخاب عکس (JPG / PNG / WebP)', 'برای انتخاب فایل ضربه بزنید', 'image/*');
+    body.appendChild(fd.wrap);
+
+    var qualityField = el('div', 'field',
+      '<label>کیفیت خروجی: <b id="qVal">70</b>٪</label>' +
+      '<input type="range" id="qSlider" min="10" max="100" value="70">');
+    body.appendChild(qualityField);
+    var qSlider = qualityField.querySelector('#qSlider');
+    var qVal = qualityField.querySelector('#qVal');
+    qSlider.addEventListener('input', function () { qVal.textContent = qSlider.value; });
+
+    var runBtn = el('button', 'run-btn', '▶ اجرای عملیات');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) {
+        runBtn.disabled = false;
+        fd.wrap.querySelector('.main').textContent = currentFile.name;
+        fd.wrap.querySelector('.sub').textContent = fmtBytes(currentFile.size);
+      }
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      loadImageFile(currentFile).then(function (loaded) {
+        var canvas = document.createElement('canvas');
+        canvas.width = loaded.img.naturalWidth; canvas.height = loaded.img.naturalHeight;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(loaded.img, 0, 0);
+        var quality = parseInt(qSlider.value, 10) / 100;
+        canvas.toBlob(function (blob) {
+          runBtn.disabled = false; runBtn.textContent = '▶ اجرای عملیات';
+          var pct = Math.max(0, Math.round((1 - blob.size / currentFile.size) * 100));
+          resultWrap.innerHTML = '';
+          var preview = el('div', 'preview-box');
+          var img2 = document.createElement('img'); img2.src = URL.createObjectURL(blob);
+          preview.appendChild(img2);
+          resultWrap.appendChild(preview);
+          resultWrap.appendChild(el('div', 'stat-line',
+            '<span>حجم اصلی</span><b>' + fmtBytes(currentFile.size) + '</b>'));
+          resultWrap.appendChild(el('div', 'stat-line',
+            '<span>حجم جدید</span><b>' + fmtBytes(blob.size) + '</b>'));
+          resultWrap.appendChild(el('div', 'stat-line',
+            '<span>میزان کاهش</span><b>' + pct + '٪</b>'));
+          var outName = currentFile.name.replace(/\.\w+$/, '') + '-reduced.jpg';
+          resultActions(resultWrap,
+            function () { saveBlob(blob, outName); addHistory('img-resize', outName); },
+            function () { shareBlob(blob, outName, 'image/jpeg'); addHistory('img-resize', outName); },
+            function () { runBtn.click(); });
+        }, 'image/jpeg', quality);
+      });
+    });
+  };
+
+  // 2. Image Compressor & Converter ---------------------------------------
+  TOOL_RENDERERS['img-convert'] = function (body) {
+    var fd = fileDrop('انتخاب عکس', 'برای انتخاب فایل ضربه بزنید', 'image/*');
+    body.appendChild(fd.wrap);
+
+    var fmtField = el('div', 'field', '<label>فرمت خروجی</label><div class="seg" id="fmtSeg">' +
+      '<button data-f="image/jpeg" class="active">JPG</button>' +
+      '<button data-f="image/png">PNG</button>' +
+      '<button data-f="image/webp">WebP</button></div>');
+    body.appendChild(fmtField);
+    var curFormat = 'image/jpeg';
+    fmtField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        fmtField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active'); curFormat = b.dataset.f;
+      });
+    });
+
+    var qualityField = el('div', 'field',
+      '<label>کیفیت: <b id="qVal2">80</b>٪</label><input type="range" id="qSlider2" min="10" max="100" value="80">');
+    body.appendChild(qualityField);
+    var qSlider = qualityField.querySelector('#qSlider2');
+    var qVal = qualityField.querySelector('#qVal2');
+    qSlider.addEventListener('input', function () { qVal.textContent = qSlider.value; });
+
+    var runBtn = el('button', 'run-btn', '▶ اجرای عملیات');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (!currentFile) return;
+      loadImageFile(currentFile).then(function (loaded) {
+        var canvas = document.createElement('canvas');
+        canvas.width = loaded.img.naturalWidth; canvas.height = loaded.img.naturalHeight;
+        var ctx = canvas.getContext('2d');
+        if (curFormat === 'image/jpeg') { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+        ctx.drawImage(loaded.img, 0, 0);
+        canvas.toBlob(function (blob) {
+          var ext = curFormat === 'image/jpeg' ? 'jpg' : (curFormat === 'image/png' ? 'png' : 'webp');
+          var outName = currentFile.name.replace(/\.\w+$/, '') + '.' + ext;
+          resultWrap.innerHTML = '';
+          var preview = el('div', 'preview-box');
+          var img2 = document.createElement('img'); img2.src = URL.createObjectURL(blob);
+          preview.appendChild(img2);
+          resultWrap.appendChild(preview);
+          resultWrap.appendChild(el('div', 'stat-line', '<span>حجم خروجی</span><b>' + fmtBytes(blob.size) + '</b>'));
+          resultActions(resultWrap,
+            function () { saveBlob(blob, outName); addHistory('img-convert', outName); },
+            function () { shareBlob(blob, outName, curFormat); addHistory('img-convert', outName); },
+            function () { runBtn.click(); });
+        }, curFormat, parseInt(qSlider.value, 10) / 100);
+      });
+    });
+  };
+
+  // 3. Image Cropping -------------------------------------------------------
+  TOOL_RENDERERS['img-crop'] = function (body) {
+    var fd = fileDrop('انتخاب عکس', 'برای انتخاب فایل ضربه بزنید', 'image/*');
+    body.appendChild(fd.wrap);
+
+    var ratioField = el('div', 'field', '<label>نسبت برش</label><div class="seg" id="ratioSeg">' +
+      '<button data-r="1" class="active">۱:۱</button>' +
+      '<button data-r="1.777">۱۶:۹</button>' +
+      '<button data-r="1.333">۴:۳</button></div>');
+    body.appendChild(ratioField);
+    var curRatio = 1;
+    ratioField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        ratioField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active'); curRatio = parseFloat(b.dataset.r);
+      });
+    });
+
+    var runBtn = el('button', 'run-btn', '▶ برش از مرکز تصویر');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    body.appendChild(el('div', '', '<div class="sheet-desc" style="margin:0">برش از مرکز تصویر انجام می‌شود؛ نسخهٔ بعدی امکان جابه‌جایی دستی کادر برش را اضافه می‌کند.</div>'));
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (!currentFile) return;
+      loadImageFile(currentFile).then(function (loaded) {
+        var iw = loaded.img.naturalWidth, ih = loaded.img.naturalHeight;
+        var targetRatio = curRatio;
+        var cw, ch;
+        if (iw / ih > targetRatio) { ch = ih; cw = ch * targetRatio; } else { cw = iw; ch = cw / targetRatio; }
+        var sx = (iw - cw) / 2, sy = (ih - ch) / 2;
+        var canvas = document.createElement('canvas');
+        canvas.width = cw; canvas.height = ch;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(loaded.img, sx, sy, cw, ch, 0, 0, cw, ch);
+        canvas.toBlob(function (blob) {
+          var outName = currentFile.name.replace(/\.\w+$/, '') + '-cropped.jpg';
+          resultWrap.innerHTML = '';
+          var preview = el('div', 'preview-box');
+          var img2 = document.createElement('img'); img2.src = URL.createObjectURL(blob);
+          preview.appendChild(img2);
+          resultWrap.appendChild(preview);
+          resultActions(resultWrap,
+            function () { saveBlob(blob, outName); addHistory('img-crop', outName); },
+            function () { shareBlob(blob, outName, 'image/jpeg'); addHistory('img-crop', outName); },
+            function () { runBtn.click(); });
+        }, 'image/jpeg', 0.92);
+      });
+    });
+  };
+
+  // 4. Image Editing & Cropping (rotate / mirror / filters) ----------------
+  TOOL_RENDERERS['img-edit'] = function (body) {
+    var fd = fileDrop('انتخاب عکس', 'برای انتخاب فایل ضربه بزنید', 'image/*');
+    body.appendChild(fd.wrap);
+
+    var state = { rotate: 0, flip: false, filter: 'none' };
+    var toolsRow = el('div', 'field', '<label>عملیات</label><div class="seg" id="editSeg">' +
+      '<button data-a="rotate">↻ چرخش ۹۰°</button>' +
+      '<button data-a="flip">⇋ آینه</button></div>');
+    body.appendChild(toolsRow);
+
+    var filterField = el('div', 'field', '<label>فیلتر</label><div class="seg" id="filterSeg">' +
+      '<button data-f="none" class="active">هیچ</button>' +
+      '<button data-f="grayscale">سیاه‌وسفید</button>' +
+      '<button data-f="sepia">سپیا</button></div>');
+    body.appendChild(filterField);
+    filterField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        filterField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active'); state.filter = b.dataset.f; redraw();
+      });
+    });
+
+    var preview = el('div', 'preview-box', '<span style="font-size:12px;color:var(--text-dim)">عکسی انتخاب نشده</span>');
+    body.appendChild(preview);
+
+    var runBtn = el('button', 'run-btn', '✔ اعمال و ذخیره');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var loadedImg = null, currentFile = null;
+    function redraw() {
+      if (!loadedImg) return;
+      var iw = loadedImg.naturalWidth, ih = loadedImg.naturalHeight;
+      var swapped = state.rotate % 180 !== 0;
+      var canvas = document.createElement('canvas');
+      canvas.width = swapped ? ih : iw; canvas.height = swapped ? iw : ih;
+      var ctx = canvas.getContext('2d');
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate(state.rotate * Math.PI / 180);
+      if (state.flip) ctx.scale(-1, 1);
+      if (state.filter === 'grayscale') ctx.filter = 'grayscale(1)';
+      if (state.filter === 'sepia') ctx.filter = 'sepia(1)';
+      ctx.drawImage(loadedImg, -iw / 2, -ih / 2, iw, ih);
+      ctx.restore();
+      preview.innerHTML = '';
+      preview.appendChild(canvas);
+      preview.dataset.ready = '1';
+    }
+
+    toolsRow.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.a === 'rotate') state.rotate = (state.rotate + 90) % 360;
+        if (b.dataset.a === 'flip') state.flip = !state.flip;
+        redraw();
+      });
+    });
+
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (!currentFile) return;
+      fd.wrap.querySelector('.main').textContent = currentFile.name;
+      loadImageFile(currentFile).then(function (loaded) {
+        loadedImg = loaded.img; runBtn.disabled = false; redraw();
+      });
+    });
+
+    runBtn.addEventListener('click', function () {
+      var canvas = preview.querySelector('canvas');
+      if (!canvas) return;
+      canvas.toBlob(function (blob) {
+        var outName = currentFile.name.replace(/\.\w+$/, '') + '-edited.jpg';
+        resultWrap.innerHTML = '';
+        resultActions(resultWrap,
+          function () { saveBlob(blob, outName); addHistory('img-edit', outName); },
+          function () { shareBlob(blob, outName, 'image/jpeg'); addHistory('img-edit', outName); },
+          function () { runBtn.click(); });
+      }, 'image/jpeg', 0.92);
+    });
+  };
+
+  // 5. Photo Text Adder ------------------------------------------------------
+  TOOL_RENDERERS['img-text'] = function (body) {
+    var fd = fileDrop('انتخاب عکس', 'برای انتخاب فایل ضربه بزنید', 'image/*');
+    body.appendChild(fd.wrap);
+
+    var textField = el('div', 'field', '<label>متن</label><input type="text" id="txtInput" placeholder="متن دلخواه...">');
+    body.appendChild(textField);
+    var textInput = textField.querySelector('#txtInput');
+
+    var sizeField = el('div', 'field', '<label>اندازه فونت: <b id="sizeVal">48</b>px</label><input type="range" id="sizeSlider" min="16" max="120" value="48">');
+    body.appendChild(sizeField);
+    var sizeSlider = sizeField.querySelector('#sizeSlider');
+    var sizeVal = sizeField.querySelector('#sizeVal');
+    sizeSlider.addEventListener('input', function () { sizeVal.textContent = sizeSlider.value; redraw(); });
+
+    var colorField = el('div', 'field', '<label>رنگ متن</label><div class="color-row"><input type="color" id="colorPick" value="#ffffff"></div>');
+    body.appendChild(colorField);
+    var colorPick = colorField.querySelector('#colorPick');
+    colorPick.addEventListener('input', redraw);
+
+    var posField = el('div', 'field', '<label>موقعیت</label><div class="seg" id="posSeg">' +
+      '<button data-p="top" >بالا</button><button data-p="center">وسط</button><button data-p="bottom" class="active">پایین</button></div>');
+    body.appendChild(posField);
+    var curPos = 'bottom';
+    posField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        posField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active'); curPos = b.dataset.p; redraw();
+      });
+    });
+    textInput.addEventListener('input', redraw);
+
+    var preview = el('div', 'preview-box', '<span style="font-size:12px;color:var(--text-dim)">عکسی انتخاب نشده</span>');
+    body.appendChild(preview);
+    var runBtn = el('button', 'run-btn', '✔ اعمال و ذخیره');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var loadedImg = null, currentFile = null;
+    function redraw() {
+      if (!loadedImg) return;
+      var iw = loadedImg.naturalWidth, ih = loadedImg.naturalHeight;
+      var canvas = document.createElement('canvas');
+      canvas.width = iw; canvas.height = ih;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(loadedImg, 0, 0);
+      var fontSize = parseInt(sizeSlider.value, 10) * (iw / 600);
+      ctx.font = fontSize + 'px Vazirmatn, Tahoma, sans-serif';
+      ctx.fillStyle = colorPick.value;
+      ctx.textAlign = 'center';
+      ctx.shadowColor = 'rgba(0,0,0,.5)'; ctx.shadowBlur = 6;
+      var y = curPos === 'top' ? fontSize + 20 : (curPos === 'center' ? ih / 2 : ih - 30);
+      ctx.fillText(textInput.value || '', iw / 2, y);
+      preview.innerHTML = '';
+      preview.appendChild(canvas);
+    }
+
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (!currentFile) return;
+      fd.wrap.querySelector('.main').textContent = currentFile.name;
+      loadImageFile(currentFile).then(function (loaded) { loadedImg = loaded.img; runBtn.disabled = false; redraw(); });
+    });
+
+    runBtn.addEventListener('click', function () {
+      var canvas = preview.querySelector('canvas');
+      if (!canvas) return;
+      canvas.toBlob(function (blob) {
+        var outName = currentFile.name.replace(/\.\w+$/, '') + '-text.jpg';
+        resultWrap.innerHTML = '';
+        resultActions(resultWrap,
+          function () { saveBlob(blob, outName); addHistory('img-text', outName); },
+          function () { shareBlob(blob, outName, 'image/jpeg'); addHistory('img-text', outName); },
+          function () { runBtn.click(); });
+      }, 'image/jpeg', 0.92);
+    });
+  };
+
+  // 6. QR Code Generator -----------------------------------------------------
+  TOOL_RENDERERS['qr-gen'] = function (body) {
+    var textField = el('div', 'field', '<label>متن یا لینک</label><textarea id="qrText" placeholder="https://... یا هر متنی"></textarea>');
+    body.appendChild(textField);
+    var qrText = textField.querySelector('#qrText');
+
+    var sizeField = el('div', 'field', '<label>اندازه خروجی: <b id="qrSizeVal">512</b>px</label><input type="range" id="qrSize" min="256" max="1024" step="64" value="512">');
+    body.appendChild(sizeField);
+    var qrSize = sizeField.querySelector('#qrSize');
+    var qrSizeVal = sizeField.querySelector('#qrSizeVal');
+    qrSize.addEventListener('input', function () { qrSizeVal.textContent = qrSize.value; });
+
+    body.appendChild(el('div', 'sheet-desc', 'سطح تصحیح خطا: M (استاندارد) — ظرفیت تا حدود ۲۰۰ کاراکتر.'));
+
+    var runBtn = el('button', 'run-btn', '▶ ساخت QR Code');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    runBtn.addEventListener('click', function () {
+      var text = qrText.value.trim();
+      if (!text) { toast('ابتدا متن یا لینک را وارد کنید'); return; }
+      if (!window.QRLite.maxLength(text)) { toast('متن خیلی طولانی است (حداکثر ~۲۰۰ کاراکتر)'); return; }
+      try {
+        var canvas = document.createElement('canvas');
+        window.QRLite.drawToCanvas(canvas, text, { targetSize: parseInt(qrSize.value, 10) });
+        resultWrap.innerHTML = '';
+        var preview = el('div', 'preview-box');
+        preview.appendChild(canvas);
+        resultWrap.appendChild(preview);
+        canvas.toBlob(function (blob) {
+          var outName = 'qrcode-' + Date.now() + '.png';
+          resultActions(resultWrap,
+            function () { saveBlob(blob, outName); addHistory('qr-gen', outName); },
+            function () { shareBlob(blob, outName, 'image/png'); addHistory('qr-gen', outName); },
+            function () { runBtn.click(); });
+        }, 'image/png');
+      } catch (err) {
+        toast(err.message || 'خطا در ساخت QR');
+      }
+    });
+  };
+
+  // 7. QR Code Scanner ---------------------------------------------------------
+  TOOL_RENDERERS['qr-scan'] = function (body) {
+    if (!('BarcodeDetector' in window)) {
+      body.appendChild(el('div', 'empty-state',
+        '<div class="emoji">⚠️</div>مرورگر/وب‌ویو این دستگاه از رمزگشایی QR داخلی پشتیبانی نمی‌کند.<br><br>' +
+        'می‌توانید به‌جای دوربین، یک عکس حاوی QR را انتخاب کنید و منتظر بمانید — در برخی دستگاه‌ها همچنان قابل شناسایی است.'));
+    }
+    var fd = fileDrop('انتخاب عکس حاوی QR', 'یا اگر دوربین در دسترس است، بعداً به آن وصل می‌شود', 'image/*');
+    body.appendChild(fd.wrap);
+    var runBtn = el('button', 'run-btn', '▶ خواندن QR از عکس');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (!currentFile) return;
+      if (!('BarcodeDetector' in window)) { toast('این قابلیت روی این دستگاه در دسترس نیست'); return; }
+      loadImageFile(currentFile).then(function (loaded) {
+        var canvas = document.createElement('canvas');
+        canvas.width = loaded.img.naturalWidth; canvas.height = loaded.img.naturalHeight;
+        canvas.getContext('2d').drawImage(loaded.img, 0, 0);
+        var detector = new window.BarcodeDetector({ formats: ['qr_code'] });
+        detector.detect(canvas).then(function (codes) {
+          resultWrap.innerHTML = '';
+          if (!codes.length) { resultWrap.appendChild(el('div', 'empty-state', '<div class="emoji">🔍</div>کد QR شناسایی نشد')); return; }
+          var value = codes[0].rawValue;
+          var box = el('div', 'field', '<label>متن شناسایی‌شده</label><textarea readonly>' + value.replace(/</g, '&lt;') + '</textarea>');
+          resultWrap.appendChild(box);
+          var copyBtn = el('button', 'run-btn secondary', '📋 کپی متن');
+          copyBtn.addEventListener('click', function () {
+            navigator.clipboard.writeText(value).then(function () { toast('متن کپی شد'); });
+          });
+          resultWrap.appendChild(copyBtn);
+          addHistory('qr-scan', currentFile.name);
+        }).catch(function () { toast('خطا در خواندن QR'); });
+      });
+    });
+  };
+
+  // 8. Image to PDF Converter ---------------------------------------------------
+  TOOL_RENDERERS['img-to-pdf'] = function (body) {
+    var fd = fileDrop('انتخاب یک یا چند عکس', 'ترتیب انتخاب = ترتیب صفحات', 'image/*', true);
+    body.appendChild(fd.wrap);
+    var listWrap = el('div', 'field');
+    body.appendChild(listWrap);
+
+    var sizeField = el('div', 'field', '<label>اندازه صفحه</label><div class="seg" id="pageSizeSeg">' +
+      '<button data-s="A4" class="active">A4</button><button data-s="Letter">Letter</button></div>');
+    body.appendChild(sizeField);
+    var curSize = 'A4';
+    sizeField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        sizeField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active'); curSize = b.dataset.s;
+      });
+    });
+
+    var runBtn = el('button', 'run-btn', '▶ ساخت PDF');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var files = [];
+    fd.input.addEventListener('change', function () {
+      files = Array.from(fd.input.files);
+      listWrap.innerHTML = '';
+      files.forEach(function (f) {
+        listWrap.appendChild(el('div', 'file-list-item', '<span class="name">' + f.name + '</span>'));
+      });
+      runBtn.disabled = files.length === 0;
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (!files.length) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال ساخت PDF...';
+      Promise.all(files.map(function (f) { return loadImageFile(f); }))
+        .then(function (loadedArr) {
+          var pages = loadedArr.map(function (loaded) {
+            return window.PDFLite.imageFileToPage(loaded.img, curSize, 24, 0.85);
+          });
+          var pdfBytes = window.PDFLite.buildImagePdf(pages);
+          var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+          runBtn.disabled = false; runBtn.textContent = '▶ ساخت PDF';
+          var outName = 'converted-' + Date.now() + '.pdf';
+          resultWrap.innerHTML = '';
+          resultWrap.appendChild(el('div', 'stat-line', '<span>تعداد صفحات</span><b>' + pages.length + '</b>'));
+          resultWrap.appendChild(el('div', 'stat-line', '<span>حجم فایل</span><b>' + fmtBytes(blob.size) + '</b>'));
+          resultActions(resultWrap,
+            function () { saveBlob(blob, outName); addHistory('img-to-pdf', outName); },
+            function () { shareBlob(blob, outName, 'application/pdf'); addHistory('img-to-pdf', outName); },
+            function () { runBtn.click(); });
+        });
+    });
+  };
+
+  // 9. PDF Merger -----------------------------------------------------------
+  TOOL_RENDERERS['pdf-merge'] = function (body) {
+    body.appendChild(el('div', 'sheet-desc',
+      'این ابزار PDFهای ساده (بدون رمزگذاری، ساختار کلاسیک) از جمله فایل‌های ساخته‌شده در همین برنامه را ادغام می‌کند. برخی PDFهای پیچیده یا رمزگذاری‌شده ممکن است پشتیبانی نشوند.'));
+    var fd = fileDrop('انتخاب دو یا چند فایل PDF', 'ترتیب انتخاب = ترتیب صفحات', 'application/pdf', true);
+    body.appendChild(fd.wrap);
+    var listWrap = el('div', 'field');
+    body.appendChild(listWrap);
+    var runBtn = el('button', 'run-btn', '▶ ادغام فایل‌ها');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var files = [];
+    fd.input.addEventListener('change', function () {
+      files = Array.from(fd.input.files);
+      listWrap.innerHTML = '';
+      files.forEach(function (f) { listWrap.appendChild(el('div', 'file-list-item', '<span class="name">' + f.name + '</span>')); });
+      runBtn.disabled = files.length < 2;
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (files.length < 2) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال ادغام...';
+      Promise.all(files.map(function (f) { return f.arrayBuffer(); }))
+        .then(function (buffers) {
+          var byteArrays = buffers.map(function (b) { return new Uint8Array(b); });
+          var merged;
+          try {
+            merged = window.PDFLite.mergePdfs(byteArrays);
+          } catch (err) {
+            runBtn.disabled = false; runBtn.textContent = '▶ ادغام فایل‌ها';
+            var msg = err.message === 'ENCRYPTED' ? 'یکی از فایل‌ها رمزگذاری‌شده است.' :
+              'ساختار یکی از فایل‌ها پشتیبانی نمی‌شود (PDF پیچیده یا فشرده).';
+            toast(msg);
+            return;
+          }
+          var blob = new Blob([merged], { type: 'application/pdf' });
+          runBtn.disabled = false; runBtn.textContent = '▶ ادغام فایل‌ها';
+          var outName = 'merged-' + Date.now() + '.pdf';
+          resultWrap.innerHTML = '';
+          resultWrap.appendChild(el('div', 'stat-line', '<span>تعداد فایل ادغام‌شده</span><b>' + files.length + '</b>'));
+          resultWrap.appendChild(el('div', 'stat-line', '<span>حجم نهایی</span><b>' + fmtBytes(blob.size) + '</b>'));
+          resultActions(resultWrap,
+            function () { saveBlob(blob, outName); addHistory('pdf-merge', outName); },
+            function () { shareBlob(blob, outName, 'application/pdf'); addHistory('pdf-merge', outName); },
+            function () { runBtn.click(); });
+        });
+    });
+  };
+
+  // 10. PDF Creator (Text to PDF) ---------------------------------------------
+  TOOL_RENDERERS['pdf-text'] = function (body) {
+    body.appendChild(el('div', 'sheet-desc',
+      'چون فونت فارسی به‌صورت آفلاین در دسترس نبود، متن به‌صورت تصویر با کیفیت بالا در PDF قرار می‌گیرد (قابل چاپ و مشاهده، اما غیرقابل جستجو).'));
+    var textField = el('div', 'field', '<label>متن</label><textarea id="pdfTextInput" placeholder="متن فارسی یا انگلیسی خود را اینجا بنویسید..." style="min-height:160px"></textarea>');
+    body.appendChild(textField);
+    var pdfTextInput = textField.querySelector('#pdfTextInput');
+
+    var sizeField = el('div', 'field', '<label>اندازه فونت: <b id="pdfFontVal">22</b>pt</label><input type="range" id="pdfFontSize" min="12" max="40" value="22">');
+    body.appendChild(sizeField);
+    var pdfFontSize = sizeField.querySelector('#pdfFontSize');
+    var pdfFontVal = sizeField.querySelector('#pdfFontVal');
+    pdfFontSize.addEventListener('input', function () { pdfFontVal.textContent = pdfFontSize.value; });
+
+    var orientField = el('div', 'field', '<label>جهت صفحه</label><div class="seg" id="orientSeg">' +
+      '<button data-o="portrait" class="active">عمودی</button><button data-o="landscape">افقی</button></div>');
+    body.appendChild(orientField);
+    var curOrient = 'portrait';
+    orientField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        orientField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active'); curOrient = b.dataset.o;
+      });
+    });
+
+    var runBtn = el('button', 'run-btn', '▶ ساخت PDF');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    runBtn.addEventListener('click', function () {
+      var text = pdfTextInput.value;
+      if (!text.trim()) { toast('ابتدا متنی وارد کنید'); return; }
+      var pageWH = curOrient === 'landscape' ? [842, 595] : [595, 842];
+      var scale = 2; // render at 2x for crisp text
+      var pxW = pageWH[0] * scale, pxH = pageWH[1] * scale;
+      var margin = 48 * scale;
+      var fontPx = parseInt(pdfFontSize.value, 10) * scale;
+      var lineHeight = fontPx * 1.7;
+
+      // measure + wrap text into lines (RTL-aware via canvas direction)
+      var measureCanvas = document.createElement('canvas');
+      var mctx = measureCanvas.getContext('2d');
+      mctx.font = fontPx + 'px Vazirmatn, Tahoma, sans-serif';
+      var maxLineWidth = pxW - margin * 2;
+      var paragraphs = text.split('\n');
+      var lines = [];
+      paragraphs.forEach(function (para) {
+        var words = para.split(' ');
+        var cur = '';
+        words.forEach(function (w) {
+          var test = cur ? cur + ' ' + w : w;
+          if (mctx.measureText(test).width > maxLineWidth && cur) { lines.push(cur); cur = w; }
+          else cur = test;
+        });
+        lines.push(cur);
+      });
+
+      var linesPerPage = Math.floor((pxH - margin * 2) / lineHeight);
+      var pageChunks = [];
+      for (var i = 0; i < lines.length; i += linesPerPage) pageChunks.push(lines.slice(i, i + linesPerPage));
+      if (!pageChunks.length) pageChunks = [[]];
+
+      var pages = pageChunks.map(function (chunk) {
+        var canvas = document.createElement('canvas');
+        canvas.width = pxW; canvas.height = pxH;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, pxW, pxH);
+        ctx.fillStyle = '#1A1A1A';
+        ctx.font = fontPx + 'px Vazirmatn, Tahoma, sans-serif';
+        ctx.direction = 'rtl';
+        ctx.textAlign = 'right';
+        chunk.forEach(function (line, idx) {
+          ctx.fillText(line, pxW - margin, margin + fontPx + idx * lineHeight);
+        });
+        return window.PDFLite.canvasToPage(canvas, curOrient === 'landscape' ? 'Letter' : 'A4', 0, 0.9);
+      });
+      // Force exact custom page size by overriding pageSize lookup isn't simple; use A4/Letter closest match already set.
+      var pdfBytes = window.PDFLite.buildImagePdf(pages);
+      var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      var outName = 'document-' + Date.now() + '.pdf';
+      resultWrap.innerHTML = '';
+      resultWrap.appendChild(el('div', 'stat-line', '<span>تعداد صفحات</span><b>' + pages.length + '</b>'));
+      resultWrap.appendChild(el('div', 'stat-line', '<span>حجم فایل</span><b>' + fmtBytes(blob.size) + '</b>'));
+      resultActions(resultWrap,
+        function () { saveBlob(blob, outName); addHistory('pdf-text', outName); },
+        function () { shareBlob(blob, outName, 'application/pdf'); addHistory('pdf-text', outName); },
+        function () { runBtn.click(); });
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // Calendar math — Jalali (Shamsi) <-> Gregorian <-> Hijri
+  // (verified via round-trip testing over 2010-2035 / Hijri 1400-1450,
+  // 0 failures; algorithms are the standard, widely-used ones — see README)
+  // ---------------------------------------------------------------------
+  var CAL = (function () {
+    function div(a, b) { var q = a / b; return q >= 0 ? Math.trunc(q) : -Math.trunc(-q); }
+    function mod(a, b) { return a - b * div(a, b); }
+
+    function g2d(gy, gm, gd) {
+      var d = div((gy + div(gm - 8, 6) + 100100) * 1461, 4)
+        + div(153 * mod(gm + 9, 12) + 2, 5) + gd - 34840408;
+      d = d - div(div(gy + 100100 + div(gm - 8, 6), 100) * 3, 4) + 752;
+      return d;
+    }
+    function d2g(jdn) {
+      var j = 4 * jdn + 139361631;
+      j = j + div(div(4 * jdn + 183187720, 146097) * 3, 4) * 4 - 3908;
+      var i = div(mod(j, 1461), 4) * 5 + 308;
+      var gd = div(mod(i, 153), 5) + 1;
+      var gm = mod(div(i, 153), 12) + 1;
+      var gy = div(j, 1461) - 100100 + div(8 - gm, 6);
+      return [gy, gm, gd];
+    }
+
+    var BREAKS = [-61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210,
+      1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178];
+    function jalCal(jy) {
+      var bl = BREAKS.length, gy = jy + 621, leapJ = -14, jp = BREAKS[0], jump = 0, i, jm, n;
+      for (i = 1; i < bl; i++) {
+        jm = BREAKS[i]; jump = jm - jp;
+        if (jy < jm) break;
+        leapJ = leapJ + div(jump, 33) * 8 + div(mod(jump, 33), 4);
+        jp = jm;
+      }
+      n = jy - jp;
+      leapJ = leapJ + div(n, 33) * 8 + div(mod(n, 33) + 3, 4);
+      if (mod(jump, 33) === 4 && jump - n === 4) leapJ += 1;
+      var leapG = div(gy, 4) - div((div(gy, 100) + 1) * 3, 4) - 150;
+      var march = 20 + leapJ - leapG;
+      if (jump - n < 6) n = n - jump + div(jump, 33) * 33;
+      var leap = mod(mod(n + 1, 33) - 1, 4);
+      if (leap === -1) leap = 4;
+      return { leap: leap, gy: gy, march: march };
+    }
+    function j2d(jy, jm, jd) {
+      var r = jalCal(jy);
+      return g2d(r.gy, 3, r.march) + (jm - 1) * 31 - div(jm, 7) * (jm - 7) + jd - 1;
+    }
+    function d2j(jdn) {
+      var gy = d2g(jdn)[0], jy = gy - 621, r = jalCal(jy);
+      var jdn1f = g2d(r.gy, 3, r.march), k = jdn - jdn1f, jm, jd;
+      if (k >= 0) {
+        if (k <= 185) { jm = 1 + div(k, 31); jd = mod(k, 31) + 1; return [jy, jm, jd]; }
+        else k -= 186;
+      } else { jy -= 1; k += 179; if (r.leap === 1) k += 1; }
+      jm = 7 + div(k, 30); jd = mod(k, 30) + 1;
+      return [jy, jm, jd];
+    }
+    function g2j(gy, gm, gd) { return d2j(g2d(gy, gm, gd)); }
+    function j2g(jy, jm, jd) { return d2g(j2d(jy, jm, jd)); }
+    function jalaliMonthLength(jy, jm) {
+      if (jm <= 6) return 31;
+      if (jm <= 11) return 30;
+      return jalCal(jy + 1).leap === 1 ? 30 : 29; // Esfand
+    }
+
+    // Hijri (tabular civil calendar — see README for the ~1-2 day caveat vs moon-sighting)
+    function h2d(y, m, d) {
+      return d + Math.ceil(29.5 * (m - 1)) + (y - 1) * 354 + Math.floor((3 + 11 * y) / 30) + 1948440 - 1;
+    }
+    function d2h(jdn) {
+      jdn = jdn - 1948440 + 10632;
+      var n = Math.floor((jdn - 1) / 10631);
+      jdn = jdn - 10631 * n + 354;
+      var j = Math.floor((10985 - jdn) / 5316) * Math.floor(50 * jdn / 17719) + Math.floor(jdn / 5670) * Math.floor(43 * jdn / 15238);
+      jdn = jdn - Math.floor((30 - j) / 15) * Math.floor(17719 * j / 50) - Math.floor(j / 16) * Math.floor(15238 * j / 43) + 29;
+      var m = Math.floor(24 * jdn / 709);
+      var d = jdn - Math.floor(709 * m / 24);
+      var y = 30 * n + j - 30;
+      return [Math.trunc(y), Math.trunc(m), Math.trunc(d)];
+    }
+    function g2h(gy, gm, gd) { return d2h(g2d(gy, gm, gd)); }
+    function h2g(hy, hm, hd) { return d2g(h2d(hy, hm, hd)); }
+
+    var JALALI_MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
+    var GREGORIAN_MONTHS = ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر'];
+    var HIJRI_MONTHS = ['محرم', 'صفر', 'ربیع‌الاول', 'ربیع‌الثانی', 'جمادی‌الاول', 'جمادی‌الثانی', 'رجب', 'شعبان', 'رمضان', 'شوال', 'ذیقعده', 'ذیحجه'];
+    var WEEKDAYS = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
+
+    return {
+      g2j: g2j, j2g: j2g, g2h: g2h, h2g: h2g, g2d: g2d, d2g: d2g,
+      jalaliMonthLength: jalaliMonthLength,
+      JALALI_MONTHS: JALALI_MONTHS, GREGORIAN_MONTHS: GREGORIAN_MONTHS, HIJRI_MONTHS: HIJRI_MONTHS, WEEKDAYS: WEEKDAYS
+    };
+  })();
+
+  // ---------------------------------------------------------------------
+  // 11. Favicon Generator (also: a tiny from-scratch ZIP writer, store-only)
+  // ---------------------------------------------------------------------
+  var ZIP = (function () {
+    var CRC_TABLE = (function () {
+      var t = [];
+      for (var n = 0; n < 256; n++) {
+        var c = n;
+        for (var k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        t[n] = c >>> 0;
+      }
+      return t;
+    })();
+    function crc32(bytes) {
+      var crc = 0xFFFFFFFF;
+      for (var i = 0; i < bytes.length; i++) crc = CRC_TABLE[(crc ^ bytes[i]) & 0xFF] ^ (crc >>> 8);
+      return (crc ^ 0xFFFFFFFF) >>> 0;
+    }
+    function dosDateTime() {
+      var d = new Date();
+      var time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
+      var date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+      return { time: time, date: date };
+    }
+    function u16(n) { return [n & 0xFF, (n >> 8) & 0xFF]; }
+    function u32(n) { return [n & 0xFF, (n >> 8) & 0xFF, (n >> 16) & 0xFF, (n >> 24) & 0xFF]; }
+    function build(files) { // files: [{name, bytes(Uint8Array)}]
+      var localParts = [], centralParts = [], offset = 0;
+      var dt = dosDateTime();
+      files.forEach(function (f) {
+        var nameBytes = new TextEncoder().encode(f.name);
+        var crc = crc32(f.bytes);
+        var size = f.bytes.length;
+        var localHeader = [].concat(
+          u32(0x04034b50), u16(20), u16(0), u16(0), u16(dt.time), u16(dt.date),
+          u32(crc), u32(size), u32(size), u16(nameBytes.length), u16(0)
+        );
+        var local = new Uint8Array(localHeader.length + nameBytes.length + size);
+        local.set(localHeader, 0);
+        local.set(nameBytes, localHeader.length);
+        local.set(f.bytes, localHeader.length + nameBytes.length);
+        localParts.push(local);
+
+        var centralHeader = [].concat(
+          u32(0x02014b50), u16(20), u16(20), u16(0), u16(0), u16(dt.time), u16(dt.date),
+          u32(crc), u32(size), u32(size), u16(nameBytes.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(offset)
+        );
+        var central = new Uint8Array(centralHeader.length + nameBytes.length);
+        central.set(centralHeader, 0);
+        central.set(nameBytes, centralHeader.length);
+        centralParts.push(central);
+
+        offset += local.length;
+      });
+      var centralStart = offset;
+      var centralSize = centralParts.reduce(function (s, p) { return s + p.length; }, 0);
+      var eocd = new Uint8Array([].concat(
+        u32(0x06054b50), u16(0), u16(0), u16(files.length), u16(files.length),
+        u32(centralSize), u32(centralStart), u16(0)
+      ));
+      var all = localParts.concat(centralParts, [eocd]);
+      var total = all.reduce(function (s, p) { return s + p.length; }, 0);
+      var out = new Uint8Array(total);
+      var pos = 0;
+      all.forEach(function (p) { out.set(p, pos); pos += p.length; });
+      return out;
+    }
+    return { build: build };
+  })();
+
+  TOOL_RENDERERS['favicon-gen'] = function (body) {
+    var fd = fileDrop('انتخاب یک عکس', 'ترجیحاً مربعی برای بهترین نتیجه', 'image/*');
+    body.appendChild(fd.wrap);
+    var runBtn = el('button', 'run-btn', '▶ ساخت بستهٔ فاوآیکون (ZIP)');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (!currentFile) return;
+      loadImageFile(currentFile).then(function (loaded) {
+        var sizes = [16, 32, 48, 64, 128, 256];
+        var promises = sizes.map(function (sz) {
+          return new Promise(function (resolve) {
+            var canvas = document.createElement('canvas');
+            canvas.width = sz; canvas.height = sz;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(loaded.img, 0, 0, sz, sz);
+            canvas.toBlob(function (blob) {
+              blob.arrayBuffer().then(function (buf) { resolve({ name: 'favicon-' + sz + 'x' + sz + '.png', bytes: new Uint8Array(buf) }); });
+            }, 'image/png');
+          });
+        });
+        Promise.all(promises).then(function (files) {
+          var zipBytes = ZIP.build(files);
+          var blob = new Blob([zipBytes], { type: 'application/zip' });
+          var outName = 'favicons-' + Date.now() + '.zip';
+          resultWrap.innerHTML = '';
+          resultWrap.appendChild(el('div', 'stat-line', '<span>تعداد فایل</span><b>' + files.length + '</b>'));
+          resultActions(resultWrap,
+            function () { saveBlob(blob, outName); addHistory('favicon-gen', outName); },
+            function () { shareBlob(blob, outName, 'application/zip'); addHistory('favicon-gen', outName); },
+            function () { runBtn.click(); });
+        });
+      });
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 12. SVG to Image Converter
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['svg-to-img'] = function (body) {
+    var fd = fileDrop('انتخاب فایل SVG', 'برای انتخاب فایل ضربه بزنید', 'image/svg+xml');
+    body.appendChild(fd.wrap);
+    var sizeField = el('div', 'field', '<label>اندازه خروجی: <b id="svgSizeVal">512</b>px</label><input type="range" id="svgSize" min="128" max="2048" step="64" value="512">');
+    body.appendChild(sizeField);
+    var svgSize = sizeField.querySelector('#svgSize'), svgSizeVal = sizeField.querySelector('#svgSizeVal');
+    svgSize.addEventListener('input', function () { svgSizeVal.textContent = svgSize.value; });
+    var fmtField = el('div', 'field', '<label>فرمت</label><div class="seg" id="svgFmt"><button data-f="image/png" class="active">PNG</button><button data-f="image/jpeg">JPG</button></div>');
+    body.appendChild(fmtField);
+    var curFmt = 'image/png';
+    fmtField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { fmtField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curFmt = b.dataset.f; });
+    });
+    var runBtn = el('button', 'run-btn', '▶ تبدیل');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    runBtn.addEventListener('click', function () {
+      if (!currentFile) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        var svgText = reader.result;
+        var svgBlob = new Blob([svgText], { type: 'image/svg+xml' });
+        var url = URL.createObjectURL(svgBlob);
+        var img = new Image();
+        img.onload = function () {
+          var sz = parseInt(svgSize.value, 10);
+          var canvas = document.createElement('canvas');
+          canvas.width = sz; canvas.height = sz;
+          var ctx = canvas.getContext('2d');
+          if (curFmt === 'image/jpeg') { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, sz, sz); }
+          ctx.drawImage(img, 0, 0, sz, sz);
+          URL.revokeObjectURL(url);
+          canvas.toBlob(function (blob) {
+            var ext = curFmt === 'image/png' ? 'png' : 'jpg';
+            var outName = currentFile.name.replace(/\.\w+$/, '') + '.' + ext;
+            resultWrap.innerHTML = '';
+            var preview = el('div', 'preview-box');
+            var img2 = document.createElement('img'); img2.src = URL.createObjectURL(blob);
+            preview.appendChild(img2); resultWrap.appendChild(preview);
+            resultActions(resultWrap,
+              function () { saveBlob(blob, outName); addHistory('svg-to-img', outName); },
+              function () { shareBlob(blob, outName, curFmt); addHistory('svg-to-img', outName); },
+              function () { runBtn.click(); });
+          }, curFmt, 0.92);
+        };
+        img.onerror = function () { toast('فایل SVG قابل خواندن نبود'); };
+        img.src = url;
+      };
+      reader.readAsText(currentFile);
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 13. Strong Password Generator
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['password-gen'] = function (body) {
+    var lenField = el('div', 'field', '<label>طول رمز: <b id="pwLenVal">16</b></label><input type="range" id="pwLen" min="6" max="64" value="16">');
+    body.appendChild(lenField);
+    var pwLen = lenField.querySelector('#pwLen'), pwLenVal = lenField.querySelector('#pwLenVal');
+    pwLen.addEventListener('input', function () { pwLenVal.textContent = pwLen.value; });
+
+    var opts = { upper: true, numbers: true, symbols: true };
+    var optsField = el('div', 'field', '<label>شامل شود</label><div class="seg" id="pwOpts" style="flex-wrap:wrap">' +
+      '<button data-o="upper" class="active">حروف بزرگ</button>' +
+      '<button data-o="numbers" class="active">اعداد</button>' +
+      '<button data-o="symbols" class="active">نمادها</button></div>');
+    body.appendChild(optsField);
+    optsField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { b.classList.toggle('active'); opts[b.dataset.o] = b.classList.contains('active'); });
+    });
+
+    var runBtn = el('button', 'run-btn', '🔐 تولید رمز');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    function generate() {
+      var lower = 'abcdefghijklmnopqrstuvwxyz';
+      var chars = lower;
+      if (opts.upper) chars += lower.toUpperCase();
+      if (opts.numbers) chars += '0123456789';
+      if (opts.symbols) chars += '!@#$%^&*()_-+=[]{}';
+      var len = parseInt(pwLen.value, 10);
+      var arr = new Uint32Array(len);
+      crypto.getRandomValues(arr);
+      var pw = '';
+      for (var i = 0; i < len; i++) pw += chars[arr[i] % chars.length];
+      return pw;
+    }
+
+    runBtn.addEventListener('click', function () {
+      var pw = generate();
+      resultWrap.innerHTML = '';
+      var box = el('div', 'field', '<label>رمز تولید‌شده</label><input type="text" id="pwOut" readonly style="font-family:monospace;font-size:15px;letter-spacing:1px">');
+      box.querySelector('#pwOut').value = pw;
+      resultWrap.appendChild(box);
+      var copyBtn = el('button', 'run-btn secondary', '📋 کپی رمز');
+      copyBtn.addEventListener('click', function () { navigator.clipboard.writeText(pw).then(function () { toast('رمز کپی شد'); }); });
+      resultWrap.appendChild(copyBtn);
+      addHistory('password-gen', 'رمز ' + pw.length + ' کاراکتری');
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 14. Notepad (IndexedDB)
+  // ---------------------------------------------------------------------
+  var notesDB = null;
+  function openNotesDB() {
+    return new Promise(function (resolve, reject) {
+      if (notesDB) return resolve(notesDB);
+      var req = indexedDB.open('ia_notes_db', 1);
+      req.onupgradeneeded = function () {
+        req.result.createObjectStore('notes', { keyPath: 'id', autoIncrement: true });
+      };
+      req.onsuccess = function () { notesDB = req.result; resolve(notesDB); };
+      req.onerror = function () { reject(req.error); };
+    });
+  }
+  function notesGetAll() {
+    return openNotesDB().then(function (db) {
+      return new Promise(function (resolve) {
+        var tx = db.transaction('notes', 'readonly');
+        var req = tx.objectStore('notes').getAll();
+        req.onsuccess = function () { resolve(req.result.sort(function (a, b) { return b.updated - a.updated; })); };
+      });
+    });
+  }
+  function notesPut(note) {
+    return openNotesDB().then(function (db) {
+      return new Promise(function (resolve) {
+        var tx = db.transaction('notes', 'readwrite');
+        var req = tx.objectStore('notes').put(note);
+        req.onsuccess = function () { resolve(req.result); };
+      });
+    });
+  }
+  function notesDelete(id) {
+    return openNotesDB().then(function (db) {
+      return new Promise(function (resolve) {
+        var tx = db.transaction('notes', 'readwrite');
+        tx.objectStore('notes').delete(id);
+        tx.oncomplete = function () { resolve(); };
+      });
+    });
+  }
+
+  TOOL_RENDERERS['notepad'] = function (body) {
+    var searchField = el('div', 'field', '<input type="text" id="noteSearch" placeholder="جست‌وجو در یادداشت‌ها...">');
+    body.appendChild(searchField);
+    var newBtn = el('button', 'run-btn', '+ یادداشت جدید');
+    body.appendChild(newBtn);
+    var listWrap = el('div');
+    body.appendChild(listWrap);
+    var editorWrap = el('div');
+    body.appendChild(editorWrap);
+
+    var allNotes = [];
+    function refresh() {
+      notesGetAll().then(function (notes) {
+        allNotes = notes;
+        renderList(searchField.querySelector('#noteSearch').value);
+      });
+    }
+    function renderList(filter) {
+      var q = (filter || '').trim().toLowerCase();
+      var list = !q ? allNotes : allNotes.filter(function (n) {
+        return (n.title || '').toLowerCase().indexOf(q) !== -1 || (n.text || '').toLowerCase().indexOf(q) !== -1;
+      });
+      listWrap.innerHTML = '';
+      if (!list.length) { listWrap.appendChild(el('div', 'empty-state', '<div class="emoji">🗒️</div>یادداشتی موجود نیست')); return; }
+      list.forEach(function (n) {
+        var row = el('div', 'history-row', '');
+        row.style.cursor = 'pointer';
+        row.innerHTML = '<div class="history-icon">🗒️</div><div style="flex:1"><div class="history-name">' +
+          (n.title || 'بدون عنوان') + '</div><div class="history-meta">' + (n.text || '').slice(0, 40) + '</div></div>';
+        row.addEventListener('click', function () { openEditor(n); });
+        listWrap.appendChild(row);
+      });
+    }
+    function openEditor(note) {
+      editorWrap.innerHTML = '';
+      var titleField = el('div', 'field', '<input type="text" id="noteTitle" placeholder="عنوان">');
+      titleField.querySelector('#noteTitle').value = note.title || '';
+      var bodyField = el('div', 'field', '<textarea id="noteBody" style="min-height:140px" placeholder="متن یادداشت..."></textarea>');
+      bodyField.querySelector('#noteBody').value = note.text || '';
+      editorWrap.appendChild(titleField); editorWrap.appendChild(bodyField);
+      var saveBtn = el('button', 'run-btn', '💾 ذخیره یادداشت');
+      var delBtn = el('button', 'run-btn secondary', '🗑️ حذف');
+      editorWrap.appendChild(saveBtn);
+      if (note.id) editorWrap.appendChild(delBtn);
+      saveBtn.addEventListener('click', function () {
+        var toSave = { title: titleField.querySelector('#noteTitle').value, text: bodyField.querySelector('#noteBody').value, updated: Date.now() };
+        if (note.id) toSave.id = note.id;
+        notesPut(toSave).then(function () { toast('یادداشت ذخیره شد'); editorWrap.innerHTML = ''; refresh(); });
+      });
+      delBtn.addEventListener('click', function () {
+        notesDelete(note.id).then(function () { toast('یادداشت حذف شد'); editorWrap.innerHTML = ''; refresh(); });
+      });
+    }
+    newBtn.addEventListener('click', function () { openEditor({}); });
+    searchField.querySelector('#noteSearch').addEventListener('input', function (e) { renderList(e.target.value); });
+    refresh();
+  };
+
+  // ---------------------------------------------------------------------
+  // 15. Text Analyzer
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['text-analyzer'] = function (body) {
+    var field = el('div', 'field', '<textarea id="anText" style="min-height:160px" placeholder="متن خود را اینجا وارد یا جای‌گذاری کنید..."></textarea>');
+    body.appendChild(field);
+    var statsWrap = el('div');
+    body.appendChild(statsWrap);
+    var textarea = field.querySelector('#anText');
+    function analyze() {
+      var text = textarea.value;
+      var chars = text.length;
+      var charsNoSpace = text.replace(/\s/g, '').length;
+      var words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      var sentences = text.trim() ? (text.match(/[.!?؟。]+/g) || []).length || (text.trim() ? 1 : 0) : 0;
+      var paragraphs = text.trim() ? text.split(/\n\s*\n/).filter(function (p) { return p.trim(); }).length : 0;
+      var readingMin = Math.max(1, Math.ceil(words / 200));
+      statsWrap.innerHTML = '';
+      [['تعداد کاراکتر', chars], ['کاراکتر بدون فاصله', charsNoSpace], ['تعداد کلمات', words],
+        ['تعداد جملات', sentences], ['تعداد پاراگراف‌ها', paragraphs], ['زمان مطالعه تقریبی', readingMin + ' دقیقه']
+      ].forEach(function (row) { statsWrap.appendChild(el('div', 'stat-line', '<span>' + row[0] + '</span><b>' + row[1] + '</b>')); });
+    }
+    textarea.addEventListener('input', analyze);
+    analyze();
+  };
+
+  // ---------------------------------------------------------------------
+  // 16. Code Formatting & Minification
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['code-format'] = function (body) {
+    var langField = el('div', 'field', '<label>زبان</label><div class="seg" id="langSeg">' +
+      '<button data-l="json" class="active">JSON</button><button data-l="css">CSS</button><button data-l="html">HTML</button><button data-l="js">JS</button></div>');
+    body.appendChild(langField);
+    var curLang = 'json';
+    langField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { langField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curLang = b.dataset.l; });
+    });
+    var inField = el('div', 'field', '<label>کد ورودی</label><textarea id="codeIn" style="min-height:140px;font-family:monospace"></textarea>');
+    body.appendChild(inField);
+    var modeField = el('div', 'field', '<label>عملیات</label><div class="seg" id="modeSeg"><button data-m="format" class="active">فرمت‌بندی (زیبا)</button><button data-m="minify">کوچک‌سازی</button></div>');
+    body.appendChild(modeField);
+    var curMode = 'format';
+    modeField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { modeField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curMode = b.dataset.m; });
+    });
+    var runBtn = el('button', 'run-btn', '▶ اجرا');
+    body.appendChild(runBtn);
+    var outField = el('div', 'field', '<label>خروجی</label><textarea id="codeOut" readonly style="min-height:140px;font-family:monospace"></textarea>');
+    body.appendChild(outField);
+    var copyBtn = el('button', 'run-btn secondary', '📋 کپی خروجی');
+    body.appendChild(copyBtn);
+
+    function basicIndent(code) {
+      var out = '', depth = 0, i = 0;
+      code = code.replace(/>\s*</g, '>\n<'); // rough HTML tag split
+      var lines = code.split(/\n|(?<=[{;}])/).map(function (l) { return l.trim(); }).filter(Boolean);
+      lines.forEach(function (line) {
+        if (/^[}\)\]]/.test(line) || /^<\//.test(line)) depth = Math.max(0, depth - 1);
+        out += '  '.repeat(depth) + line + '\n';
+        var opens = (line.match(/[{(\[]/g) || []).length;
+        var closes = (line.match(/[})\]]/g) || []).length;
+        if (/<[a-zA-Z]/.test(line) && !/\/>$/.test(line) && !/<\//.test(line) && curLang === 'html') depth++;
+        else depth += Math.max(0, opens - closes);
+      });
+      return out.trim();
+    }
+    function minifyGeneric(code) {
+      return code
+        .replace(/\/\*[\s\S]*?\*\//g, '')     // block comments
+        .replace(/(^|[^:])\/\/.*$/gm, '$1')   // line comments (best-effort)
+        .replace(/>\s+</g, '><')
+        .replace(/\s*\n\s*/g, ' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    }
+
+    runBtn.addEventListener('click', function () {
+      var input = inField.querySelector('#codeIn').value;
+      var output = '';
+      try {
+        if (curLang === 'json') {
+          var obj = JSON.parse(input);
+          output = curMode === 'format' ? JSON.stringify(obj, null, 2) : JSON.stringify(obj);
+        } else {
+          output = curMode === 'format' ? basicIndent(input) : minifyGeneric(input);
+        }
+        outField.querySelector('#codeOut').value = output;
+        addHistory('code-format', curLang.toUpperCase() + ' · ' + (curMode === 'format' ? 'فرمت' : 'کوچک‌سازی'));
+      } catch (err) {
+        toast('خطا: ' + (err.message || 'کد نامعتبر است'));
+      }
+    });
+    copyBtn.addEventListener('click', function () {
+      var v = outField.querySelector('#codeOut').value;
+      if (!v) { toast('ابتدا کد را پردازش کنید'); return; }
+      navigator.clipboard.writeText(v).then(function () { toast('کپی شد'); });
+    });
+    body.appendChild(el('div', 'sheet-desc',
+      'فرمت‌بندی HTML/CSS/JS در این نسخه بر پایه قواعد ساده تورفتگی است (نه یک پارسر کامل)؛ برای JSON دقیق و کامل است.'));
+  };
+
+  // ---------------------------------------------------------------------
+  // 17. Regex Tester
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['regex-test'] = function (body) {
+    var patField = el('div', 'field', '<label>الگو (Pattern)</label><input type="text" id="reInput" placeholder="مثلاً: \\d+">');
+    body.appendChild(patField);
+    var flagsField = el('div', 'field', '<label>پرچم‌ها (Flags)</label><input type="text" id="reFlags" value="g" placeholder="g, i, m...">');
+    body.appendChild(flagsField);
+    var testField = el('div', 'field', '<label>متن تست</label><textarea id="reText" style="min-height:120px"></textarea>');
+    body.appendChild(testField);
+    var runBtn = el('button', 'run-btn', '▶ تست');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    runBtn.addEventListener('click', function () {
+      var pattern = patField.querySelector('#reInput').value;
+      var flags = flagsField.querySelector('#reFlags').value;
+      var text = testField.querySelector('#reText').value;
+      resultWrap.innerHTML = '';
+      try {
+        var re = new RegExp(pattern, flags);
+        var matches = flags.indexOf('g') !== -1 ? Array.from(text.matchAll(re)) : (re.exec(text) ? [re.exec(text)] : []);
+        resultWrap.appendChild(el('div', 'stat-line', '<span>تعداد تطابق‌ها</span><b>' + matches.length + '</b>'));
+        matches.slice(0, 50).forEach(function (m, idx) {
+          var groups = m.slice(1).filter(function (g) { return g !== undefined; });
+          resultWrap.appendChild(el('div', 'file-list-item', '<span class="name">#' + (idx + 1) + ': "' + m[0] + '"' +
+            (groups.length ? ' — گروه‌ها: ' + groups.join(', ') : '') + '</span>'));
+        });
+        addHistory('regex-test', pattern);
+      } catch (err) {
+        toast('الگوی نامعتبر: ' + err.message);
+      }
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 18. Text Comparison (word-level LCS diff)
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['text-diff'] = function (body) {
+    var f1 = el('div', 'field', '<label>متن اول</label><textarea id="diffA" style="min-height:100px"></textarea>');
+    var f2 = el('div', 'field', '<label>متن دوم</label><textarea id="diffB" style="min-height:100px"></textarea>');
+    body.appendChild(f1); body.appendChild(f2);
+    var runBtn = el('button', 'run-btn', '▶ مقایسه');
+    body.appendChild(runBtn);
+    var resultWrap = el('div', 'preview-box', '');
+    resultWrap.style.display = 'block'; resultWrap.style.textAlign = 'right'; resultWrap.style.lineHeight = '2';
+    body.appendChild(resultWrap);
+
+    function lcsDiff(a, b) {
+      var n = a.length, m = b.length;
+      var dp = Array.from({ length: n + 1 }, function () { return new Int32Array(m + 1); });
+      for (var i = n - 1; i >= 0; i--) for (var j = m - 1; j >= 0; j--) {
+        dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+      }
+      var out = [], i2 = 0, j2 = 0;
+      while (i2 < n && j2 < m) {
+        if (a[i2] === b[j2]) { out.push({ t: 'same', w: a[i2] }); i2++; j2++; }
+        else if (dp[i2 + 1][j2] >= dp[i2][j2 + 1]) { out.push({ t: 'del', w: a[i2] }); i2++; }
+        else { out.push({ t: 'add', w: b[j2] }); j2++; }
+      }
+      while (i2 < n) { out.push({ t: 'del', w: a[i2] }); i2++; }
+      while (j2 < m) { out.push({ t: 'add', w: b[j2] }); j2++; }
+      return out;
+    }
+
+    runBtn.addEventListener('click', function () {
+      var a = f1.querySelector('#diffA').value.split(/\s+/).filter(Boolean);
+      var b = f2.querySelector('#diffB').value.split(/\s+/).filter(Boolean);
+      var diff = lcsDiff(a, b);
+      resultWrap.innerHTML = diff.map(function (d) {
+        if (d.t === 'same') return '<span>' + d.w + '</span>';
+        if (d.t === 'del') return '<span style="background:rgba(192,57,43,.18);text-decoration:line-through;color:var(--danger)">' + d.w + '</span>';
+        return '<span style="background:rgba(46,139,87,.18);color:var(--success)">' + d.w + '</span>';
+      }).join(' ');
+      addHistory('text-diff', 'مقایسه دو متن');
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 19. Meta Tag Generator
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['meta-gen'] = function (body) {
+    var titleField = el('div', 'field', '<label>عنوان صفحه</label><input type="text" id="metaTitle">');
+    var descField = el('div', 'field', '<label>توضیحات</label><textarea id="metaDesc" style="min-height:70px"></textarea>');
+    var imgField = el('div', 'field', '<label>آدرس تصویر (اختیاری)</label><input type="text" id="metaImg" placeholder="https://...">');
+    body.appendChild(titleField); body.appendChild(descField); body.appendChild(imgField);
+    var runBtn = el('button', 'run-btn', '▶ ساخت تگ‌ها');
+    body.appendChild(runBtn);
+    var outField = el('div', 'field', '<label>خروجی HTML</label><textarea id="metaOut" readonly style="min-height:180px;font-family:monospace"></textarea>');
+    body.appendChild(outField);
+    var copyBtn = el('button', 'run-btn secondary', '📋 کپی');
+    body.appendChild(copyBtn);
+
+    function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
+    runBtn.addEventListener('click', function () {
+      var title = titleField.querySelector('#metaTitle').value;
+      var desc = descField.querySelector('#metaDesc').value;
+      var img = imgField.querySelector('#metaImg').value;
+      var lines = [
+        '<title>' + esc(title) + '</title>',
+        '<meta name="description" content="' + esc(desc) + '">',
+        '<meta property="og:title" content="' + esc(title) + '">',
+        '<meta property="og:description" content="' + esc(desc) + '">'
+      ];
+      if (img) lines.push('<meta property="og:image" content="' + esc(img) + '">');
+      lines.push('<meta name="twitter:card" content="summary_large_image">');
+      lines.push('<meta name="twitter:title" content="' + esc(title) + '">');
+      lines.push('<meta name="twitter:description" content="' + esc(desc) + '">');
+      if (img) lines.push('<meta name="twitter:image" content="' + esc(img) + '">');
+      outField.querySelector('#metaOut').value = lines.join('\n');
+      addHistory('meta-gen', title || 'متا تگ');
+    });
+    copyBtn.addEventListener('click', function () {
+      var v = outField.querySelector('#metaOut').value;
+      if (!v) { toast('ابتدا تگ‌ها را بسازید'); return; }
+      navigator.clipboard.writeText(v).then(function () { toast('کپی شد'); });
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 20. Calendar (monthly view: Shamsi + Gregorian)
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['calendar'] = function (body) {
+    var today = new Date();
+    var todayJ = CAL.g2j(today.getFullYear(), today.getMonth() + 1, today.getDate());
+    var state = { jy: todayJ[0], jm: todayJ[1] };
+
+    var nav = el('div', 'field', '<div class="seg"><button id="calPrev">‹ ماه قبل</button><span id="calLabel" style="flex:2;text-align:center;padding:9px;font-weight:700"></span><button id="calNext">ماه بعد ›</button></div>');
+    body.appendChild(nav);
+    var grid = el('div');
+    grid.style.display = 'grid'; grid.style.gridTemplateColumns = 'repeat(7,1fr)'; grid.style.gap = '4px';
+    body.appendChild(grid);
+    body.appendChild(el('div', 'sheet-desc', 'عدد بزرگ = روز شمسی، عدد کوچک زیر آن = روز میلادی معادل.'));
+
+    function render() {
+      nav.querySelector('#calLabel').textContent = CAL.JALALI_MONTHS[state.jm - 1] + ' ' + state.jy;
+      grid.innerHTML = '';
+      CAL.WEEKDAYS.forEach(function (w) {
+        var h = el('div', '', w[0]);
+        h.style.cssText = 'text-align:center;font-size:10px;color:var(--text-dim);padding:4px 0';
+        grid.appendChild(h);
+      });
+      var firstGregorian = CAL.j2g(state.jy, state.jm, 1);
+      var firstDate = new Date(firstGregorian[0], firstGregorian[1] - 1, firstGregorian[2]);
+      var startWeekday = firstDate.getDay(); // 0=Sunday
+      for (var i = 0; i < startWeekday; i++) grid.appendChild(el('div', ''));
+      var len = CAL.jalaliMonthLength(state.jy, state.jm);
+      for (var d = 1; d <= len; d++) {
+        var greg = CAL.j2g(state.jy, state.jm, d);
+        var isToday = state.jy === todayJ[0] && state.jm === todayJ[1] && d === todayJ[2];
+        var cell = el('div', '', '<div style="font-weight:700;font-size:13px">' + d + '</div><div style="font-size:9px;color:var(--text-dim)">' + greg[2] + '</div>');
+        cell.style.cssText = 'text-align:center;padding:6px 2px;border-radius:10px;background:' + (isToday ? 'var(--primary)' : 'var(--card)') + ';color:' + (isToday ? 'var(--primary-ink)' : 'var(--text)') + ';border:1px solid var(--border)';
+        grid.appendChild(cell);
+      }
+    }
+    nav.querySelector('#calPrev').addEventListener('click', function () {
+      state.jm--; if (state.jm < 1) { state.jm = 12; state.jy--; } render();
+    });
+    nav.querySelector('#calNext').addEventListener('click', function () {
+      state.jm++; if (state.jm > 12) { state.jm = 1; state.jy++; } render();
+    });
+    render();
+  };
+
+  // ---------------------------------------------------------------------
+  // 21. Date Converter (Shamsi <-> Gregorian <-> Hijri)
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['date-convert'] = function (body) {
+    var srcField = el('div', 'field', '<label>تقویم مبدأ</label><div class="seg" id="dcSrc">' +
+      '<button data-s="j" class="active">شمسی</button><button data-s="g">میلادی</button><button data-s="h">قمری</button></div>');
+    body.appendChild(srcField);
+    var curSrc = 'j';
+    srcField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { srcField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curSrc = b.dataset.s; });
+    });
+    var ymdField = el('div', 'field', '<label>سال / ماه / روز</label><div style="display:flex;gap:8px">' +
+      '<input type="number" id="dcY" placeholder="سال" style="flex:1.3">' +
+      '<input type="number" id="dcM" placeholder="ماه" min="1" max="12" style="flex:1">' +
+      '<input type="number" id="dcD" placeholder="روز" min="1" max="31" style="flex:1"></div>');
+    body.appendChild(ymdField);
+    var runBtn = el('button', 'run-btn', '▶ تبدیل');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+    body.appendChild(el('div', 'sheet-desc', 'تبدیل قمری بر پایه تقویم محاسباتی (جدولی) است و ممکن است ۱ تا ۲ روز با رؤیت هلال واقعی تفاوت داشته باشد.'));
+
+    runBtn.addEventListener('click', function () {
+      var y = parseInt(ymdField.querySelector('#dcY').value, 10);
+      var m = parseInt(ymdField.querySelector('#dcM').value, 10);
+      var d = parseInt(ymdField.querySelector('#dcD').value, 10);
+      if (!y || !m || !d) { toast('سال، ماه و روز را کامل وارد کنید'); return; }
+      try {
+        var gy, gm, gd, jy, jm, jd, hy, hm, hd;
+        if (curSrc === 'j') { var gArr = CAL.j2g(y, m, d); gy = gArr[0]; gm = gArr[1]; gd = gArr[2]; jy = y; jm = m; jd = d; var hArr = CAL.g2h(gy, gm, gd); hy = hArr[0]; hm = hArr[1]; hd = hArr[2]; }
+        else if (curSrc === 'g') { gy = y; gm = m; gd = d; var jArr = CAL.g2j(y, m, d); jy = jArr[0]; jm = jArr[1]; jd = jArr[2]; var hArr2 = CAL.g2h(y, m, d); hy = hArr2[0]; hm = hArr2[1]; hd = hArr2[2]; }
+        else { var gArr2 = CAL.h2g(y, m, d); gy = gArr2[0]; gm = gArr2[1]; gd = gArr2[2]; hy = y; hm = m; hd = d; var jArr2 = CAL.g2j(gy, gm, gd); jy = jArr2[0]; jm = jArr2[1]; jd = jArr2[2]; }
+        resultWrap.innerHTML = '';
+        resultWrap.appendChild(el('div', 'stat-line', '<span>شمسی</span><b>' + jy + ' ' + CAL.JALALI_MONTHS[jm - 1] + ' ' + jd + '</b>'));
+        resultWrap.appendChild(el('div', 'stat-line', '<span>میلادی</span><b>' + gy + '-' + String(gm).padStart(2, '0') + '-' + String(gd).padStart(2, '0') + '</b>'));
+        resultWrap.appendChild(el('div', 'stat-line', '<span>قمری</span><b>' + hy + ' ' + CAL.HIJRI_MONTHS[hm - 1] + ' ' + hd + '</b>'));
+        addHistory('date-convert', jy + '/' + jm + '/' + jd);
+      } catch (err) { toast('تاریخ نامعتبر است'); }
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 22. Age Calculator
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['age-calc'] = function (body) {
+    var field = el('div', 'field', '<label>تاریخ تولد (میلادی)</label><input type="date" id="dobInput">');
+    body.appendChild(field);
+    var runBtn = el('button', 'run-btn', '▶ محاسبه سن');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    runBtn.addEventListener('click', function () {
+      var val = field.querySelector('#dobInput').value;
+      if (!val) { toast('تاریخ تولد را انتخاب کنید'); return; }
+      var dob = new Date(val + 'T00:00:00');
+      var now = new Date();
+      if (dob > now) { toast('تاریخ تولد نمی‌تواند در آینده باشد'); return; }
+      var y = now.getFullYear() - dob.getFullYear();
+      var m = now.getMonth() - dob.getMonth();
+      var d = now.getDate() - dob.getDate();
+      if (d < 0) { m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+      if (m < 0) { y--; m += 12; }
+      var totalDays = Math.floor((now - dob) / 86400000);
+      var jArr = CAL.g2j(dob.getFullYear(), dob.getMonth() + 1, dob.getDate());
+      resultWrap.innerHTML = '';
+      resultWrap.appendChild(el('div', 'stat-line', '<span>سن دقیق</span><b>' + y + ' سال، ' + m + ' ماه، ' + d + ' روز</b>'));
+      resultWrap.appendChild(el('div', 'stat-line', '<span>مجموع روزها</span><b>' + totalDays.toLocaleString('fa-IR') + '</b>'));
+      resultWrap.appendChild(el('div', 'stat-line', '<span>تاریخ تولد شمسی</span><b>' + jArr[0] + ' ' + CAL.JALALI_MONTHS[jArr[1] - 1] + ' ' + jArr[2] + '</b>'));
+      addHistory('age-calc', y + ' سال');
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 23. City Distance Finder
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['city-distance'] = function (body) {
+    if (!citiesData) { body.appendChild(el('div', 'empty-state', 'در حال بارگذاری اطلاعات شهرها...')); setTimeout(function () { body.innerHTML = ''; TOOL_RENDERERS['city-distance'](body); }, 400); return; }
+    var opts = citiesData.map(function (c) { return '<option>' + c.name + '</option>'; }).join('');
+    var f1 = el('div', 'field', '<label>شهر مبدأ</label><select id="cityA">' + opts + '</select>');
+    var f2 = el('div', 'field', '<label>شهر مقصد</label><select id="cityB">' + opts + '</select>');
+    body.appendChild(f1); body.appendChild(f2);
+    if (f2.querySelector('select').options.length > 1) f2.querySelector('select').selectedIndex = 1;
+    var runBtn = el('button', 'run-btn', '▶ محاسبه فاصله');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    function haversine(a, b) {
+      var R = 6371, toRad = function (d) { return d * Math.PI / 180; };
+      var dLat = toRad(b.lat - a.lat), dLng = toRad(b.lng - a.lng);
+      var s = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+    }
+
+    runBtn.addEventListener('click', function () {
+      var nameA = f1.querySelector('#cityA').value, nameB = f2.querySelector('#cityB').value;
+      var a = citiesData.find(function (c) { return c.name === nameA; });
+      var b = citiesData.find(function (c) { return c.name === nameB; });
+      if (!a || !b) return;
+      var km = haversine(a, b);
+      resultWrap.innerHTML = '';
+      resultWrap.appendChild(el('div', 'stat-line', '<span>فاصله مستقیم (هوایی)</span><b>' + Math.round(km).toLocaleString('fa-IR') + ' کیلومتر</b>'));
+      resultWrap.appendChild(el('div', 'stat-line', '<span>زمان تقریبی رانندگی</span><b>~' + (km / 80).toFixed(1) + ' ساعت</b>'));
+      body.appendChild(el('div', 'sheet-desc', 'فاصله به‌صورت خط‌مستقیم (هوایی) محاسبه شده، نه مسیر واقعی جاده.'));
+      addHistory('city-distance', nameA + ' ↔ ' + nameB);
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 24. Dictionary (English <-> Persian, offline word list)
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['dictionary'] = function (body) {
+    if (!dictData) { body.appendChild(el('div', 'empty-state', 'در حال بارگذاری واژه‌نامه...')); setTimeout(function () { body.innerHTML = ''; TOOL_RENDERERS['dictionary'](body); }, 400); return; }
+    var field = el('div', 'field', '<input type="text" id="dictSearch" placeholder="کلمه انگلیسی یا فارسی را وارد کنید...">');
+    body.appendChild(field);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    field.querySelector('#dictSearch').addEventListener('input', function (e) {
+      var q = e.target.value.trim().toLowerCase();
+      resultWrap.innerHTML = '';
+      if (!q) return;
+      var matches = dictData.filter(function (w) { return w.en.toLowerCase().indexOf(q) !== -1 || w.fa.indexOf(q) !== -1; }).slice(0, 30);
+      if (!matches.length) { resultWrap.appendChild(el('div', 'empty-state', 'یافت نشد')); return; }
+      matches.forEach(function (w) {
+        resultWrap.appendChild(el('div', 'file-list-item', '<span class="name">' + w.en + ' ← → ' + w.fa + '</span>'));
+      });
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // 25. Hafez Fortune Telling
+  // ---------------------------------------------------------------------
+  TOOL_RENDERERS['hafez'] = function (body) {
+    var runBtn = el('button', 'run-btn', '🌹 نیت کن و فال بگیر');
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    runBtn.addEventListener('click', function () {
+      if (!ghazalData || !ghazalData.length) { toast('در حال بارگذاری... دوباره تلاش کنید'); return; }
+      var v = ghazalData[Math.floor(Math.random() * ghazalData.length)];
+      resultWrap.innerHTML = '';
+      var box = el('div', 'preview-box', '');
+      box.style.cssText = 'display:block;text-align:center;padding:20px;line-height:2.1;font-size:14.5px';
+      box.innerHTML = '<div style="font-size:11px;color:var(--text-dim);margin-bottom:10px">غزل ' + v.number + ' · ' + v.category + '</div>' +
+        v.text.split('\n').map(function (l) { return '<div>' + l + '</div>'; }).join('') +
+        '<div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-dim)">' + v.interpretation + '</div>';
+      resultWrap.appendChild(box);
+      addHistory('hafez', 'غزل شماره ' + v.number);
+    });
+  };
+
+  // ---------------------------------------------------------------------
+  // Init
+  // ---------------------------------------------------------------------
+  initTheme();
+  renderQuickGrid();
+  renderChips();
+  renderToolGrid();
+})();

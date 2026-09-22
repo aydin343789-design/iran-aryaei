@@ -213,3 +213,69 @@ JS-side bridge call for it.
   confidence notes so you know where to expect smooth sailing (PDF→image)
   versus where to budget real debugging time (video compression).
 
+## Bug-fix pass on the version you built and sent back
+
+You reported two real problems after installing the APK from your own
+GitHub Actions build: the app icon wasn't showing, and the save button
+displayed a success message without actually saving anything. Both were
+real bugs, found by diffing your actual repo against what should have
+been there — not guessed at:
+
+1. **App icon** — `android/app/src/main/res/` had **no `mipmap` folders
+   at all**, and `AndroidManifest.xml`'s `<application>` tag had no
+   `android:icon` attribute. The icon files existed (in
+   `android-icon-assets/`) but were never copied into the real resource
+   path or referenced, so Android fell back to a default icon. Fixed:
+   copied the icon set into `android/app/src/main/res/mipmap-*/` and
+   added `android:icon="@mipmap/ic_launcher"` /
+   `android:roundIcon="@mipmap/ic_launcher_round"` to the manifest.
+
+2. **Save button** — this repo actually has a genuinely good native
+   `IranAryaeiPlugin.java` with correct `saveBase64`/`shareTempFile`
+   methods that write to `MediaStore.Downloads` properly (whoever
+   extended this did solid work here). The bug: **`www/app.js`'s
+   `saveBlob()`/`shareBlob()` never called it.** They still used the
+   browser-only `URL.createObjectURL` + `<a download>` trick, which does
+   nothing inside a Capacitor Android WebView without native wiring —
+   and the "saved" toast fired unconditionally regardless of whether
+   anything actually happened. Fixed: both functions now detect the
+   native `IranAryaei` plugin (`window.Capacitor.Plugins.IranAryaei`)
+   and call its real save/share methods when running inside the app,
+   only showing success after the native call actually resolves (and a
+   real error message if it fails). The old browser-only behavior is
+   kept as a fallback for when the page is opened outside the app (e.g.
+   local development in a normal browser).
+
+Also cleaned up along the way, since they were actively misleading:
+- Removed `www/vendor/qr-lite.js` — a leftover 17-byte-payload QR stub
+  that wasn't referenced by `index.html` (the real `qrcode.js`, tested
+  against OpenCV's decoder, is what's actually used) but could have
+  confused future edits.
+- Removed `tests/static_test.py` and `TEST_REPORT.md` — these tested a
+  *different* code structure (`{id:"...", if(id==="...")return`) that
+  doesn't match this app.js's actual architecture (`TOOL_RENDERERS['id']
+  = function...`), and checked stale data-file field names (`lon` /
+  `entries`) against the current schema (`lng` / `words`). They'd have
+  failed on the very first run against this codebase — better removed
+  than left around looking authoritative.
+- Refreshed the committed `android/app/src/main/assets/public/` (the
+  synced build output) to match current `www/`, and added a
+  `.gitignore` entry for it — your CI workflow already does a fresh
+  `cp -r www/* .../assets/public/` on every build, so this staleness
+  never affected your actual shipped APK, but an out-of-sync copy
+  sitting in git is exactly the kind of thing that causes this class of
+  confusion later.
+
+**Verification**: re-ran the full Playwright interactive test suite
+(21 tools, real clicks/uploads/form-fills, not just syntax checks)
+against the fixed `www/app.js` — same 20/21 pass rate as before the fix
+(the one "failure" is a test-script quirk with Persian-locale digit
+formatting, not an app bug), confirming the save-function rewrite didn't
+regress anything else. I can't runtime-test the native
+`Capacitor.Plugins.IranAryaei` bridge itself from this sandbox (no
+Android device/emulator here) — that needs a real install to confirm,
+but the JS-side call signatures now match the Java method signatures
+exactly (`saveBase64({name, mime, data})`,
+`writeTempFile({name, data}) → {path}`, `shareTempFile({path, name,
+mime})`), verified by reading both sides side by side.
+

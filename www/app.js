@@ -321,15 +321,60 @@
     return { wrap: wrap, input: input };
   }
 
-  function saveBlob(blob, filename) {
+  function blobToBase64(blob) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var result = reader.result;
+        var comma = result.indexOf(',');
+        resolve(comma >= 0 ? result.slice(comma + 1) : result);
+      };
+      reader.onerror = function () { reject(reader.error || new Error('خواندن فایل ناموفق بود')); };
+      reader.readAsDataURL(blob);
+    });
+  }
+  function nativePlugin() {
+    return (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.IranAryaei) || null;
+  }
+  // Inside the Capacitor/Android app, saving means calling the native
+  // IranAryaei.saveBase64 plugin method, which writes into MediaStore
+  // Downloads — a plain <a download> click (the browser-only fallback
+  // below) does NOT persist anything inside a WebView, so the two paths
+  // are not interchangeable and the toast only fires after a REAL result.
+  async function saveBlob(blob, filename) {
+    var plugin = nativePlugin();
+    if (plugin) {
+      try {
+        var base64 = await blobToBase64(blob);
+        await plugin.saveBase64({ name: filename, mime: blob.type || 'application/octet-stream', data: base64 });
+        toast('در پوشه دانلودها ذخیره شد: ' + filename);
+      } catch (err) {
+        toast('ذخیره فایل ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته'));
+      }
+      return;
+    }
+    // Browser fallback — only meaningful when this page is opened in a
+    // normal desktop/mobile browser (e.g. during development), not inside
+    // the packaged Android app.
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url; a.download = filename;
     document.body.appendChild(a); a.click();
     setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 1000);
-    toast('فایل ذخیره شد: ' + filename);
+    toast('فایل دانلود شد: ' + filename);
   }
   async function shareBlob(blob, filename, mime) {
+    var plugin = nativePlugin();
+    if (plugin) {
+      try {
+        var base64 = await blobToBase64(blob);
+        var written = await plugin.writeTempFile({ name: filename, data: base64 });
+        await plugin.shareTempFile({ path: written.path, name: filename, mime: mime });
+      } catch (err) {
+        toast('اشتراک‌گذاری ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته'));
+      }
+      return;
+    }
     try {
       var file = new File([blob], filename, { type: mime });
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -338,7 +383,7 @@
       }
     } catch (e) { /* fall through to download */ }
     saveBlob(blob, filename);
-    toast('اشتراک‌گذاری مستقیم پشتیبانی نشد — فایل ذخیره شد');
+    toast('اشتراک‌گذاری مستقیم پشتیبانی نشد — فایل دانلود شد');
   }
   function fmtBytes(n) {
     if (n < 1024) return n + ' B';
