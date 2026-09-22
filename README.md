@@ -279,3 +279,45 @@ exactly (`saveBase64({name, mime, data})`,
 `writeTempFile({name, data}) → {path}`, `shareTempFile({path, name,
 mime})`), verified by reading both sides side by side.
 
+## Tools 26–33 wired up — 33/33 active
+
+The previous pass fixed the icon and the save bridge but left the 8
+native tools showing "به‌زودی" — that was an oversight, not intentional
+scoping; the native methods already existed and were already verified
+matching. Fixed now: all 8 (`www/app.js`'s `TOOL_RENDERERS`) call the
+real `IranAryaeiPlugin.java` methods directly —
+
+- برش صدا → `trimAudio({inputPath, startSec, endSec})` (start/end read
+  from the uploaded file's actual duration via `<audio>` metadata)
+- کاهش حجم صدا → `compressAudio({inputPath, bitrate})` (64/96/128/192kbps)
+- تبدیل صدا به MP3 → `audioToMp3({inputPath, bitrate})`
+- کاهش حجم ویدیو → `compressVideo({inputPath, bitrate})` (low/med/high)
+- تبدیل عکس به HEIC → `imageToHeic({inputPath})`
+- تبدیل HEIC به JPG → `heicToJpg({inputPath})`
+- حذف پس‌زمینه عکس → `removeBackground({inputPath, tolerance})`
+- تبدیل PDF به تصویر → `pdfToImages({inputPath, format, scale})`
+
+Every one uploads the file via `writeTempFile` first, then calls its
+native method, then wires Save/Share to the same `saveTempFile` /
+`shareTempFile` methods the rest of the app now uses. Outside the
+installed app (e.g. opening the page in a plain browser) each one shows
+a clear "this needs the installed Android app" message instead of
+failing silently.
+
+Verified with two separate Playwright passes:
+
+1. **No bridge present** (real behavior in a browser, matching this dev
+   sandbox): all 8 correctly show the fallback message, zero JS errors.
+2. **Bridge mocked with the exact method signatures from the real Java
+   plugin**: all 8 correctly call `writeTempFile` → their specific
+   native method → render a result with working Save/Share buttons, and
+   clicking Save correctly calls `saveTempFile`. This catches real
+   wiring bugs (wrong argument names, wrong response field access) that
+   reading the code alone wouldn't.
+
+What I still can't do from this sandbox: actually run the compiled
+Kotlin/Java on a device — no Android SDK/emulator here. So the native
+*implementations themselves* (the MP3 frame parsing, the H.264
+transcode loop, etc.) are only as tested as on-device runs have made
+them; what's now verified end-to-end is that the JS layer calls them
+correctly and handles their real responses correctly.

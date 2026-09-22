@@ -41,14 +41,14 @@
     { id: 'city-distance', name: 'فاصله بین شهرها', cat: 'util', icon: '🗺️', active: true },
     { id: 'dictionary', name: 'دیکشنری', cat: 'text', icon: '📖', active: true },
     { id: 'hafez', name: 'فال حافظ', cat: 'text', icon: '🌹', active: true },
-    { id: 'audio-trim', name: 'برش صدا', cat: 'audio', icon: '✂️', active: false },
-    { id: 'audio-reduce', name: 'کاهش حجم صدا', cat: 'audio', icon: '🗜️', active: false },
-    { id: 'audio-to-mp3', name: 'تبدیل صدا به MP3', cat: 'audio', icon: '🎵', active: false },
-    { id: 'video-reduce', name: 'کاهش حجم ویدیو', cat: 'video', icon: '🎬', active: false },
-    { id: 'img-to-heic', name: 'تبدیل عکس به HEIC', cat: 'image', icon: '📱', active: false },
-    { id: 'heic-to-jpg', name: 'تبدیل HEIC به JPG', cat: 'image', icon: '🖼️', active: false },
-    { id: 'bg-remove', name: 'حذف پس‌زمینه عکس', cat: 'image', icon: '✨', active: false },
-    { id: 'pdf-to-img', name: 'تبدیل PDF به تصویر', cat: 'pdf', icon: '🖨️', active: false }
+    { id: 'audio-trim', name: 'برش صدا', cat: 'audio', icon: '✂️', active: true },
+    { id: 'audio-reduce', name: 'کاهش حجم صدا', cat: 'audio', icon: '🗜️', active: true },
+    { id: 'audio-to-mp3', name: 'تبدیل صدا به MP3', cat: 'audio', icon: '🎵', active: true },
+    { id: 'video-reduce', name: 'کاهش حجم ویدیو', cat: 'video', icon: '🎬', active: true },
+    { id: 'img-to-heic', name: 'تبدیل عکس به HEIC', cat: 'image', icon: '📱', active: true },
+    { id: 'heic-to-jpg', name: 'تبدیل HEIC به JPG', cat: 'image', icon: '🖼️', active: true },
+    { id: 'bg-remove', name: 'حذف پس‌زمینه عکس', cat: 'image', icon: '✨', active: true },
+    { id: 'pdf-to-img', name: 'تبدیل PDF به تصویر', cat: 'pdf', icon: '🖨️', active: true }
   ];
 
   var QUICK_ACTIONS = ['img-resize', 'qr-gen', 'img-to-pdf'];
@@ -1901,6 +1901,326 @@
       resultWrap.appendChild(box);
       addHistory('hafez', 'غزل شماره ' + v.number);
     });
+  };
+
+  // ---------------------------------------------------------------------
+  // Native-only tools (26-33) — these call the real IranAryaei Capacitor
+  // plugin (android/.../IranAryaeiPlugin.java) directly; there is no JS
+  // fallback because the underlying work (audio/video transcoding, HEIC,
+  // PDF rasterization) genuinely needs native Android APIs. Outside the
+  // installed app (e.g. testing this page in a plain browser) they show
+  // a clear message instead of silently failing.
+  // ---------------------------------------------------------------------
+  function nativeUnavailableNotice(body, toolLabel) {
+    body.appendChild(el('div', 'empty-state',
+      '<div class="emoji">📱</div>«' + toolLabel + '» فقط داخل برنامهٔ نصب‌شده روی اندروید کار می‌کند، چون به قابلیت‌های ' +
+      'native دستگاه نیاز دارد. اینجا (در مرورگر) در دسترس نیست.'));
+  }
+  async function nativeUploadFile(plugin, file) {
+    var base64 = await blobToBase64(file);
+    return plugin.writeTempFile({ name: file.name, data: base64 });
+  }
+  function showNativeResult(resultWrap, toolId, plugin, result, extraStatsHtml, rerunFn) {
+    resultWrap.innerHTML = '';
+    resultWrap.dataset.toolId = toolId;
+    if (extraStatsHtml) resultWrap.appendChild(el('div', '', extraStatsHtml));
+    resultWrap.appendChild(el('div', 'stat-line', '<span>حجم خروجی</span><b>' + fmtBytes(result.size || 0) + '</b>'));
+    resultActions(resultWrap,
+      function () {
+        plugin.saveTempFile({ path: result.path, name: result.name, mime: result.mime })
+          .then(function () { toast('در پوشه دانلودها ذخیره شد: ' + result.name); addHistory(toolId, result.name); })
+          .catch(function (err) { toast('ذخیره ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+      },
+      function () {
+        plugin.shareTempFile({ path: result.path, name: result.name, mime: result.mime })
+          .then(function () { addHistory(toolId, result.name); })
+          .catch(function (err) { toast('اشتراک‌گذاری ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+      },
+      rerunFn || function () {});
+  }
+
+  // 26. Audio Trimmer
+  TOOL_RENDERERS['audio-trim'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'برش صدا');
+    var fd = fileDrop('انتخاب فایل صوتی', 'MP3, WAV, M4A و مشابه', 'audio/*');
+    body.appendChild(fd.wrap);
+    var rangeField = el('div', 'field', '<label>بازه برش (ثانیه)</label><div style="display:flex;gap:8px">' +
+      '<input type="number" id="trimStart" placeholder="شروع" min="0" value="0" style="flex:1">' +
+      '<input type="number" id="trimEnd" placeholder="پایان" min="0" style="flex:1"></div>');
+    body.appendChild(rangeField);
+    var durHint = el('div', 'sheet-desc', 'ابتدا فایل را انتخاب کنید تا مدت‌زمان آن نمایش داده شود.');
+    body.appendChild(durHint);
+    var runBtn = el('button', 'run-btn', '▶ برش صدا');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (!currentFile) return;
+      fd.wrap.querySelector('.main').textContent = currentFile.name;
+      runBtn.disabled = false;
+      var audio = new Audio(URL.createObjectURL(currentFile));
+      audio.addEventListener('loadedmetadata', function () {
+        durHint.textContent = 'مدت‌زمان فایل: حدود ' + Math.round(audio.duration) + ' ثانیه';
+        rangeField.querySelector('#trimEnd').value = Math.round(audio.duration);
+      });
+    });
+
+    function run() {
+      var start = parseFloat(rangeField.querySelector('#trimStart').value) || 0;
+      var end = parseFloat(rangeField.querySelector('#trimEnd').value) || 0;
+      if (!currentFile || end <= start) { toast('بازه برش نامعتبر است'); return; }
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.trimAudio({ inputPath: uploaded.path, startSec: start, endSec: end }); })
+        .then(function (result) { runBtn.disabled = false; runBtn.textContent = '▶ برش صدا'; showNativeResult(resultWrap, 'audio-trim', plugin, result, null, run); })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ برش صدا'; toast('برش ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+    }
+    runBtn.addEventListener('click', run);
+  };
+
+  // 27. Audio Size Reducer
+  TOOL_RENDERERS['audio-reduce'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'کاهش حجم صدا');
+    var fd = fileDrop('انتخاب فایل صوتی', 'برای انتخاب فایل ضربه بزنید', 'audio/*');
+    body.appendChild(fd.wrap);
+    var brField = el('div', 'field', '<label>بیت‌ریت خروجی</label><div class="seg" id="brSeg">' +
+      '<button data-b="64000">۶۴</button><button data-b="96000" class="active">۹۶</button>' +
+      '<button data-b="128000">۱۲۸</button><button data-b="192000">۱۹۲</button></div>');
+    body.appendChild(brField);
+    var curBitrate = 96000;
+    brField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { brField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curBitrate = parseInt(b.dataset.b, 10); });
+    });
+    var runBtn = el('button', 'run-btn', '▶ کاهش حجم');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    function run() {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.compressAudio({ inputPath: uploaded.path, bitrate: curBitrate }); })
+        .then(function (result) { runBtn.disabled = false; runBtn.textContent = '▶ کاهش حجم'; showNativeResult(resultWrap, 'audio-reduce', plugin, result, null, run); })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ کاهش حجم'; toast('فشرده‌سازی ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+    }
+    runBtn.addEventListener('click', run);
+  };
+
+  // 28. Audio to MP3
+  TOOL_RENDERERS['audio-to-mp3'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'تبدیل صدا به MP3');
+    body.appendChild(el('div', 'sheet-desc', 'اگر فایل ورودی از قبل MP3 باشد بدون تغییر کپی می‌شود. برای فرمت‌های دیگر، این کار فقط روی دستگاه‌هایی ممکن است که encoder داخلی MP3 دارند.'));
+    var fd = fileDrop('انتخاب فایل صوتی', 'برای انتخاب فایل ضربه بزنید', 'audio/*');
+    body.appendChild(fd.wrap);
+    var runBtn = el('button', 'run-btn', '▶ تبدیل به MP3');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    function run() {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.audioToMp3({ inputPath: uploaded.path, bitrate: 128000 }); })
+        .then(function (result) { runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به MP3'; showNativeResult(resultWrap, 'audio-to-mp3', plugin, result, null, run); })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به MP3'; toast('تبدیل ناموفق بود: ' + (err && err.message ? err.message : 'این دستگاه encoder داخلی MP3 ندارد')); });
+    }
+    runBtn.addEventListener('click', run);
+  };
+
+  // 29. Video Size Reducer
+  TOOL_RENDERERS['video-reduce'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'کاهش حجم ویدیو');
+    body.appendChild(el('div', 'sheet-desc', 'فشرده‌سازی ویدیو ممکن است روی فایل‌های بزرگ چند دقیقه طول بکشد — صفحه را باز نگه دارید.'));
+    var fd = fileDrop('انتخاب فایل ویدیویی', 'برای انتخاب فایل ضربه بزنید', 'video/*');
+    body.appendChild(fd.wrap);
+    var qField = el('div', 'field', '<label>کیفیت</label><div class="seg" id="vqSeg">' +
+      '<button data-b="1000000">کم</button><button data-b="2000000" class="active">متوسط</button><button data-b="5000000">بالا</button></div>');
+    body.appendChild(qField);
+    var curBitrate = 2000000;
+    qField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { qField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curBitrate = parseInt(b.dataset.b, 10); });
+    });
+    var runBtn = el('button', 'run-btn', '▶ کاهش حجم ویدیو');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    function run() {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش... ممکن است طول بکشد';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.compressVideo({ inputPath: uploaded.path, bitrate: curBitrate }); })
+        .then(function (result) { runBtn.disabled = false; runBtn.textContent = '▶ کاهش حجم ویدیو'; showNativeResult(resultWrap, 'video-reduce', plugin, result, null, run); })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ کاهش حجم ویدیو'; toast('فشرده‌سازی ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+    }
+    runBtn.addEventListener('click', run);
+  };
+
+  // 30. Image to HEIC
+  TOOL_RENDERERS['img-to-heic'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'تبدیل عکس به HEIC');
+    body.appendChild(el('div', 'sheet-desc', 'این قابلیت به Android 10 یا بالاتر و پشتیبانی دستگاه از HEIC نیاز دارد.'));
+    var fd = fileDrop('انتخاب عکس (JPG/PNG)', 'برای انتخاب فایل ضربه بزنید', 'image/*');
+    body.appendChild(fd.wrap);
+    var runBtn = el('button', 'run-btn', '▶ تبدیل به HEIC');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    function run() {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.imageToHeic({ inputPath: uploaded.path }); })
+        .then(function (result) { runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به HEIC'; showNativeResult(resultWrap, 'img-to-heic', plugin, result, null, run); })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به HEIC'; toast('تبدیل ناموفق بود: ' + (err && err.message ? err.message : 'این دستگاه از HEIC پشتیبانی نمی‌کند')); });
+    }
+    runBtn.addEventListener('click', run);
+  };
+
+  // 31. HEIC to JPG
+  TOOL_RENDERERS['heic-to-jpg'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'تبدیل HEIC به JPG');
+    var fd = fileDrop('انتخاب فایل HEIC/HEIF', 'برای انتخاب فایل ضربه بزنید', '.heic,.heif,image/heic,image/heif');
+    body.appendChild(fd.wrap);
+    var runBtn = el('button', 'run-btn', '▶ تبدیل به JPG');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    function run() {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.heicToJpg({ inputPath: uploaded.path }); })
+        .then(function (result) { runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به JPG'; showNativeResult(resultWrap, 'heic-to-jpg', plugin, result, null, run); })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به JPG'; toast('تبدیل ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+    }
+    runBtn.addEventListener('click', run);
+  };
+
+  // 32. Remove Photo Background
+  TOOL_RENDERERS['bg-remove'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'حذف پس‌زمینه عکس');
+    body.appendChild(el('div', 'sheet-desc', 'این نسخه با نمونه‌برداری از رنگ گوشه‌های عکس، پس‌زمینه‌های ساده و یک‌دست را حذف می‌کند — جایگزین کامل مدل‌های هوش مصنوعی segmentation نیست.'));
+    var fd = fileDrop('انتخاب عکس', 'ترجیحاً با پس‌زمینه ساده/یک‌رنگ', 'image/*');
+    body.appendChild(fd.wrap);
+    var tolField = el('div', 'field', '<label>حساسیت تشخیص پس‌زمینه: <b id="tolVal">45</b></label><input type="range" id="tolSlider" min="10" max="120" value="45">');
+    body.appendChild(tolField);
+    var tolSlider = tolField.querySelector('#tolSlider'), tolVal = tolField.querySelector('#tolVal');
+    tolSlider.addEventListener('input', function () { tolVal.textContent = tolSlider.value; });
+    var runBtn = el('button', 'run-btn', '▶ حذف پس‌زمینه');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    function run() {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.removeBackground({ inputPath: uploaded.path, tolerance: parseInt(tolSlider.value, 10) }); })
+        .then(function (result) { runBtn.disabled = false; runBtn.textContent = '▶ حذف پس‌زمینه'; showNativeResult(resultWrap, 'bg-remove', plugin, result, null, run); })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ حذف پس‌زمینه'; toast('حذف پس‌زمینه ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+    }
+    runBtn.addEventListener('click', run);
+  };
+
+  // 33. Convert PDF to Images
+  TOOL_RENDERERS['pdf-to-img'] = function (body) {
+    var plugin = nativePlugin();
+    if (!plugin) return nativeUnavailableNotice(body, 'تبدیل PDF به تصویر');
+    var fd = fileDrop('انتخاب فایل PDF', 'برای انتخاب فایل ضربه بزنید', 'application/pdf');
+    body.appendChild(fd.wrap);
+    var fmtField = el('div', 'field', '<label>فرمت خروجی</label><div class="seg" id="pdfImgFmt"><button data-f="png" class="active">PNG</button><button data-f="jpg">JPG</button></div>');
+    body.appendChild(fmtField);
+    var curFmt = 'png';
+    fmtField.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () { fmtField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curFmt = b.dataset.f; });
+    });
+    var scaleField = el('div', 'field', '<label>مقیاس: <b id="pdfScaleVal">100</b>٪</label><input type="range" id="pdfScale" min="50" max="200" step="10" value="100">');
+    body.appendChild(scaleField);
+    var scaleSlider = scaleField.querySelector('#pdfScale'), scaleVal = scaleField.querySelector('#pdfScaleVal');
+    scaleSlider.addEventListener('input', function () { scaleVal.textContent = scaleSlider.value; });
+    var runBtn = el('button', 'run-btn', '▶ تبدیل به تصویر (ZIP)');
+    runBtn.disabled = true;
+    body.appendChild(runBtn);
+    var resultWrap = el('div');
+    body.appendChild(resultWrap);
+
+    var currentFile = null;
+    fd.input.addEventListener('change', function () {
+      currentFile = fd.input.files[0];
+      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+    });
+
+    function run() {
+      if (!currentFile) return;
+      runBtn.disabled = true; runBtn.textContent = '⏳ در حال پردازش...';
+      nativeUploadFile(plugin, currentFile)
+        .then(function (uploaded) { return plugin.pdfToImages({ inputPath: uploaded.path, format: curFmt, scale: parseInt(scaleSlider.value, 10) }); })
+        .then(function (result) {
+          runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به تصویر (ZIP)';
+          showNativeResult(resultWrap, 'pdf-to-img', plugin, result,
+            '<div class="stat-line"><span>تعداد صفحات</span><b>' + (result.pages || '؟') + '</b></div>', run);
+        })
+        .catch(function (err) { runBtn.disabled = false; runBtn.textContent = '▶ تبدیل به تصویر (ZIP)'; toast('تبدیل ناموفق بود: ' + (err && err.message ? err.message : 'خطای ناشناخته')); });
+    }
+    runBtn.addEventListener('click', run);
   };
 
   // ---------------------------------------------------------------------
