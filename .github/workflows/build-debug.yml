@@ -27,9 +27,6 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       # Build the TTS studio as a static sub-app. Voice models are deliberately
       # NOT downloaded here: users download only the voices they want in-app.
       - name: Build Persian TTS studio
