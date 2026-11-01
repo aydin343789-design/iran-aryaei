@@ -48,7 +48,8 @@
     { id: 'img-to-heic', name: 'تبدیل عکس به HEIC', cat: 'image', icon: '📱', active: true },
     { id: 'heic-to-jpg', name: 'تبدیل HEIC به JPG', cat: 'image', icon: '🖼️', active: true },
     { id: 'bg-remove', name: 'حذف پس‌زمینه عکس', cat: 'image', icon: '✨', active: true },
-    { id: 'pdf-to-img', name: 'تبدیل PDF به تصویر', cat: 'pdf', icon: '🖨️', active: true }
+    { id: 'pdf-to-img', name: 'تبدیل PDF به تصویر', cat: 'pdf', icon: '🖨️', active: true },
+    { id: 'tts-studio', name: 'استودیوی صدای فارسی', cat: 'audio', icon: '🎙️', active: true }
   ];
 
   var QUICK_ACTIONS = ['img-resize', 'qr-gen', 'img-to-pdf'];
@@ -415,6 +416,18 @@
   // TOOL RENDERERS — the first 10 working tools
   // ---------------------------------------------------------------------
   var TOOL_RENDERERS = {};
+
+  // 34. Persian neural TTS studio (bundled static Next.js export).
+  TOOL_RENDERERS['tts-studio'] = function (body) {
+    var frame = document.createElement('iframe');
+    frame.src = './tts/index.html';
+    frame.title = 'استودیوی صدای فارسی';
+    frame.loading = 'lazy';
+    frame.setAttribute('allow', 'microphone; autoplay');
+    frame.style.cssText = 'display:block;width:100%;height:76vh;min-height:560px;border:0;border-radius:14px;background:#06090e';
+    body.appendChild(frame);
+    body.parentElement.style.maxHeight = '94vh';
+  };
 
   // 1. Image Size Reducer -------------------------------------------------
   TOOL_RENDERERS['img-resize'] = function (body) {
