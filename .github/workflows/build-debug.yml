@@ -1,27 +1,92 @@
-name: Build Debug APK
+name: Build Iran Aryaei APK
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Setup JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '21'
+          distribution: temurin
+          java-version: "21"
 
-      - name: Copy www to android assets manually
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # Build the TTS studio as a static sub-app. Voice models are deliberately
+      # NOT downloaded here: users download only the voices they want in-app.
+      - name: Build Persian TTS studio
+        run: |
+          set -euo pipefail
+          test -f tts-source.zip
+          mkdir -p "$RUNNER_TEMP/tts-src"
+          unzip -q tts-source.zip -d "$RUNNER_TEMP/tts-src"
+          cd "$RUNNER_TEMP/tts-src"
+
+          # The TTS studio lives under /tts inside the existing app.
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("next.config.ts")
+          s = p.read_text()
+          s = s.replace('const nextConfig: NextConfig = {', 'const nextConfig: NextConfig = {\n  basePath: "/tts",\n  assetPrefix: "/tts",')
+          p.write_text(s)
+
+          # Prefix absolute public asset URLs so the embedded studio cannot
+          # escape its /tts subdirectory or collide with the host app.
+          roots = (
+            "/models", "/piper", "/voices", "/samples", "/icons",
+            "/images", "/manifest.webmanifest", "/sw.js", "/espeak-ng-data",
+          )
+          for root in (Path("src"), Path("public")):
+            for f in root.rglob("*"):
+              if f.suffix.lower() not in {".ts", ".tsx", ".js", ".json", ".webmanifest"}:
+                continue
+              try:
+                s = f.read_text()
+              except UnicodeDecodeError:
+                continue
+              for item in roots:
+                s = s.replace('"' + item, '"/tts' + item)
+                s = s.replace("'" + item, "'/tts" + item)
+              f.write_text(s)
+          PY
+
+          npm install --no-audit --no-fund
+          node scripts/fetch-piper-assets.mjs
+
+          # This endpoint is only a health check; static APK does not need it.
+          mkdir -p "$RUNNER_TEMP/tts-api-backup"
+          if [ -d src/app/api ]; then mv src/app/api "$RUNNER_TEMP/tts-api-backup/api"; fi
+          STATIC_EXPORT=1 npm run build
+          if [ -d "$RUNNER_TEMP/tts-api-backup/api" ]; then mkdir -p src/app; mv "$RUNNER_TEMP/tts-api-backup/api" src/app/api; fi
+
+          mkdir -p "$GITHUB_WORKSPACE/www/tts"
+          cp -a out/. "$GITHUB_WORKSPACE/www/tts/"
+          echo "TTS static export size:"
+          du -sh "$GITHUB_WORKSPACE/www/tts"
+
+      - name: Copy web app to Android assets
         run: |
           mkdir -p android/app/src/main/assets/public
-          cp -r www/* android/app/src/main/assets/public/ 2>/dev/null || true
+          rm -rf android/app/src/main/assets/public/*
+          cp -a www/. android/app/src/main/assets/public/
 
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > android/local.properties
@@ -38,6 +103,6 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: iran-aryaei-debug-apk
+          name: iran-aryaei-with-persian-tts-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
