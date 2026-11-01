@@ -10,7 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const PACKAGE = "ir.avasaz.app";
+const PACKAGE = "ir.aryaei.tools";
 const androidMain = path.join(root, "android", "app", "src", "main");
 
 if (!fs.existsSync(androidMain)) {

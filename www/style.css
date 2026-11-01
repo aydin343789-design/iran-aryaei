@@ -405,3 +405,9 @@ button { font-family: inherit; }
 
 .file-preview{margin:12px auto 0;max-width:280px;max-height:180px;overflow:hidden;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:14px;background:rgba(0,0,0,.12)}
 .file-preview img{display:block;width:100%;max-height:180px;object-fit:contain}
+.crop-stage{position:relative;display:grid;place-items:center;min-height:220px;margin:14px 0;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:#090d14;touch-action:none}
+.crop-stage>img{display:block;max-width:100%;max-height:360px;object-fit:contain;opacity:.72}
+.crop-empty{padding:56px 20px;color:var(--text-dim,#8893a6);font-size:12px}
+.crop-box{position:absolute;z-index:2;border:2px solid #2dd4bf;border-radius:10px;background:rgba(45,212,191,.09);box-shadow:0 0 0 9999px rgba(0,0,0,.48),0 0 0 5px rgba(45,212,191,.12);cursor:move;touch-action:none}
+.crop-box:after{content:'جابجایی کادر';position:absolute;right:8px;bottom:6px;color:#d8fff8;font-size:10px;font-weight:800;text-shadow:0 1px 4px #000}
+.qr-colors{display:flex;gap:14px;flex-wrap:wrap}.qr-colors label{display:flex;align-items:center;gap:8px;color:var(--text-dim,#8893a6);font-size:11px}.qr-colors input[type=color]{width:42px;height:32px;padding:2px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:transparent;cursor:pointer}

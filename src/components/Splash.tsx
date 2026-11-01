@@ -8,7 +8,7 @@ const EXIT = 550; // ms — fade out
 const FULL_CAP = 4500; // ms — never keep the user waiting
 
 /**
- * Animated entrance: the round «ندای پهلوی» emblem pops in with a golden
+ * Animated entrance: the round «ایران آریایی» emblem pops in with a golden
  * glow, the title fades up, the sound bars dance, then the whole screen
  * dissolves into the app. Tap anywhere to skip.
  */
@@ -50,7 +50,7 @@ export default function Splash() {
   return (
     <div
       role="status"
-      aria-label="ندای پهلوی در حال آماده‌سازی است"
+      aria-label="ایران آریایی در حال آماده‌سازی است"
       onPointerDown={finish}
       className={`fixed inset-0 z-[80] flex select-none flex-col items-center justify-center overflow-hidden bg-[#05070d] ${
         phase === "exit" ? "splash-exit" : "splash-enter"
@@ -64,7 +64,7 @@ export default function Splash() {
       <div className="splash-logo relative h-[42vmin] max-h-64 w-[42vmin] max-w-64">
         <Image
           src="/logo/logo-round-1024.png"
-          alt="لوگوی ندای پهلوی"
+          alt="لوگوی ایران آریایی"
           fill
           sizes="280px"
           priority
@@ -75,7 +75,7 @@ export default function Splash() {
       {/* title + tagline + bars */}
       <div className="mt-5 flex flex-col items-center px-6 text-center">
         <h1 className="splash-title text-[34px] font-black tracking-tight sm:text-4xl">
-          ندای پهلوی
+          ایران آریایی
         </h1>
         <p className="splash-tagline mt-2 text-[13px] font-semibold text-slate-300">
           تبدیل متن به فایل صوتی MP3

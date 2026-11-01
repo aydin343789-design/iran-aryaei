@@ -206,7 +206,7 @@ function drawChrome(
   ctx.textBaseline = "alphabetic";
   ctx.font = font(800, Math.round(w * 0.034));
   ctx.fillStyle = c.accent;
-  ctx.fillText("ندای پهلوی", w - w * 0.045, h * 0.062);
+  ctx.fillText("ایران آریایی", w - w * 0.045, h * 0.062);
   ctx.font = font(500, Math.round(w * 0.02));
   ctx.fillStyle = "rgba(255,255,255,0.55)";
   ctx.fillText("تبدیل متن به صدا و ویدئو", w - w * 0.045, h * 0.062 + w * 0.026);
@@ -307,7 +307,7 @@ async function ensureFont() {
   try {
     await (document as Document & { fonts?: FontFaceSet }).fonts?.load(
       "800 64px Vazirmatn",
-      "ندای پهلوی",
+      "ایران آریایی",
     );
   } catch {
     /* fallback font will be used */

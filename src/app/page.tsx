@@ -11,26 +11,21 @@ export default function HomePage() {
   return (
     <>
       <Splash />
-      <header className="app-switcher" dir="rtl">
-        <div className="app-switcher-inner">
-          <div className="app-brand">
-            <span className="app-brand-mark">ای</span>
-            <span>
-              <strong>ایران آریایی</strong>
-              <small>استودیو و جعبه‌ابزار هوشمند</small>
-            </span>
-          </div>
-          <nav className="app-tabs" aria-label="بخش‌های برنامه">
-            <button type="button" className={section === "speech" ? "active" : ""} aria-pressed={section === "speech"} onClick={() => setSection("speech")}>
-              <span>◉</span> متن به صدا
-            </button>
-            <button type="button" className={section === "tools" ? "active" : ""} aria-pressed={section === "tools"} onClick={() => setSection("tools")}>
-              <span>✦</span> ابزارهای ایران آریایی
-            </button>
-          </nav>
-        </div>
-      </header>
-      {section === "speech" ? <Studio /> : <IranAryaeiTools />}
+      <main className="app-main" dir="rtl">
+        {section === "speech" ? <Studio /> : <IranAryaeiTools />}
+      </main>
+      <nav className="app-bottom-nav" dir="rtl" aria-label="ناوبری اصلی برنامه">
+        <button type="button" className={section === "speech" ? "active" : ""} aria-pressed={section === "speech"} onClick={() => setSection("speech")}>
+          <span className="app-bottom-icon">◉</span>
+          <span>متن به صدا</span>
+          <small>استودیو</small>
+        </button>
+        <button type="button" className={section === "tools" ? "active" : ""} aria-pressed={section === "tools"} onClick={() => setSection("tools")}>
+          <span className="app-bottom-icon">✦</span>
+          <span>ابزارهای ایران آریایی</span>
+          <small>تصویر، QR و فایل</small>
+        </button>
+      </nav>
     </>
   );
 }

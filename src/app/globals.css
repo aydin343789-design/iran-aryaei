@@ -399,3 +399,23 @@ input::-webkit-inner-spin-button {
   .ia-toolbar { align-items: start; flex-direction: column; }
   .ia-frame { min-height: calc(100vh - 175px); border-radius: 18px; }
 }
+
+.app-main { min-height: 100vh; padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+.app-bottom-nav {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: 70; display: flex; justify-content: center; gap: 8px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,.1);
+  background: rgba(6,9,14,.92); backdrop-filter: blur(20px); box-shadow: 0 -16px 45px rgba(0,0,0,.3);
+}
+.app-bottom-nav button { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 9px; align-items: center; width: min(47vw, 260px); padding: 9px 13px; border: 1px solid rgba(255,255,255,.08); border-radius: 15px; color: #94a3b8; background: rgba(255,255,255,.035); text-align: right; font: inherit; font-size: 11px; font-weight: 900; cursor: pointer; transition: .2s ease; }
+.app-bottom-nav button.active { color: #071014; border-color: #2dd4bf; background: linear-gradient(135deg,#2dd4bf,#8eead8); box-shadow: 0 8px 24px rgba(45,212,191,.22); }
+.app-bottom-nav button:nth-child(2).active { border-color: #fbbf24; background: linear-gradient(135deg,#fbbf24,#f6d98b); box-shadow: 0 8px 24px rgba(245,158,11,.2); }
+.app-bottom-icon { grid-row: 1 / span 2; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 10px; color: #2dd4bf; background: rgba(45,212,191,.12); font-size: 16px; }
+.app-bottom-nav button:nth-child(2) .app-bottom-icon { color: #fbbf24; background: rgba(245,158,11,.12); }
+.app-bottom-nav button.active .app-bottom-icon { color: #071014; background: rgba(255,255,255,.35); }
+.app-bottom-nav small { color: #64748b; font-size: 8px; font-weight: 700; }
+.app-bottom-nav button.active small { color: rgba(7,16,20,.7); }
+@media (max-width: 480px) {
+  .app-bottom-nav { gap: 6px; padding-inline: 7px; }
+  .app-bottom-nav button { width: 50%; padding: 8px 9px; font-size: 10px; }
+  .app-bottom-nav small { font-size: 7px; }
+}

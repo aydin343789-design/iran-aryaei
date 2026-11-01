@@ -63,7 +63,7 @@ export async function shareAudio(
         directory: Directory.Cache,
       });
       await Share.share({
-        title: "فایل صوتی ندای پهلوی",
+        title: "فایل صوتی ایران آریایی",
         url: written.uri,
         dialogTitle: "ارسال یا ذخیرهٔ فایل صوتی",
       });
@@ -74,7 +74,7 @@ export async function shareAudio(
       canShare?: (d: { files: File[] }) => boolean;
     };
     if (nav.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file], title: "فایل صوتی ندای پهلوی" });
+      await navigator.share({ files: [file], title: "فایل صوتی ایران آریایی" });
       return { ok: true, message: "" };
     }
     browserDownload(blob, filename);

@@ -554,68 +554,60 @@
 
   // 3. Image Cropping -------------------------------------------------------
   TOOL_RENDERERS['img-crop'] = function (body) {
-    var fd = fileDrop('انتخاب عکس', 'برای انتخاب فایل ضربه بزنید', 'image/*');
+    var fd = fileDrop('انتخاب عکس', 'تصویر بلافاصله برای جابه‌جایی کادر نمایش داده می‌شود', 'image/*');
     body.appendChild(fd.wrap);
-
     var ratioField = el('div', 'field', '<label>نسبت برش</label><div class="seg" id="ratioSeg">' +
-      '<button data-r="1" class="active">۱:۱</button>' +
-      '<button data-r="1.777">۱۶:۹</button>' +
-      '<button data-r="1.333">۴:۳</button></div>');
+      '<button data-r="1" class="active">۱:۱</button><button data-r="1.777">۱۶:۹</button><button data-r="1.333">۴:۳</button></div>');
     body.appendChild(ratioField);
-    var curRatio = 1, posX = 50, posY = 50;
-    ratioField.querySelectorAll('button').forEach(function (b) {
-      b.addEventListener('click', function () {
-        ratioField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
-        b.classList.add('active'); curRatio = parseFloat(b.dataset.r);
-      });
-    });
-
-    var positionField = el('div', 'field', '<label>جای کادر افقی: <b id="cropXVal">۵۰</b>٪</label><input type="range" id="cropX" min="0" max="100" value="50"><label>جای کادر عمودی: <b id="cropYVal">۵۰</b>٪</label><input type="range" id="cropY" min="0" max="100" value="50">');
+    var curRatio = 1, posX = 50, posY = 50, currentFile = null, loaded = null;
+    var stage = el('div', 'crop-stage', '<div class="crop-empty">ابتدا یک تصویر انتخاب کنید</div>');
+    body.appendChild(stage);
+    var positionField = el('div', 'field', '<label>موقعیت کادر: <b id="cropPos">۵۰٪ · ۵۰٪</b></label><input type="range" id="cropX" min="0" max="100" value="50"><input type="range" id="cropY" min="0" max="100" value="50">');
     body.appendChild(positionField);
-    positionField.querySelector('#cropX').addEventListener('input', function (e) { posX = Number(e.target.value); positionField.querySelector('#cropXVal').textContent = posX; });
-    positionField.querySelector('#cropY').addEventListener('input', function (e) { posY = Number(e.target.value); positionField.querySelector('#cropYVal').textContent = posY; });
-    var runBtn = el('button', 'run-btn', '▶ برش تصویر');
-    runBtn.disabled = true;
-    body.appendChild(runBtn);
-    body.appendChild(el('div', '', '<div class="sheet-desc" style="margin:0">با دو نوار بالا، مرکز کادر را روی سوژه تنظیم کنید و سپس خروجی بگیرید.</div>'));
-    var resultWrap = el('div');
-    body.appendChild(resultWrap);
-
-    var currentFile = null;
+    var xSlider = positionField.querySelector('#cropX'), ySlider = positionField.querySelector('#cropY');
+    function updateLabel() { positionField.querySelector('#cropPos').textContent = Math.round(posX) + '٪ · ' + Math.round(posY) + '٪'; xSlider.value = posX; ySlider.value = posY; }
+    function drawStage() {
+      if (!loaded) return;
+      stage.innerHTML = '';
+      var img = document.createElement('img'); img.src = loaded.img.src; img.alt = 'پیش‌نمایش تصویر برای برش'; stage.appendChild(img);
+      var box = document.createElement('div'); box.className = 'crop-box';
+      var stageRatio = loaded.img.naturalWidth / loaded.img.naturalHeight;
+      var boxW = stageRatio >= curRatio ? 62 : Math.max(34, 62 * stageRatio / curRatio);
+      var boxH = boxW * stageRatio / curRatio;
+      box.style.width = boxW + '%'; box.style.height = Math.min(82, boxH) + '%';
+      var maxLeft = 100 - boxW, maxTop = 100 - Math.min(82, boxH);
+      box.style.left = (maxLeft * posX / 100) + '%'; box.style.top = (maxTop * posY / 100) + '%';
+      stage.appendChild(box);
+      var drag = false, sx = 0, sy = 0, startX = posX, startY = posY;
+      box.addEventListener('pointerdown', function (e) { drag = true; sx = e.clientX; sy = e.clientY; startX = posX; startY = posY; box.setPointerCapture(e.pointerId); e.preventDefault(); });
+      box.addEventListener('pointermove', function (e) { if (!drag) return; var r = stage.getBoundingClientRect(); posX = Math.max(0, Math.min(100, startX + (e.clientX - sx) / r.width * 100)); posY = Math.max(0, Math.min(100, startY + (e.clientY - sy) / r.height * 100)); updateLabel(); drawStage(); });
+      box.addEventListener('pointerup', function () { drag = false; });
+    }
+    ratioField.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { ratioField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); curRatio = parseFloat(b.dataset.r); drawStage(); }); });
+    xSlider.addEventListener('input', function () { posX = Number(xSlider.value); updateLabel(); drawStage(); });
+    ySlider.addEventListener('input', function () { posY = Number(ySlider.value); updateLabel(); drawStage(); });
+    var runBtn = el('button', 'run-btn', '▶ برش تصویر'); runBtn.disabled = true; body.appendChild(runBtn);
+    var resultWrap = el('div'); body.appendChild(resultWrap);
     fd.input.addEventListener('change', function () {
-      currentFile = fd.input.files[0];
-      if (currentFile) { runBtn.disabled = false; fd.wrap.querySelector('.main').textContent = currentFile.name; }
+      currentFile = fd.input.files[0]; if (!currentFile) return;
+      fd.wrap.querySelector('.main').textContent = currentFile.name;
+      loadImageFile(currentFile).then(function (item) { loaded = item; posX = 50; posY = 50; updateLabel(); runBtn.disabled = false; drawStage(); });
     });
-
     runBtn.addEventListener('click', function () {
-      if (!currentFile) return;
-      loadImageFile(currentFile).then(function (loaded) {
-        var iw = loaded.img.naturalWidth, ih = loaded.img.naturalHeight;
-        var targetRatio = curRatio;
-        var cw, ch;
-        if (iw / ih > targetRatio) { ch = ih; cw = ch * targetRatio; } else { cw = iw; ch = cw / targetRatio; }
-        var maxX = iw - cw, maxY = ih - ch;
-        var sx = maxX * (posX / 100), sy = maxY * (posY / 100);
-        var canvas = document.createElement('canvas');
-        canvas.width = cw; canvas.height = ch;
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(loaded.img, sx, sy, cw, ch, 0, 0, cw, ch);
-        canvas.toBlob(function (blob) {
-          var outName = currentFile.name.replace(/\.\w+$/, '') + '-cropped.jpg';
-          resultWrap.innerHTML = '';
-          var preview = el('div', 'preview-box');
-          var img2 = document.createElement('img'); img2.src = URL.createObjectURL(blob);
-          preview.appendChild(img2);
-          resultWrap.appendChild(preview);
-          resultActions(resultWrap,
-            function () { saveBlob(blob, outName); addHistory('img-crop', outName); },
-            function () { shareBlob(blob, outName, 'image/jpeg'); addHistory('img-crop', outName); },
-            function () { runBtn.click(); });
-        }, 'image/jpeg', 0.92);
-      });
+      if (!loaded || !currentFile) return;
+      var iw = loaded.img.naturalWidth, ih = loaded.img.naturalHeight;
+      var targetRatio = curRatio, cw, ch;
+      if (iw / ih > targetRatio) { ch = ih; cw = ch * targetRatio; } else { cw = iw; ch = cw / targetRatio; }
+      var sx = (iw - cw) * posX / 100, sy = (ih - ch) * posY / 100;
+      var canvas = document.createElement('canvas'); canvas.width = Math.round(cw); canvas.height = Math.round(ch);
+      canvas.getContext('2d').drawImage(loaded.img, sx, sy, cw, ch, 0, 0, cw, ch);
+      canvas.toBlob(function (blob) {
+        var outName = currentFile.name.replace(/\.\w+$/, '') + '-cropped.jpg'; resultWrap.innerHTML = '';
+        var preview = el('div', 'preview-box'); var img2 = document.createElement('img'); img2.src = URL.createObjectURL(blob); preview.appendChild(img2); resultWrap.appendChild(preview);
+        resultActions(resultWrap, function () { saveBlob(blob, outName); addHistory('img-crop', outName); }, function () { shareBlob(blob, outName, 'image/jpeg'); addHistory('img-crop', outName); }, function () { runBtn.click(); });
+      }, 'image/jpeg', 0.92);
     });
   };
-
   // 4. Image Editing & Cropping (rotate / mirror / filters) ----------------
   TOOL_RENDERERS['img-edit'] = function (body) {
     var fd = fileDrop('انتخاب عکس', 'برای انتخاب فایل ضربه بزنید', 'image/*');
@@ -792,7 +784,10 @@
     var qrSizeVal = sizeField.querySelector('#qrSizeVal');
     qrSize.addEventListener('input', function () { qrSizeVal.textContent = qrSize.value; });
 
-    body.appendChild(el('div', 'sheet-desc', 'سطح تصحیح خطا: M (استاندارد) — ظرفیت تا حدود ۲۰۰ کاراکتر.'));
+    var colorField = el('div', 'field', '<label>رنگ QR و پس‌زمینه</label><div class="qr-colors"><label>رنگ زمینه <input type="color" id="qrDark" value="#111827"></label><label>رنگ پس‌زمینه <input type="color" id="qrLight" value="#ffffff"></label></div>');
+    body.appendChild(colorField);
+    var qrDark = colorField.querySelector('#qrDark'), qrLight = colorField.querySelector('#qrLight');
+    body.appendChild(el('div', 'sheet-desc', 'سطح تصحیح خطا: M (استاندارد) — ظرفیت تا حدود ۲۰۰ کاراکتر. برای اسکن مطمئن، بین دو رنگ کنتراست کافی بگذارید.'));
 
     var runBtn = el('button', 'run-btn', '▶ ساخت QR Code');
     body.appendChild(runBtn);
@@ -805,7 +800,7 @@
       if (!window.QRLite.maxLength(text)) { toast('متن خیلی طولانی است (حداکثر ~۲۰۰ کاراکتر)'); return; }
       try {
         var canvas = document.createElement('canvas');
-        window.QRLite.drawToCanvas(canvas, text, { targetSize: parseInt(qrSize.value, 10) });
+        window.QRLite.drawToCanvas(canvas, text, { targetSize: parseInt(qrSize.value, 10), dark: qrDark.value, light: qrLight.value });
         resultWrap.innerHTML = '';
         var preview = el('div', 'preview-box');
         preview.appendChild(canvas);

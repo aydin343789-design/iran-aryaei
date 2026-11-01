@@ -840,13 +840,13 @@ export default function Studio() {
             </button>
             <Image
               src="/logo/logo-round-1024.png"
-              alt="لوگوی ندای پهلوی"
+              alt="لوگوی ایران آریایی"
               width={44}
               height={44}
               className="h-11 w-11 rounded-full object-cover shadow-[0_6px_22px_rgba(201,152,37,.28)] ring-1 ring-amber-300/30"
             />
             <span className="leading-tight">
-              <b className="block text-[17px] font-black tracking-tight">ندای پهلوی</b>
+              <b className="block text-[17px] font-black tracking-tight">ایران آریایی</b>
               <span className="block text-[10px] text-slate-500">استودیوی صدای فارسی</span>
             </span>
           </div>
@@ -911,13 +911,13 @@ export default function Studio() {
             <div className="flex items-center gap-3">
               <Image
                 src="/logo/logo-round-1024.png"
-                alt="لوگوی ندای پهلوی"
+                alt="لوگوی ایران آریایی"
                 width={44}
                 height={44}
                 className="h-11 w-11 rounded-full object-cover ring-1 ring-amber-300/30"
               />
               <div>
-                <b className="block text-[15px] font-black">ندای پهلوی</b>
+                <b className="block text-[15px] font-black">ایران آریایی</b>
                 <span className="text-[10px] text-slate-500">همه‌چیز در همین دستگاه</span>
               </div>
             </div>
@@ -1014,7 +1014,7 @@ export default function Studio() {
             </h1>
             <p className="mx-auto mt-2 max-w-md text-xs leading-6 text-slate-400">
               کارت عکسی و ویدئوی همگام با صدای فایل‌های خودتان — متن، موج‌نما
-              و برند ندای پهلوی؛ کاملاً روی همین دستگاه.
+              و برند ایران آریایی؛ کاملاً روی همین دستگاه.
             </p>
           </section>
           <VideoStudio clips={clips} onToast={showToast} />
@@ -1395,7 +1395,7 @@ export default function Studio() {
       )}
 
       <footer className="mx-auto max-w-3xl py-5 text-center text-[10px] text-slate-600">
-        ندای پهلوی <span className="mx-1 text-slate-700">·</span> گفتار فارسی روی دستگاه شما
+        ایران آریایی <span className="mx-1 text-slate-700">·</span> گفتار فارسی روی دستگاه شما
       </footer>
 
       {toast && (
@@ -1620,12 +1620,12 @@ function AboutPanel() {
       <section className="overflow-hidden rounded-2xl border border-teal-300/20 bg-gradient-to-br from-teal-300/[0.09] via-ink-850 to-amber-300/[0.045] p-5 text-center">
         <Image
           src="/logo/logo-round-1024.png"
-          alt="لوگوی ندای پهلوی"
+          alt="لوگوی ایران آریایی"
           width={88}
           height={88}
           className="mx-auto h-24 w-24 rounded-full object-cover shadow-[0_14px_40px_rgba(201,152,37,.3)] ring-2 ring-amber-300/40"
         />
-        <h2 className="mt-3 text-2xl font-black tracking-tight">دربارهٔ ندای پهلوی</h2>
+        <h2 className="mt-3 text-2xl font-black tracking-tight">دربارهٔ ایران آریایی</h2>
         <p className="mt-2 text-[12px] leading-6 text-slate-300">استودیوی آفلاین تبدیل متن فارسی به گفتار. صدای متن شما روی دستگاه ساخته می‌شود؛ متن به سرور فرستاده نمی‌شود.</p>
       </section>
       <section className="rounded-2xl border border-white/[0.07] bg-ink-850/75 p-4">
@@ -1646,7 +1646,7 @@ function AboutPanel() {
         </div>
         <p className="mt-3 text-[10px] leading-5 text-slate-600">مدل‌ها با مجوزهای متن‌باز منتشر شده‌اند؛ نام سازندگان و مجوز هر مدل در توضیحات مخزن پروژه آمده است.</p>
       </section>
-      <div className="flex items-center justify-between px-1 text-[9px] text-slate-600"><span>ندای پهلوی</span><span>ساخته‌شده برای زبان فارسی</span></div>
+      <div className="flex items-center justify-between px-1 text-[9px] text-slate-600"><span>ایران آریایی</span><span>ساخته‌شده برای زبان فارسی</span></div>
     </div>
   );
 }

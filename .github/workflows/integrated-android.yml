@@ -7,7 +7,7 @@ on:
         description: "Bundle Persian Piper voices inside the APK"
         type: choice
         options: [none, all]
-        default: none
+        default: all
   push:
     branches: [main, fix-iran-aryaei-luxury, integrate-text-to-speech]
 
@@ -40,6 +40,9 @@ jobs:
       - name: Bundle Persian voices
         if: ${{ inputs.bundle_voices != 'none' }}
         run: node scripts/fetch-voices.mjs
+
+      - name: Bundle Piper and eSpeak-NG runtime assets
+        run: node scripts/fetch-piper-assets.mjs
 
       - name: Build static web app
         env:

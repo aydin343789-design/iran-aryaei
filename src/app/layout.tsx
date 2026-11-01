@@ -12,9 +12,9 @@ const vazirmatn = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: "ندای پهلوی | استودیوی صدای فارسی",
+  title: "ایران آریایی | استودیوی صدای فارسی",
   description:
-    "ندای پهلوی؛ تبدیل آفلاین متن فارسی به گفتار با سه صدای فارسی و پنج لحن، مستقیماً روی دستگاه.",
+    "ایران آریایی؛ تبدیل آفلاین متن فارسی به گفتار با سه صدای فارسی و پنج لحن، مستقیماً روی دستگاه.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    title: "ندای پهلوی",
+    title: "ایران آریایی",
     statusBarStyle: "black-translucent",
   },
 };
