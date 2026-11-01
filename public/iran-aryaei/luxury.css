@@ -1,0 +1,38 @@
+/* ایران آریایی — luxury visual layer */
+:root {
+  --bg: #100f12;
+  --card: rgba(31, 27, 31, .88);
+  --card-2: #252027;
+  --primary: #c7a45a;
+  --primary-ink: #171318;
+  --secondary: #e0bd72;
+  --text: #f6efe2;
+  --text-dim: #b8ac9b;
+  --border: rgba(224, 189, 114, .22);
+  --success: #61d6a2;
+  --danger: #ed8585;
+  --shadow: 0 18px 45px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+}
+html, body { background: radial-gradient(circle at 85% 0%, #332719 0, transparent 34rem), var(--bg); }
+body { color: var(--text); }
+.app { max-width: 620px; }
+.topbar { padding-top: calc(18px + env(safe-area-inset-top)); }
+.brand-title { color: var(--secondary); letter-spacing: .1px; }
+.brand-sub { color: var(--text-dim); }
+.icon-btn, .quick-card, .tool-card, .chip, .stat-card, .settings-group, .history-row {
+  background: linear-gradient(145deg, rgba(45,38,43,.94), rgba(24,21,25,.94));
+  border-color: var(--border); box-shadow: var(--shadow); color: var(--text);
+}
+.brand-mark { background: linear-gradient(135deg, #f0d48d, #8c642b); box-shadow: 0 8px 22px rgba(199,164,90,.28); }
+.hero { background: linear-gradient(135deg, #4b371f 0%, #20191a 58%, #171419 100%); border: 1px solid rgba(224,189,114,.24); }
+.hero::after { background: radial-gradient(circle, rgba(224,189,114,.28), transparent 70%); }
+.hero-send, .chip.active { background: linear-gradient(135deg, #f0d48d, #b7893d); color: #201912; }
+.quick-icon, .tool-card .tool-icon, .history-icon { background: rgba(199,164,90,.12); border: 1px solid rgba(224,189,114,.16); }
+.tool-card:hover, .quick-card:hover { border-color: rgba(224,189,114,.55); transform: translateY(-2px); }
+.bottom-nav { background: rgba(18,16,19,.92); border-top: 1px solid var(--border); backdrop-filter: blur(18px); }
+.nav-item.active { color: var(--secondary); }
+.sheet { background: #19161a; border: 1px solid var(--border); }
+input, textarea, select { background: rgba(10,9,11,.42) !important; color: var(--text) !important; border-color: var(--border) !important; }
+button:not(.danger-btn) { color: inherit; }
+.toast { background: #e0bd72; color: #171318; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }

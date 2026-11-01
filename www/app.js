@@ -312,12 +312,21 @@
 
   function fileDrop(label, sub, accept, multiple) {
     var wrap = el('div', 'file-drop');
-    wrap.innerHTML = '<div class="emoji">📁</div><div class="main">' + label + '</div><div class="sub">' + sub + '</div>';
+    wrap.innerHTML = '<div class="emoji">📁</div><div class="main">' + label + '</div><div class="sub">' + sub + '</div><div class="file-preview" hidden></div>';
     var input = document.createElement('input');
     input.type = 'file'; input.accept = accept || '*'; input.multiple = !!multiple;
     input.style.display = 'none';
     wrap.appendChild(input);
     wrap.addEventListener('click', function () { input.click(); });
+    input.addEventListener('change', function () {
+      var file = input.files && input.files[0], preview = wrap.querySelector('.file-preview');
+      if (!file || !preview) return;
+      preview.innerHTML = '';
+      if (file.type && file.type.indexOf('image/') === 0) {
+        var image = document.createElement('img'); image.alt = 'پیش‌نمایش فایل انتخاب‌شده'; image.src = URL.createObjectURL(file);
+        preview.appendChild(image); preview.hidden = false;
+      } else preview.hidden = true;
+    });
     return { wrap: wrap, input: input };
   }
 
@@ -553,7 +562,7 @@
       '<button data-r="1.777">۱۶:۹</button>' +
       '<button data-r="1.333">۴:۳</button></div>');
     body.appendChild(ratioField);
-    var curRatio = 1;
+    var curRatio = 1, posX = 50, posY = 50;
     ratioField.querySelectorAll('button').forEach(function (b) {
       b.addEventListener('click', function () {
         ratioField.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
@@ -561,10 +570,14 @@
       });
     });
 
-    var runBtn = el('button', 'run-btn', '▶ برش از مرکز تصویر');
+    var positionField = el('div', 'field', '<label>جای کادر افقی: <b id="cropXVal">۵۰</b>٪</label><input type="range" id="cropX" min="0" max="100" value="50"><label>جای کادر عمودی: <b id="cropYVal">۵۰</b>٪</label><input type="range" id="cropY" min="0" max="100" value="50">');
+    body.appendChild(positionField);
+    positionField.querySelector('#cropX').addEventListener('input', function (e) { posX = Number(e.target.value); positionField.querySelector('#cropXVal').textContent = posX; });
+    positionField.querySelector('#cropY').addEventListener('input', function (e) { posY = Number(e.target.value); positionField.querySelector('#cropYVal').textContent = posY; });
+    var runBtn = el('button', 'run-btn', '▶ برش تصویر');
     runBtn.disabled = true;
     body.appendChild(runBtn);
-    body.appendChild(el('div', '', '<div class="sheet-desc" style="margin:0">برش از مرکز تصویر انجام می‌شود؛ نسخهٔ بعدی امکان جابه‌جایی دستی کادر برش را اضافه می‌کند.</div>'));
+    body.appendChild(el('div', '', '<div class="sheet-desc" style="margin:0">با دو نوار بالا، مرکز کادر را روی سوژه تنظیم کنید و سپس خروجی بگیرید.</div>'));
     var resultWrap = el('div');
     body.appendChild(resultWrap);
 
@@ -581,7 +594,8 @@
         var targetRatio = curRatio;
         var cw, ch;
         if (iw / ih > targetRatio) { ch = ih; cw = ch * targetRatio; } else { cw = iw; ch = cw / targetRatio; }
-        var sx = (iw - cw) / 2, sy = (ih - ch) / 2;
+        var maxX = iw - cw, maxY = ih - ch;
+        var sx = maxX * (posX / 100), sy = maxY * (posY / 100);
         var canvas = document.createElement('canvas');
         canvas.width = cw; canvas.height = ch;
         var ctx = canvas.getContext('2d');
@@ -832,15 +846,21 @@
 
     runBtn.addEventListener('click', function () {
       if (!currentFile) return;
-      if (!('BarcodeDetector' in window)) { toast('این قابلیت روی این دستگاه در دسترس نیست'); return; }
       loadImageFile(currentFile).then(function (loaded) {
         var canvas = document.createElement('canvas');
         canvas.width = loaded.img.naturalWidth; canvas.height = loaded.img.naturalHeight;
-        canvas.getContext('2d').drawImage(loaded.img, 0, 0);
-        var detector = new window.BarcodeDetector({ formats: ['qr_code'] });
-        detector.detect(canvas).then(function (codes) {
+        var ctx = canvas.getContext('2d', { willReadFrequently: true }); ctx.drawImage(loaded.img, 0, 0);
+        var fallbackDecode = function () {
+          if (typeof window.jsQR !== 'function') return Promise.resolve([]);
+          var code = window.jsQR(ctx.getImageData(0, 0, canvas.width, canvas.height).data, canvas.width, canvas.height, { inversionAttempts: 'attemptBoth' });
+          return Promise.resolve(code ? [{ rawValue: code.data }] : []);
+        };
+        var detect = ('BarcodeDetector' in window)
+          ? new window.BarcodeDetector({ formats: ['qr_code'] }).detect(canvas).then(function (codes) { return codes.length ? codes : fallbackDecode(); })
+          : fallbackDecode();
+        detect.then(function (codes) {
           resultWrap.innerHTML = '';
-          if (!codes.length) { resultWrap.appendChild(el('div', 'empty-state', '<div class="emoji">🔍</div>کد QR شناسایی نشد')); return; }
+          if (!codes.length) { resultWrap.appendChild(el('div', 'empty-state', '<div class="emoji">🔍</div>کد QR شناسایی نشد؛ عکس را واضح‌تر یا نزدیک‌تر انتخاب کنید')); return; }
           var value = codes[0].rawValue;
           var box = el('div', 'field', '<label>متن شناسایی‌شده</label><textarea readonly>' + value.replace(/</g, '&lt;') + '</textarea>');
           resultWrap.appendChild(box);

@@ -1,0 +1,401 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-vazirmatn), "Segoe UI", Tahoma, Arial, sans-serif;
+
+  --color-ink-950: #06090e;
+  --color-ink-900: #0a0e15;
+  --color-ink-850: #0e131d;
+  --color-ink-800: #121927;
+  --color-ink-700: #1a2334;
+  --color-ink-600: #263148;
+  --color-cream: #f6f1e7;
+  --color-sand: #b8ab8f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #06090e;
+  color: #f6f1e7;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Ambient radial glows + film grain (fixed, non-interactive) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(720px 420px at 88% -6%, rgba(45, 212, 191, 0.13), transparent 62%),
+    radial-gradient(640px 460px at 4% 108%, rgba(245, 158, 11, 0.1), transparent 60%),
+    radial-gradient(520px 360px at 50% 46%, rgba(45, 212, 191, 0.045), transparent 65%);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+::selection {
+  background: rgba(45, 212, 191, 0.35);
+  color: #ffffff;
+}
+
+/* Slim elegant scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2b3850 transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2b3850;
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes eqBounce {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes ringPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(45, 212, 191, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+  }
+}
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+@keyframes shakeX {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+.animate-pop {
+  animation: popIn 0.5s cubic-bezier(0.22, 0.9, 0.3, 1.25) both;
+}
+.animate-ring-pulse {
+  animation: ringPulse 1.8s ease-out infinite;
+}
+.animate-float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+}
+.animate-shake {
+  animation: shakeX 0.45s ease;
+}
+.eq-bar {
+  transform-origin: bottom;
+  animation: eqBounce 0.9s ease-in-out infinite;
+}
+
+/* ---------- Range slider (transparent track; fill drawn by wrapper) ---------- */
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: transparent;
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2dd4bf;
+  border: 3px solid #0a0e15;
+  box-shadow:
+    0 0 0 2px rgba(45, 212, 191, 0.55),
+    0 6px 16px rgba(0, 0, 0, 0.55);
+  transition: transform 0.15s ease;
+}
+input[type="range"].slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+input[type="range"].slider::-moz-range-track {
+  height: 6px;
+  background: transparent;
+}
+input[type="range"].slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2dd4bf;
+  border: 3px solid #0a0e15;
+  box-shadow:
+    0 0 0 2px rgba(45, 212, 191, 0.55),
+    0 6px 16px rgba(0, 0, 0, 0.55);
+}
+input[type="range"].slider:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Splash screen ---------- */
+@keyframes splashIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes splashOut {
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+    filter: blur(6px);
+  }
+}
+@keyframes splashLogoPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.62);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  78% {
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes splashGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateX(-50%) scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+@keyframes splashUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes splashBar {
+  0%,
+  100% {
+    height: 22%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+@keyframes splashFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes goldShine {
+  0% {
+    background-position: 130% center;
+  }
+  100% {
+    background-position: -30% center;
+  }
+}
+
+.splash-enter {
+  animation: splashIn 0.5s ease both;
+}
+.splash-exit {
+  animation: splashOut 0.55s ease both;
+}
+.splash-logo {
+  animation: splashLogoPop 0.95s cubic-bezier(0.22, 1.35, 0.32, 1) 0.1s both;
+}
+.splash-ring {
+  background: radial-gradient(
+    circle,
+    rgba(217, 168, 48, 0.3),
+    rgba(217, 168, 48, 0.08) 55%,
+    transparent 72%
+  );
+  animation: splashGlow 2.4s ease-in-out 0.4s infinite;
+}
+.splash-title {
+  background-image: linear-gradient(
+    100deg,
+    #b57e14 0%,
+    #e8bd55 22%,
+    #fff3c4 38%,
+    #e8bd55 55%,
+    #b57e14 78%,
+    #f6d98b 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(201, 152, 37, 0.35));
+  animation:
+    splashUp 0.7s ease 0.5s both,
+    goldShine 2.8s linear 1.2s infinite;
+}
+.splash-tagline {
+  animation: splashUp 0.7s ease 0.75s both;
+}
+.splash-bars .splash-bar {
+  height: 22%;
+  background: linear-gradient(180deg, #f4d377, #c99825);
+  box-shadow: 0 0 12px rgba(217, 168, 48, 0.45);
+  animation: splashBar 0.8s ease-in-out infinite both;
+}
+.splash-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #c99825, #f6d98b);
+  animation: splashFill 2.2s ease-in-out 0.25s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-enter,
+  .splash-exit,
+  .splash-logo,
+  .splash-ring,
+  .splash-title,
+  .splash-tagline,
+  .splash-progress {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+  }
+  .splash-bars .splash-bar {
+    animation: none;
+    height: 60%;
+  }
+}
+
+/* Textarea placeholder + focus niceties */
+textarea::placeholder {
+  color: #5b6a82;
+}
+textarea:focus {
+  outline: none;
+}
+
+/* Hide number input arrows just in case */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* ---------- Integrated Iran Aryaei section switcher ---------- */
+.app-switcher { position: sticky; top: 0; z-index: 30; padding: 12px 16px 0; background: linear-gradient(180deg, rgba(6,9,14,.98), rgba(6,9,14,.78) 78%, transparent); backdrop-filter: blur(16px); }
+.app-switcher-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 1080px; margin: 0 auto; padding: 10px 12px; border: 1px solid rgba(255,255,255,.09); border-radius: 20px; background: rgba(18,25,39,.82); box-shadow: 0 16px 50px rgba(0,0,0,.22); }
+.app-brand { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.app-brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: #071014; font-weight: 950; background: linear-gradient(135deg, #2dd4bf, #fbbf24); }
+.app-brand strong, .app-brand small { display: block; white-space: nowrap; }
+.app-brand strong { color: #f6f1e7; font-size: 12px; }
+.app-brand small { margin-top: 2px; color: #94a3b8; font-size: 9px; }
+.app-tabs { display: flex; gap: 5px; padding: 4px; border: 1px solid rgba(255,255,255,.07); border-radius: 14px; background: rgba(0,0,0,.16); }
+.app-tabs button { border: 0; border-radius: 10px; padding: 9px 12px; color: #94a3b8; background: transparent; font: inherit; font-size: 11px; font-weight: 850; cursor: pointer; transition: .2s ease; }
+.app-tabs button span { color: #2dd4bf; margin-left: 4px; }
+.app-tabs button.active { color: #071014; background: #2dd4bf; box-shadow: 0 6px 18px rgba(45,212,191,.18); }
+.app-tabs button.active span { color: #071014; }
+.ia-shell { max-width: 1180px; margin: 0 auto; padding: 18px 16px 28px; direction: rtl; }
+.ia-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 12px; padding: 10px 2px 14px; }
+.ia-kicker { margin: 0 0 4px; color: #2dd4bf; font-size: 10px; font-weight: 850; letter-spacing: .04em; }
+.ia-title { margin: 0; color: #f6f1e7; font-size: clamp(22px,4vw,32px); font-weight: 950; }
+.ia-open { border: 1px solid rgba(45,212,191,.3); border-radius: 11px; padding: 9px 12px; color: #b9f8ee; background: rgba(45,212,191,.07); font-size: 10px; font-weight: 850; text-decoration: none; }
+.ia-frame { display: block; width: 100%; min-height: calc(100vh - 140px); border: 1px solid rgba(255,255,255,.1); border-radius: 24px; background: #0a0e15; box-shadow: 0 22px 70px rgba(0,0,0,.32); }
+@media (max-width: 680px) {
+  .app-switcher { padding: 8px 8px 0; }
+  .app-switcher-inner { display: block; padding: 8px; }
+  .app-brand { margin: 2px 4px 8px; }
+  .app-tabs { width: 100%; }
+  .app-tabs button { flex: 1; padding: 9px 6px; font-size: 10px; }
+  .ia-shell { padding: 10px 8px 18px; }
+  .ia-toolbar { align-items: start; flex-direction: column; }
+  .ia-frame { min-height: calc(100vh - 175px); border-radius: 18px; }
+}

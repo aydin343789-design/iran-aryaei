@@ -1,17 +1,24 @@
-# Gradle / Android build outputs
-android/.gradle/
-android/build/
-android/app/build/
-android/local.properties
-android/captures/
-android/.cxx/
+# dependencies
+node_modules
 
-# Capacitor sync output — regenerated from www/ on every build by CI
-# ("cp -r www/* android/app/src/main/assets/public/"); committing it
-# risks exactly the kind of stale-vs-source confusion this fix addressed.
-android/app/src/main/assets/public/
+# next.js
+.next
+out
+next-env.d.ts
+tsconfig.tsbuildinfo
 
-# OS/editor cruft
+# پروژهٔ اندروید در هر بار ساخت با `npx cap add android` تولید می‌شود
+android
+
+# مدل‌های صوتی سنگین (در زمان ساخت APK دانلود می‌شوند)
+public/models/*
+!public/models/index.json
+
+# env / logs
+.env
+.env.*
+*.log
 .DS_Store
-*.iml
-.idea/
+.tmp-test
+
+release-keys/

@@ -1,26 +1,18 @@
-import type { CapacitorConfig } from '@capacitor/cli';
-
-const config: CapacitorConfig = {
-  appId: 'ir.aryaei.tools',
-  appName: 'ایران آریایی',
-  webDir: 'www',
-  bundledWebRuntime: false,
+/**
+ * Capacitor configuration for the integrated native Android app «ایران آریایی».
+ * راهنمای کامل فارسی در فایل ANDROID.md آمده است.
+ */
+const config = {
+  appId: "ir.aryaei.tools",
+  appName: "ایران آریایی",
+  webDir: "out",
+  backgroundColor: "#06090e",
   server: {
-    androidScheme: 'https',
-    // No remote origins are ever whitelisted here — the app is 100% offline.
-    allowNavigation: []
+    androidScheme: "https",
   },
   android: {
     allowMixedContent: false,
-    captureInput: true
   },
-  plugins: {
-    SplashScreen: {
-      launchShowDuration: 600,
-      backgroundColor: '#0F4C81',
-      showSpinner: false
-    }
-  }
 };
 
 export default config;
