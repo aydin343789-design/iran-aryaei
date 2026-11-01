@@ -42,7 +42,7 @@ jobs:
           from pathlib import Path
           p = Path("next.config.ts")
           s = p.read_text()
-          s = s.replace('const nextConfig: NextConfig = {', 'const nextConfig: NextConfig = {\n  basePath: "/tts",\n  assetPrefix: "/tts",')
+          s = s.replace('const nextConfig: NextConfig = {', 'const nextConfig: NextConfig = {\n  basePath: "/tts",')
           p.write_text(s)
 
           # Prefix absolute public asset URLs so the embedded studio cannot
